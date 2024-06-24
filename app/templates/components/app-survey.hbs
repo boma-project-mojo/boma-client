@@ -1,0 +1,59 @@
+<div class="survey">
+	{{#if (eq this.surveyState "waiting")}}
+		<div data-test-survey-waiting class="survey__waiting">
+			<i class="fa fa-clock-o"></i>
+			<span>
+				This poll opens at <FormattedDate @dateTime={{this.survey.enable_at}} @format='h:mma on ddd Do MMM'/>.
+			</span>
+		</div>
+	{{/if}}
+
+	{{#if (eq this.surveyState "open")}}
+		{{#if this.showForm}}
+			<div class="survey__questions">
+				{{#each this.survey.questions as |question|}}
+					<h3 data-test-survey-question class="survey_question">{{question.question_text}}</h3>
+					<AppSurveyQuestion @question={{question}} @pendingRequest={{this.pendingRequest}} @updateSelectedRadio={{action "updateSelectedRadio"}} />
+				{{/each}}
+			</div>
+			<button data-test-survey-submit class="btn right" type="button" {{action (action "submit")}}>Submit</button>
+		{{/if}}
+
+		{{#if this.baseErrors}}
+			<div class="errors">
+				{{#each this.baseErrors as |error|}}
+					<li>{{error}}</li>
+				{{/each}}
+			</div>
+		{{/if}}
+	{{/if}}
+
+	{{#if (eq this.requestStatus "registering")}}
+		<div data-test-survey-loading class="survey__loading">	
+			<a role="button" class="loading-messages" {{action (action "retryNow") }}><i class="fa fa-refresh {{if this.retryingNow 'fa-spin'}} fa-3x fa-fw messages-loading {{if this.loadingSucceeded 'pulse fa-check-circle'}} {{if this.loadingFailed 'shake fa-exclamation-circle'}}"></i></a>
+			<span>
+				Submitting Response <br>
+				<small> Retrying {{this.momentFromNow}}</small>
+			</span>
+		</div>
+	{{else if (eq this.requestStatus "success")}}
+		<div data-test-survey-success class="survey__success">
+			<i class="fa fa-check"></i>
+			<span>
+				Success! <br>
+				<small>Your submission was received successfully</small>
+			</span>
+		</div>
+	{{/if}}
+
+	{{#if (eq this.surveyState "closed")}}
+		<div data-test-survey-closed class="survey__closed">
+			<i class="fa fa-clock-o"></i>
+			<span>
+				This poll closed at <FormattedDate @dateTime={{this.survey.disable_at}} @format='h:mma on ddd Do MMM'/>.
+			</span>
+		</div>
+	{{/if}}
+
+	<div class="clearboth"></div>
+</div> {{!-- .survey --}}

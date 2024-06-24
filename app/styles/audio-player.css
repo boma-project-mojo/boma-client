@@ -1,0 +1,171 @@
+.spinning-loader {
+  width: 80px;
+  height: 80px;
+
+  border: 3px solid transparent;
+  border-left-color: #2c437e;
+  border-radius: 50%;
+  background: transparent;
+
+  display: none;
+
+  animation:
+    rotate-s-loader 1s infinite linear,
+    fadein 1s !important;
+}
+
+.loading {
+  animation: fadein 0.5s;
+}
+
+.outgoing {
+  animation: fadeout 1s;
+}
+
+.spinning-loader.loading {
+  display: block;
+}
+
+.spinning-loader.outgoing {
+  animation:
+    fadeout 0.5s,
+    rotate-s-loader 1s infinite linear;
+}
+
+@keyframes rotate-s-loader {
+  from {
+    transform: rotate(0);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+#audio-player {
+  margin: auto;
+  text-align: center;
+  width: 100%;
+  clear: both;
+  overflow: auto;
+}
+
+#audio-player .error,
+#audio-player .message {
+  font-size: 14px;
+  line-height: 20px;
+}
+
+/*#audio-player .error {
+  clear: both;
+}*/
+
+.audio-player-controls {
+  display: inline-block;
+  padding-top: 10px;
+}
+
+.audio-player-controls:after {
+  content: " ";
+  clear: both;
+}
+
+.audio-control {
+  float: left;
+  padding: 0 20px;
+}
+
+.audio-control-fa {
+  margin-top: 12px;
+}
+
+.audio-control .fa {
+  font-size: 50px !important;
+  color: #2c437e;
+  top: auto !important;
+}
+
+.audio-control img {
+  height: 70px;
+}
+
+/* Range */
+
+input[type="range"] {
+  -webkit-appearance: none; /* Hides the slider so that custom slider can be made */
+  width: 100%; /* Specific width is required for Firefox. */
+  background: transparent; /* Otherwise white in Chrome */
+}
+
+input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+}
+
+input[type="range"]:focus {
+  outline: none; /* Removes the blue border. You should probably do some kind of focus styling for accessibility reasons though. */
+}
+
+input[type="range"]::-ms-track {
+  width: 100%;
+  cursor: pointer;
+
+  /* Hides the slider so custom styles can be added */
+  background: transparent;
+  border-color: transparent;
+  color: transparent;
+}
+
+/* Special styling for WebKit/Blink */
+input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  border: 1px solid #e96e57;
+  height: 21px;
+  width: 21px;
+  border-radius: 10px;
+  background: #e96e57;
+  cursor: pointer;
+  position: relative;
+  top: -10px;
+}
+
+input[type="range"]::-webkit-slider-runnable-track {
+  width: 100%;
+  height: 2px;
+  cursor: pointer;
+  background: #2c437e;
+}
+
+#loading-retry-btn {
+  position: relative;
+}
+
+#loading-retry-btn .spinning-loader {
+  position: absolute;
+  top: -15px;
+  left: -5px;
+}
+
+#scrub-bar {
+  max-width: 95%;
+  margin: auto;
+  clear: both;
+  text-align: left;
+}
+
+#audio-player-current-time {
+  float: left;
+  padding-left: 18px;
+  animation: fadein 0.5s;
+}
+
+#audio-player-duration {
+  float: right;
+  padding-right: 18px;
+  animation: fadein 0.5s;
+}
+
+#audio-player.scrubbingDisabled {
+  padding-bottom: 24px;
+  border-bottom: 2px solid #2c437e;
+  margin-bottom: 20px;
+  overflow: auto;
+}

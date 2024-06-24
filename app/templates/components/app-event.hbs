@@ -1,0 +1,35 @@
+{{#if this.productionModalType}}
+  <a role="button" {{action (action this.openProductionModal) this.model.production_id}}>
+    <div class="event {{this.model.venue_name_for_css}} {{if (eq this.model.aasm_state "cancelled") "event-cancelled" }}" {{did-pan onPanEnd=(action this.favouriteEvent this.model.id) threshold=100}}>
+      <AppListImage @model={{this.model}}>
+        <PreferenceDisplay @model={{this.model}} />
+        <div class="event-details">
+          <h1 class="event-name">{{this.model.name}}</h1>
+          <h3 class="event-datetime">
+            {{this.model.date_string_start}}
+          </h3>
+          <h3 class="event-venue">
+            {{this.model.venue_name}}
+          </h3>
+        </div>
+      </AppListImage>
+    </div> 
+  </a>
+{{else}}
+  <a role="button" {{action (action this.openEventModal) this.model.id}}>
+    <div class="event {{this.model.venue_name_for_css}} {{if (eq this.model.aasm_state "cancelled") "event-cancelled" }}" {{did-pan onPanEnd=(action this.favouriteEvent this.model.id) threshold=100}}>
+      <AppListImage @model={{this.model}} @htmlElement={{this.element}}>
+        <PreferenceDisplay @model={{this.model}} />
+        <div class="event-details">
+          <h1 class="event-name">{{this.model.name}}</h1>
+          <h3 class="event-datetime">
+            {{this.model.date_string_start}}
+          </h3>
+          <h3 class="event-venue">
+            {{this.model.venue_name}}
+          </h3>
+        </div>
+      </AppListImage>
+    </div> 
+  </a>
+{{/if}}

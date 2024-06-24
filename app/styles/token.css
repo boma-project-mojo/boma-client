@@ -1,0 +1,274 @@
+.wallet {
+  min-height: 100vh;
+  background-color: #fff;
+  height: 100%;
+}
+
+.wallet h2#wallet-contents,
+.wallet #wallet-address h2,
+.token h2,
+.scan-result h2 {
+  font-size: 16px;
+  line-height: 16px;
+  text-transform: none;
+  font-weight: bold;
+  letter-spacing: normal;
+  color: #494949;
+  text-align: center;
+  margin-bottom: 16px;
+  padding-right: 0;
+}
+
+.token h1#token-event-name {
+  text-align: center;
+  margin-bottom: 15px;
+}
+
+.wallet h3#wallet-contents-detail,
+.token h3#token-event-time {
+  font-size: 14px;
+  line-height: 14px;
+  text-transform: none;
+  font-weight: normal;
+  letter-spacing: normal;
+  color: #7f7f7f;
+  text-align: center;
+  margin-bottom: 20px;
+  padding-right: 0;
+}
+
+.token h3#token-event-time {
+  line-height: 20px;
+}
+
+.wallet .token-qr-wrap,
+.token .token-image {
+  text-align: center;
+  margin: auto;
+  margin-bottom: 20px;
+}
+
+.wallet .token-qr-wrap img,
+.token .token-image img {
+  width: 140px;
+}
+
+.wallet .fw-list-style {
+  border: 1px solid #70c1cc;
+  border-radius: 5px;
+  padding: 5px;
+  background-color: transparent;
+}
+
+.wallet .fw-list-style-image {
+  max-width: 40px;
+  height: 40px;
+}
+
+.wallet .fw-list-style-details {
+  padding: 0px;
+  padding-top: 3px;
+  padding-left: 8px;
+}
+
+.wallet .token-event-name {
+  font-size: 16px;
+  color: #494949;
+  margin-bottom: 4px;
+  line-height: 16px;
+}
+
+.wallet {
+  font-size: 14px;
+  font-weight: medium;
+}
+
+.wallet #wallet-address {
+  width: 50%;
+  white-space: wrap;
+  overflow-wrap: break-word;
+  float: left;
+  padding-top: 2px;
+}
+
+.wallet #wallet-address h2 {
+  text-align: left;
+  margin-bottom: 0;
+  line-height: 16px;
+}
+
+.wallet #wallet-address p {
+  text-align: left;
+  margin-bottom: 0;
+  font-size: 12px;
+  color: #7f7f7f;
+  line-height: 16px;
+}
+
+#wallet-show {
+  margin-top: 35px;
+}
+
+.token#main {
+  height: 100vh;
+}
+
+.token .token-image img {
+  border-radius: 18px;
+}
+
+.token #token-state-wrap {
+  text-align: center;
+}
+
+.token #token-state-wrap i {
+  margin-bottom: 15px;
+}
+
+.token #token-state-wrap h1 {
+  margin-bottom: 20px;
+  text-transform: capitalize;
+}
+
+.token #token-state-wrap h2 {
+  line-height: 22px;
+  max-width: 80%;
+  margin: auto;
+  color: #7f7f7f;
+}
+
+.token .va-outer {
+  height: calc(100vh - 51px - 100px);
+  height: calc(100vh - 51px - env(safe-area-inset-top) - 100px);
+  /*  padding-bottom: 70px;*/
+}
+
+.token-status {
+  text-transform: capitalize;
+}
+
+.scan-result {
+  position: absolute;
+  z-index: 10000;
+  top: 36%;
+  width: 80%;
+  margin: 10%;
+  text-align: center;
+  background-color: #eaeaea;
+  border-radius: 18px;
+  padding-top: 15px;
+  padding: 0 20px;
+  padding-top: 15px;
+}
+
+.wallet #all-tokens {
+  max-height: 260px;
+  overflow: scroll;
+  overscroll-behavior: none;
+}
+
+.token-info-content h1 {
+  font-size: 32px;
+  color: #494949;
+  letter-spacing: -0.04em;
+  line-height: 36px;
+  margin-bottom: 12px;
+}
+
+#token-show .errors-wrap {
+  position: absolute;
+  bottom: 125px;
+  bottom: calc(125px + env(safe-area-inset-bottom));
+  z-index: 10;
+  width: calc(100% - 24px);
+  text-align: center;
+  margin: auto;
+}
+
+#token-show .errors {
+  margin-bottom: 12px;
+  padding-left: 35px;
+  padding-right: 35px;
+  border-radius: 100px;
+  text-align: center;
+  margin: auto;
+  width: auto;
+  display: inline-block;
+}
+
+#token-show .errors li {
+  list-style: none;
+  margin: auto;
+}
+
+#token-last-upated-at {
+  font-size: 12px;
+  margin-top: 12px;
+}
+
+.full-page-success-inner .fa-check-circle,
+.scan-result .fa-check-circle,
+.scan-result .fa-exclamation-circle,
+#token-state-wrap .fa-check-circle,
+.fa-refresh,
+#token-state-wrap .fa {
+  font-size: 60px;
+  color: #015000;
+  line-height: 1em;
+}
+
+.full-page-success-inner .fa-check-circle {
+  margin-bottom: 16px;
+}
+
+#token-state-wrap i {
+  width: 85px;
+  height: 85px;
+  border-radius: 1000px;
+  border: 1px solid #015000;
+  padding: 12px;
+  padding-bottom: 10px;
+}
+
+#token-state-wrap .fa-crosshairs,
+#token-state-wrap .fa-refresh,
+#token-state-wrap .fa-link,
+#token-state-wrap .fa-database,
+#token-state-wrap .fa-clock-o {
+  color: #ff9300;
+  border-color: #ff9300;
+}
+
+#token-state-wrap .fa-link {
+  font-size: 50px;
+  padding-top: 17px;
+}
+
+#token-state-wrap .fa-exclamation-circle,
+.scan-result .fa-exclamation-circle {
+  color: #ef0000;
+  border-color: #ef0000;
+}
+
+#token-show .loading {
+  color: #999;
+  font-size: 1.5em;
+  top: 6px;
+  position: relative;
+}
+
+#redeem-token-link {
+  text-align: center;
+  margin-top: 10px;
+}
+
+.token #retry-token {
+  width: 100px;
+  text-align: center;
+  padding-top: 7px;
+}
+
+.token #retry-token .fa {
+  color: #fff;
+  font-size: 22px;
+}

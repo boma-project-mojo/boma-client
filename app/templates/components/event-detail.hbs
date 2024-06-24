@@ -1,0 +1,111 @@
+{{#if this.event}}
+  <div id="event-show">
+    {{#if this.event.showImage}}
+      <a role="button" {{action (action "doCloseModal")}}>
+        <AppModalImage @model={{this.event}} @closeModal={{action "doCloseModal"}} />
+      </a>
+    {{else}}
+      <button class="close-modal no-image" type="button" {{action (action "doCloseModal")}}></button>
+    {{/if}}
+    
+    <div class="content-wrap" {{did-pan onPanEnd=(action "doCloseModal") threshold=100}}>
+      {{#if (get this.event.productions "0.name")}}
+        <h2 id="production-name">{{get this.event.productions "0.name"}}</h2>
+      {{/if}}
+      {{#unless (eq this.event.name (get this.event.productions "0.name"))}}
+			  <h2 id="event-name">{{this.event.name}}</h2>
+      {{/unless}}
+      {{!-- <h2 id="event-name">{{{this.event.name}}}</h2> --}}
+{{!--       {{#if this.event.productions}}
+        <h3 id="event-productions">
+          Featuring...
+          {{#each this.event.productions as |production|}}      
+            <LinkTo @route="productions" @query={{hash productionModal=true productionModalModelID=(readonly production.id)}}>
+              {{production.name}}{{#unless (eq production this.event.productions.lastObject)}},{{/unless}}
+            </LinkTo>
+          {{/each}}
+        </h3>
+      {{/if}} --}}
+      
+      <EventTime @event={{this.event}} @venue_id={{this.event.venue}} @venue_name={{this.event.venue_name}} @venue_address={{this.event.venue_address}} @show_full_date={{this.event.is_community_event}} @start_time={{this.event.date_string_start}} @end_time={{this.event.date_string_end}} @eventId={{this.event.id}} @productionID={{this.production.id}} @is_community_event={{this.event.is_community_event}} />
+
+      {{#if this.event.venue_address}}
+        <div id="event-venue-address">
+          <p>{{this.event.venue_address}}</p>
+        </div>
+      {{/if}}
+
+      <div id="event-description">
+        {{#if this.event.external_link}}
+          {{#if this.event.audio_stream}}
+            {{#if this.eventIsLive}}
+              <AudioPlayer @url={{this.event.external_link}} @model={{this.event}} @scrubbingDisabled={{true}} />
+            {{else}}
+              {{#if this.event.isInFuture}}
+                <p>Live stream starts here <FormattedDate @dateTime={{this.event.start_time}} @format='ddd Do MMM, h:mma'/></p>
+              {{/if}}
+            {{/if}}
+          {{/if}}
+        {{/if}}
+
+        {{#if (eq this.lessWordyCopy true)}}
+          {{#if (eq this.production.short_description undefined)}}
+            <HtmlSafeString @string={{this.event.description}}/>
+          {{else}}
+            <HtmlSafeString @string={{this.event.short_description}}/>
+          {{/if}}
+        {{else}}
+          <HtmlSafeString @string={{this.event.description}}/>
+        {{/if}}
+
+        {{#if (eq this.eventFilterTagType "production")}}
+          {{#if this.event.tags}}
+            <p>
+              {{#each this.event.tags as |tag_id|}}
+                <AppTag @tag_id={{tag_id}} />
+              {{/each}}
+            </p>
+          {{/if}}
+        {{/if}}
+
+        {{#if (eq this.eventFilterTagType "event")}}
+          {{#if this.event.event_tags}}
+            <p>
+              {{#each this.event.event_tags as |tag_id|}}
+                <AppTag @tag_id={{tag_id}} />
+              {{/each}}
+            </p>
+          {{/if}}
+        {{/if}}
+        
+        {{#unless this.event.audio_stream}}
+          {{#if this.event.external_link}}
+            {{#if this.event.virtual_event}}
+              <p>
+                <br>
+                <InAppBrowserLink @url={{this.event.external_link}} @button={{true}}>Virtual Event Link</InAppBrowserLink>
+              </p>
+            {{else}}
+              <p>
+                <br>
+                <InAppBrowserLink @url={{this.event.external_link}} @button={{true}}>More Information</InAppBrowserLink>
+              </p>
+            {{/if}}
+          {{/if}}
+        {{/unless}}
+      </div>
+
+      {{#if this.event.productions}}
+        <hr>
+        {{#each this.event.productions as |production|}}
+          {{#if production.short_description}}
+            <h4>About {{production.name}}</h4>       
+            <p><HtmlSafeString @string={{production.short_description}}/></p>
+          {{/if}}
+        {{/each}}
+      {{/if}}
+
+    </div>
+
+  </div>
+{{/if}}

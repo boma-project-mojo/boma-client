@@ -1,0 +1,14 @@
+<div class="cf-buttons">
+  <AppClashfinderNav @festival={{this.festival}} @selectedCFDay={{this.selectedCFDay}} @changeCFDay={{this.changeCFDay}} @days={{this.days}} />
+</div>
+
+<div id="cf-container" class="{{this.clashfinderShownClass}}" style={{this.showCanvasCSS}}>  
+  <div id="cf-now"></div>
+  <canvas id="canvas-time" height="20"></canvas>
+  <canvas id="canvas-venues"></canvas>
+  <div id="cf-events-canvases">
+    <div id="event-canvas"></div>
+  </div>
+</div>
+
+<NoResults @isLoadingModel={{this.isLoadingModel}} @preferences={{this.preferences}} @searchKeyword={{this.searchKeyword}} @hasRecords={{this.hasEvents}} @noRecordsFoundMessage={{this.noRecordsFoundMessage}} />

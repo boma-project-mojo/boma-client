@@ -1,0 +1,13 @@
+{{#if this.tag.name}}
+	{{#if this.noStyle}}
+    <HtmlSafeString @string={{this.tag.name}}/>
+	{{else}}
+    {{#if (or (eq this.tag.tag_type 'event') (eq this.tag.tag_type 'production')) }}
+      <LinkTo @route="events" @query={{hash pageName="" viewType="" preferences="" selectedVenues="" selectedDays="" searchKeyword="" productionModal="" eventModal="" selectedTags=this.tagIdAsArray}}>
+        <span class='tag'><HtmlSafeString @string={{this.tag.name}}/></span>
+      </LinkTo>
+    {{else}}
+		  <span class='tag'><HtmlSafeString @string={{this.tag.name}}/></span>
+    {{/if}}
+	{{/if}}
+{{/if}}

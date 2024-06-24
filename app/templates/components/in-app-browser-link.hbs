@@ -1,0 +1,29 @@
+{{#if this.url}}
+	{{#if this.button}}
+		{{#if this.id}}
+			<div id={{this.id}}>
+				<button class="btn" type="button" {{action "openLinkInInAppBrowser" this.url}}>
+					{{yield}}
+				</button>
+			</div>
+		{{else}}
+			<button class="btn" type="button" {{action "openLinkInInAppBrowser" this.url}}>
+				{{yield}}
+			</button>
+		{{/if}}
+	{{else}}
+		{{#if this.id}}
+			<div id={{this.id}}>
+				<a role="button" {{action "openLinkInInAppBrowser" this.url}}>
+					{{yield}}
+				</a>
+			</div>
+		{{else}}
+			<a role="button" {{action "openLinkInInAppBrowser" this.url}}>
+				{{yield}}
+			</a>
+		{{/if}}
+	{{/if}}
+{{else}}
+	{{yield}}
+{{/if}}

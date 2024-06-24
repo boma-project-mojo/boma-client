@@ -1,0 +1,11 @@
+{{#each this.days as |day|}}
+	<a role="button"
+		{{action (action this.changeCFDay day.filter_day)}} class="
+		{{if (eq this.selectedCFDay day.filter_day) 'active'}}
+		{{if this.longFestival 'cf-long-festival'}}
+		"
+	>
+		<span class="cf-nav-day">{{day.day}}</span>
+		<span class="cf-nav-date">{{day.date}}</span>
+	</a>
+{{/each}}

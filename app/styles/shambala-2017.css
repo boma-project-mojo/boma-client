@@ -1,0 +1,436 @@
+@import "shambala-2017-fonts.css";
+
+* {
+  font-family: "Sanchez";
+}
+
+/* Type Overlay */
+/* Abstracting as may change if Shambala fonts are applied */
+
+/* would need to cache fonts as they as shambala currently uses google fonts hosted */
+/* https://fonts.google.com/specimen/Sanchez */
+/* https://fonts.google.com/specimen/Fjalla+One */
+
+p,
+.content-wrap {
+  color: #363636;
+  font-size: 13px;
+  line-height: 16px;
+}
+
+.content-wrap {
+  margin: 15px;
+}
+
+#productions-show .embedded-image,
+#full-page-modal .embedded-image {
+  height: 260px;
+}
+
+#full-page-modal .embedded-image:before {
+  content: none;
+}
+
+#productions-show h2 {
+  font-family: "Fjalla One";
+  font-size: 13px;
+  color: #19bcb7;
+}
+
+#productions-show h3 {
+  font-family: "Fjalla One";
+  font-size: 12px;
+  color: #19bcb7;
+  letter-spacing: 0.1em;
+  font-weight: normal;
+  white-space: nowrap;
+}
+
+#productions-show h2#production-name,
+#full-page-modal h2#venue-name,
+#full-page-modal h2#info-page-name {
+  color: #37285c;
+  border-bottom: 2px solid #41c7c3;
+}
+
+.performance h1 {
+}
+
+.performance h2 {
+  padding-bottom: 0;
+  margin-bottom: 0;
+  line-height: 1em;
+  font-size: 14px;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  margin-top: 3px;
+}
+
+.performance h3 {
+  font-size: 11px;
+  line-height: 11px;
+  letter-spacing: 0.025em;
+  color: #999;
+  margin-top: 4px;
+}
+
+p,
+.content-wrap {
+  color: #5f5f5f;
+}
+
+h2 {
+  line-height: 27px;
+}
+
+/* Style overlay */
+/* Abstracting as may be scrapped when Shambala styles are applied */
+
+#no-results {
+  text-align: center;
+}
+
+.btn,
+.back,
+.embedded-image .back {
+  background-color: #19bcb7;
+  color: #fff;
+  font-family: "Fjalla One", sans-serif;
+  text-transform: uppercase;
+  line-height: 1.1em;
+  border-radius: 0;
+}
+
+.btn:active,
+.btn.active,
+.btn:hover,
+.btn:focus {
+  color: #fff;
+  box-shadow: none;
+  background-color: #b565a9;
+}
+
+.back {
+  font-size: 14px;
+  padding: 5px 8px;
+}
+
+.back:after,
+.embedded-image .back:after {
+  border-top: 13px solid transparent;
+  border-bottom: 12px solid transparent;
+  border-right: 10px solid #19bcb7;
+}
+
+#toggle-preference {
+  color: #19bcb7;
+}
+
+/* Header */
+
+#header {
+  background-color: #00bcb6;
+  border-bottom: 1px solid #00bcb6;
+}
+
+#menu-toggle span {
+  background-color: #fff;
+}
+
+#header .fa {
+  color: #fff;
+}
+
+#header .header-title a {
+  font-family: "Fjalla One";
+  font-size: 20px;
+  line-height: 23px;
+  color: #fff;
+  padding-left: 0;
+}
+
+#search-filter .fa-times {
+  color: #b564a9;
+}
+
+#search-filter #searching .loading {
+  color: #b564a9;
+}
+
+#search-filter input[type="search"] {
+  background-color: rgba(0, 188, 182, 0.12);
+  color: #00bcb6;
+}
+
+/* Welcome */
+
+#welcome h3 {
+  font-family: "Fjalla One";
+  font-size: 20px;
+  line-height: 30px;
+}
+
+#welcome #welcome-copy {
+  background-color: rgba(181, 91, 175, 0.75);
+  /*background-color: #00bcb6;*/
+  /*margin: 0;*/
+  /*padding: 12px;*/
+  margin-bottom: 0;
+  padding: 20px;
+}
+
+#welcome *,
+#welcome p {
+  color: #fff;
+  font-size: 2.3vh;
+  line-height: 5vw;
+  margin-bottom: 5px;
+}
+
+#welcome p strong {
+  font-family: "Fjalla One";
+  font-size: 16px;
+  line-height: 22px;
+  display: block;
+  margin-top: 10px;
+  text-transform: uppercase;
+}
+
+#welcome .welcome-loading * {
+  color: rgba(181, 91, 175, 0.75);
+  font-size: 30px;
+  line-height: 50px;
+}
+
+#welcome #close-welcome-screen {
+  margin-top: 10px;
+}
+
+/* Full page modal */
+
+#venue-show .actions {
+  background-color: transparent;
+  border-bottom: 2px solid #41c7c3;
+  margin: 0;
+  margin-bottom: 16px;
+  padding: 0;
+  padding-bottom: 9px;
+}
+
+#full-page-modal #page-show .page-content h4 {
+  font-family: "Fjalla One";
+  font-size: 16px;
+  line-height: 23px;
+  color: #19bcb7;
+  letter-spacing: 0.1em;
+  font-weight: normal;
+  text-transform: uppercase;
+}
+
+.page-content a {
+  text-decoration: underline;
+}
+
+/* Venues */
+
+.venue-wrap {
+  width: calc(50% - 15px);
+  height: calc(((100vh - 52px - 20px) / 3.5));
+  border: 10px solid #fff;
+  box-sizing: content-box;
+  border-bottom: 10px;
+}
+
+.venue-wrap:nth-child(2n) {
+  border-left: none;
+}
+
+.venue-wrap:last-child {
+  margin-bottom: 10px;
+}
+
+/* Active states */
+
+#header .active .fa-heart,
+#header .filters-set .fa-filter,
+.header-bottom-shown #header #toggle-header-bottom i,
+#toggle-preference .active {
+  color: hsl(309, 35%, 55%) !important;
+}
+
+.filters-set .show-all {
+  background-color: hsl(309, 35%, 55%) !important;
+}
+
+/* Events list */
+
+.production h1.production-name,
+.production h3.production-datetime,
+.production h3.production-venue {
+  font-family: "Fjalla One";
+}
+
+.production .preference-display {
+  float: right;
+  margin: 10px;
+  color: white;
+}
+
+/* News */
+
+.news-item h3 {
+  color: #37285c;
+  font-size: 20px;
+  font-family: "Fjalla One";
+  text-transform: uppercase;
+}
+
+#news .news-item h4 {
+  color: #19bcb7;
+  font-family: "Fjalla One";
+  font-size: 12px;
+  color: #19bcb7;
+  letter-spacing: 0.1em;
+  font-weight: normal;
+  white-space: nowrap;
+  text-transform: uppercase;
+  line-height: 17px;
+}
+
+/* production */
+
+.production .embedded-image:before {
+  background-color: transparent;
+  background-image: url("images/bg-gradient.png");
+}
+
+/* Pages */
+
+#pages-index {
+  padding-bottom: 10px;
+  background-color: white;
+  height: auto;
+  overflow: auto;
+}
+
+#pages-index h2 {
+  font-family: "Fjalla One";
+  font-weight: normal;
+  bottom: 0;
+  padding: 8px;
+  background-color: rgba(0, 188, 182, 0.7);
+  height: 30px;
+  left: 0;
+  right: 0;
+}
+
+#pages-index .page-item {
+  border: 10px solid #fff;
+  border-bottom: none;
+}
+
+#pages-index .embedded-image:before {
+  content: none;
+}
+
+#pages-index .page:last-of-type {
+  border-bottom: 10px solid #fff;
+}
+
+/* Left Sidebar */
+
+.left-sidebar {
+  background-color: #00bcb6;
+}
+
+.left-sidebar-content li a {
+  color: #fff;
+  font-family: "Fjalla One";
+}
+
+#main-outlet-wrapper.panel-open:before,
+#main.panel-open:before {
+  background-color: rgba(0, 0, 0, 0.3);
+}
+
+/* Right Sidebar */
+
+.right-sidebar {
+  background-color: #00bdb7;
+}
+
+.right-sidebar-content h2 {
+  font-size: 13px;
+  line-height: 13px;
+}
+
+.right-sidebar-content .filter {
+  margin-top: 10px;
+  margin-bottom: 0;
+}
+
+.filter label,
+.right-sidebar-content .btn {
+  color: #fff;
+  font-family: "Fjalla One";
+  font-size: 17px;
+  background-color: transparent;
+  border: 2px solid #fff;
+  padding: 4px 6px;
+  line-height: 17px;
+}
+
+.filter#days {
+  margin-bottom: 14px;
+}
+
+#venues-filter div,
+#tags-filter div {
+  max-width: 330px;
+}
+
+.filter input[type="checkbox"]:checked + label {
+  background-color: hsl(309, 35%, 55%) !important ;
+}
+
+.right-sidebar-content .btn {
+  margin-left: 5px;
+  top: 12px;
+}
+
+.right-sidebar-content .btn:active {
+  background-color: hsl(309, 35%, 55%) !important;
+}
+
+.right-sidebar #right-sidebar-header {
+  margin-bottom: 10px;
+}
+
+.filter label:active {
+  background-color: hsl(309, 33%, 60%) !important;
+}
+
+/* Feedback */
+
+.feedback h3 {
+  font-family: "Fjalla One";
+  font-size: 20px;
+  color: #37285c;
+  border-bottom: 2px solid #41c7c3;
+  padding-bottom: 10px;
+  text-transform: uppercase;
+}
+
+/* editor-content */
+/* styles for content that has come from content editor */
+
+.editor-content h3,
+.editor-content h4 {
+  font-family: "Fjalla One";
+  font-size: 16px !important;
+  color: #19bcb7 !important;
+  line-height: 23px !important;
+  margin-bottom: 10px !important;
+  padding-right: 0 !important;
+  font-weight: normal !important;
+}

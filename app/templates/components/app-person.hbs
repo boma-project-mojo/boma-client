@@ -1,0 +1,18 @@
+<div class="person-wrap">
+  <div class="person">
+    <div class="person-details">
+      <h1 class="person-name">{{this.model.firstname}} {{this.model.surname}}</h1>
+      <h3 class="person-company">
+        {{this.model.company}}
+      </h3>
+      <h3 class="person-job-title">
+        {{this.model.job_title}}
+      </h3>
+    </div>
+    {{#if this.model.email}}
+      <div class="email-link">
+        <a href="mailto:{{this.model.email}}" class=""><i class="fa fa-envelope-o"></i></a>
+      </div>
+    {{/if}}
+  </div>
+</div>

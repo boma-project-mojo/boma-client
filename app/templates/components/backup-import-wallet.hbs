@@ -1,0 +1,64 @@
+{{#if this.subtleWallet}}
+  <div class="setting">
+    <h3 class="clearboth">
+      <i class="fa fa-id-badge" aria-hidden="true"></i>
+      Wallet Key
+    </h3>
+    <p>Your key acts as your anonymous identity for our app.  </p> 
+
+    <LinkTo @route="wallet" class="form-btn primary left">
+      <i class="fa fa-id-badge" aria-hidden="true"></i>
+      View Wallet
+    </LinkTo>
+  </div>
+{{/if}}
+<div class="setting">
+  <h3 class="clearboth">
+    <i class="fa fa-download" aria-hidden="true"></i>
+    Export Token Wallet
+  </h3>
+  <p>
+    Copy your private key and make a note of it somewhere. This means that if you change (or lose!) your phone, you can re-download the app and enter your key to restore your app activity and history – including any tokens you have earned. 
+  </p>
+
+  <a role="button" class="form-btn primary left" {{action "copyPrivateKeyToClipboard" this.model.wallet.walletPrivateKey}}><i class="fa fa-copy" aria-hidden="true"></i> Copy private key</a>
+</div>
+
+<div class="setting">
+  <h3>
+    <i class="fa fa-upload" aria-hidden="true"></i>
+    Import Token Wallet
+  </h3>
+  <p>
+    New phone? If you made a note of your private key before you changed phones, paste it here to restore the app.
+  </p>
+  <div class="form-group form-inline" id="import-wallet-private-key-form">
+    <div class="form-group" id="import-wallet-private-key-form-group">
+      <label for="startDate">Wallet Private Key</label>
+      <Input @value={{this.importWalletPrivateKey}} id="import-wallet-private-key" />
+      <a role="button" {{action (action "pastePrivateKeyFromClipboard")}} id="paste-private-key-button">
+        <i class="fa fa-paste" aria-hidden="true"></i>
+      </a>    
+      {{#if this.tokenImportError}}
+        <div class="alert error">
+          <i class="fa fa-times" aria-hidden="true"></i>
+          {{this.tokenImportError}}
+        </div>
+      {{/if}}
+      {{#if this.tokenImportFeedback}}
+        <div class="alert success">
+          <i class="fa fa-check" aria-hidden="true"></i>
+          {{this.tokenImportFeedback}}
+        </div>
+      {{/if}}
+    </div>
+    {{#if this.loading}}
+      <a class="form-btn primary left loading disabled"><i class="fa-solid fa-circle-notch fa-2x fa-spin loading" disabled="disabled"></i></a>
+    {{else}}
+      <a role="button" class="form-btn primary left" {{action "importWallet"}}>
+        <i class="fa-regular fa-file-import"></i>
+        Import Wallet
+      </a>
+    {{/if}}
+  </div>
+</div>

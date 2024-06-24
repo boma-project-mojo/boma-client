@@ -1,0 +1,72 @@
+<div id="venue-show">
+
+	<a role="button" {{action (action "doCloseModal")}}>
+		<AppModalImage @model={{this.venue}} @closeModal={{action "doCloseModal"}} />
+	</a>
+
+	<div class="content-wrap" {{did-pan onPanEnd=(action "doCloseModal") threshold=100}}>
+		
+		<h2 id="venue-name">{{this.venue.name}}</h2>
+		{{#if this.venue.is_retailer}}
+			<div class="actions">
+				{{#if this.venue.dietary_requirements}}
+					<div class="dietary-requirements">
+			      {{#each this.venue.dietary_requirements as |dr|}}
+			        <span class="dr tag">{{dr.name}}</span>
+			      {{/each}}
+			    </div>
+				{{/if}}
+				<div class="right"> 
+					{{#if this.venue.has_location}}
+						<LinkTo @route="map" @query={{hash venueID=(readonly this.venue.id) showBack="true" mlabel=this.venue.name}} class="locate-on-map-action">
+							<i class="fa fa-light fa-location-dot" aria-hidden="true"></i>
+						</LinkTo>				
+					{{/if}}
+					<PreferenceToggle @modelName="venue" @modelId={{this.venue.id}} @model={{this.venue}} @wallet={{this.wallet}} />
+				</div>
+			</div>
+		{{else}}
+		
+			<div class="actions">
+        {{#if this.venue.has_events}}
+          <LinkTo @route="events" @query={{hash selectedVenues=this.venue.id_as_array preferences=false selectedTags="" selectedDays="" searchKeyword="" pageName="" viewType=""}}>
+            <button class="btn left" type="button">What's On</button>
+          </LinkTo>
+        {{/if}}
+				<div class="right">
+          {{#if this.venue.use_external_map_link}}					
+            <a target="_blank" rel="noopener noreferrer" href={{this.venue.external_map_link}} class="locate-on-map-action"><i class="fa fa-light fa-location-dot" aria-hidden="true"></i></a>
+          {{else}}
+            {{#if this.venue.has_location}}
+              <LinkTo @route="map" @query={{hash venueID=(readonly this.venue.id) showBack="true" mlabel=this.venue.name}} class="locate-on-map-action">
+                <i class="fa fa-light fa-location-dot" aria-hidden="true"></i>
+              </LinkTo>
+            {{/if}}
+          {{/if}}
+					<PreferenceToggle @modelName="venue" @modelId={{this.venue.id}} @model={{this.venue}} @wallet={{this.wallet}} />
+				</div>
+			</div>
+		{{/if}}
+
+		<div class="editor-content">
+      <HtmlSafeString @string={{this.venue.description}}/>
+		</div>
+
+		{{#if this.venue.opening_times}}
+			<h3>Opening Times</h3>
+      <HtmlSafeString @string={{this.venue.opening_times}}/>
+		{{/if}}
+
+		{{#if this.venue.is_retailer}}
+			{{#if this.venue.menu}}
+				<div class="menu">
+					<h3>Menu</h3>
+					<div class="editor-content">
+            <HtmlSafeString @string={{this.venue.menu}}/>
+					</div>
+				</div>
+			{{/if}}
+		{{/if}}
+	</div>
+
+</div>

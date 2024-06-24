@@ -1,0 +1,48 @@
+<AppRightSidebar>
+
+	<div class="right-sidebar-content">
+		
+	</div>
+
+</AppRightSidebar>
+
+<div id="main">
+
+	<AppHeader @isSearching={{this.isSearching}} as |appHeaderActions|>
+		<div class="header-top">
+			<div class="left">
+				<a id="toggle-left-sidebar">
+					<div id="menu-toggle" class="con close">
+						<span class="bar top"></span>
+						<span class="bar middle"></span>
+						<span class="bar bottom"></span>
+					</div>
+				</a>
+				
+				<div class="header-title">
+					<a>Lineup</a>
+				</div>
+			</div>
+			<div class="right">
+        <a role="button" id="reload-model-anchor" {{action "reloadModel" true}}>
+          <i id="reload-model" class="fa fa-light fa-arrows-rotate {{this.isRetryingNowClass}} fa-3x messages-loading {{if this.successReloadingModel 'pulse fa-check-circle'}} {{if this.failedReloadingModel 'shake fa-exclamation-circle'}}"></i>
+        </a>
+				<a role="button" id="toggle-header-bottom" {{action appHeaderActions.toggleHeaderBottom}}>
+					<i class="fa-light fa-magnifying-glass"></i>
+				</a>
+			</div>
+		</div>
+		<KeywordSearch/>
+	</AppHeader>
+
+	<div class="productions">
+		<CollectionList @model={{this.modelSorted}} @scrollChange="scrollChange" @displayFormat={{this.displayFormat}} @isRefreshing={{this.isRefreshing}} @searchKeyword={{this.searchKeyword}} @listItemComponent={{component 
+      this.listItemComponentName
+      openModal=(action "openProductionModal")
+    }} />
+	</div>
+</div>
+
+{{#if this.productionModal}}
+	<ToElsewhere @named="appModal" @send={{component "production-detail" productionID=this.productionModalModelID closeModal=(action "closeProductionModal")}} />
+{{/if}}

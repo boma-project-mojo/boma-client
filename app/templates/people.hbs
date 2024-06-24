@@ -1,0 +1,39 @@
+<AppRightSidebar @applicationController={{this.applicationController}} @filtersSetClass={{this.filtersSetClass}}>
+
+  <div class="right-sidebar-content">
+
+  </div>
+
+</AppRightSidebar>
+
+<div id="main">  
+  <AppHeader as |appHeaderActions|>
+    <div class="header-top">
+      <div class="left">
+        <a id="toggle-left-sidebar">
+          <div id="menu-toggle" class="con close">
+            <span class="bar top"></span>
+            <span class="bar middle"></span>
+            <span class="bar bottom"></span>
+          </div>
+        </a>
+      </div>
+      <div class="left">
+          <div class="header-title">
+            <a>Delegates</a>
+          </div>
+      </div>
+      <div class="right">
+        <a role="button" id="toggle-header-bottom" {{action appHeaderActions.toggleHeaderBottom}}>
+          <i class="fa fa-search" aria-hidden="true"></i>
+        </a>
+      </div>
+    </div>
+    <KeywordSearch/>
+  </AppHeader>
+
+  <div class="people list">
+    <CollectionList @model={{this.model}} @scrollChange="scrollChange" @isRefreshing={{this.isRefreshing}} @preferences={{this.preferences}} @searchKeyword={{this.searchKeyword}} @listItemComponent={{component "app-person"}} />
+  </div>
+
+</div>

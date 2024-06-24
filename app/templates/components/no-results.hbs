@@ -1,0 +1,35 @@
+<div class="no-preferences">
+  {{#if this.preferences}}
+    {{!-- Searching preferences and no results --}}
+    {{#if this.searchKeyword}}
+      No search results.<br/><br/>
+      <a role="button" {{action (action "clearSearch")}} class="btn">
+        Clear search
+      </a>
+    {{else}}
+      {{!-- Preferences enabled and none set --}}
+      No favourites yet.<br/><br/>
+      <LinkTo @route={{this.currentRouteName}} @query={{hash preferences=""}} class="btn">
+        All {{this.currentRouteName}}
+      </LinkTo>
+    {{/if}}
+  {{else}}
+    {{!-- Search and no results --}}
+    {{#if this.searchKeyword}}
+      No search results.<br/><br/>
+      <a role="button" {{action (action "clearSearch")}} class="btn">
+        Clear search
+      </a>
+    {{else}}
+      {{!-- No records yet --}}
+      {{#unless this.hasRecords}}
+        {{#if this.noRecordsFoundMessage}}
+          {{this.noRecordsFoundMessage}}
+        {{else}}
+            No records yet.
+        {{/if}}
+        <br/><br/>
+      {{/unless}}
+    {{/if}}
+  {{/if}}
+</div>

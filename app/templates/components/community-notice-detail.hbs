@@ -1,0 +1,32 @@
+<div class="full-screen-image va-outer" role="button" {{did-pan onPanEnd=(action this.closeModal) threshold=100}}>
+	<a {{action (action this.closeModal)}}>
+		<button class="close-modal" type="button"></button>
+	</a>
+	<div class="va-inner">
+		{{#if this.article.external_link}}
+		  <InAppBrowserLink @url={{this.article.external_link}}>	  	
+	  		<div id="full-screen-image-external-link">
+	  			<span>{{this.article.external_link_for_display}}</span>
+	  			<i class="fa fa-external-link"></i>
+	  		</div>
+	  		
+		  </InAppBrowserLink>
+		{{/if}}
+		<div class="image-container">
+			<div class="image-placeholder-container {{this.placeholderHidden}}">
+				<i class="fa fa-solid fa-circle-notch fa-2x fa-spin fa-fw loading"></i>	
+				<div class="image-placeholder" style="background-image:url('data:image/jpeg;base64,{{this.article.image_loader}}')"></div>
+			</div>
+
+			<img class="image {{this.imageIsLoaded}}" src={{await this.article.imageSrc}}>
+		</div>
+		
+		<PreferenceToggle @modelName="article" @modelId={{this.article.id}} @model={{this.article}} @wallet={{this.wallet}} />
+
+		{{#if this.article.content}}
+			<div class="cnb-content">
+        <HtmlSafeString @string={{this.article.content}}/>
+			</div>
+		{{/if}}
+	</div>
+</div>

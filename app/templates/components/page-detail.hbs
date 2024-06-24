@@ -1,0 +1,10 @@
+<a role="button" {{action (action "doCloseModal")}}>
+	<AppModalImage @model={{this.page}} @showTitle={{true}} @closeModal={{action "doCloseModal"}} />
+</a>
+
+<div role="button" class="content-wrap" id="page-show" {{did-pan onPanEnd=(action "doCloseModal") threshold=100}}>
+	<h2 id="info-page-name">{{this.page.name}}</h2>
+	<div class="page-content">
+    <HtmlSafeString @string={{this.page.content}}/>
+	</div>
+</div>

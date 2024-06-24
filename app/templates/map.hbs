@@ -1,0 +1,26 @@
+<div id="main" class="map">	
+	<AppHeader>
+		<div class="header-top">
+			<div class="left">
+				<a id="toggle-left-sidebar">
+					<div id="menu-toggle" class="con close">
+						<span class="bar top"></span>
+						<span class="bar middle"></span>
+						<span class="bar bottom"></span>
+					</div>
+				</a>
+				<div class="header-title">
+					<a>Map</a>
+				</div>
+			</div>
+      <div class="right">
+        {{#if (eq this.showBack "true")}}
+          <button class="close-modal" type="button" {{action "back"}}></button>
+          {{!-- <a class="back back-top" {{action "back" }}><i class="fa fa-step-backward"></i></a> --}}
+        {{/if}}
+			</div>	
+		</div>
+	</AppHeader>
+  
+	<AppMaplibre @model={{this.model}} @mlat={{this.mlat}} @mlong={{this.mlong}} @mlabel={{this.mlabel}} @showMapTiles={{this.showMapTiles}} />
+</div>

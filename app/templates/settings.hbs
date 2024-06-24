@@ -1,0 +1,180 @@
+<div id="main" class="settings">  
+  <AppHeader>
+    <div class="header-top">
+      <div class="left">
+        <a id="toggle-left-sidebar">
+          <div id="menu-toggle" class="con close">
+            <span class="bar top"></span>
+            <span class="bar middle"></span>
+            <span class="bar bottom"></span>
+          </div>
+        </a>
+      </div>
+      <div class="left">
+          <div class="header-title">
+            <a>Settings</a>
+          </div>
+      </div>
+      <div class="right">
+
+      </div>
+    </div>
+  </AppHeader>
+
+  <div class="content-wrap">
+
+    <div class="setting">
+      <h3 class="clearboth">
+        <i class="fa-light fa-envelope"></i>
+        Push Notification Settings
+      </h3>
+
+      <p>Choose which notifications you would like to receive from this app.</p>
+
+      <h3 class="clearboth">
+        Critical Comms
+      </h3>
+
+      <p>We will only use this channel for notifications that are absolutely critical. For example an emergency situation on site, or an urgent  message relevant to the whole community. Very infrequent. </p>
+
+      <AppBooleanSetting @settingTitle="Critical Comms" @settingName="critical-comms" @value={{true}} @setSetting={{action "setBooleanSetting"}} @disabled={{true}} />
+
+      <h3 class="clearboth">
+        Shambala HQ comms
+      </h3>
+
+      <p>These notifications will give you interesting and relevant updates on general happenings in the world of Shambala. Expect a similar frequency to posts on other media channels, likely a couple a week</p>
+
+      <AppBooleanSetting @settingTitle="Shambala HQ comms" @settingName="hq-comms" @value={{this.model.hqCommsNotificationsSetting}} @setSetting={{action "setBooleanSetting"}} />
+
+      <h3 class="clearboth">
+        News Channel notifications
+      </h3>
+
+      <p>A notification will be sent when we publish a news story. Often containing key information, they will be infrequent - expect once every two weeks</p>
+
+      <AppBooleanSetting @settingTitle="News Channel notifications" @settingName="article-news-notifications" @value={{this.model.articleNewsNotificationsSetting}} @setSetting={{action "setBooleanSetting"}} />
+
+      <h3 class="clearboth">
+        Shambala Sounds notifications
+      </h3>
+
+      <p>A notification will be sent when we post a in Shambala Sounds e.g. a podcast, or live recording. They too will be infrequent - once or twice a month</p>
+
+      <AppBooleanSetting @settingTitle="Shambala Sounds notifications" @settingName="article-audio-notifications" @value={{this.model.articleAudioNotificationsSetting}} @setSetting={{action "setBooleanSetting"}} />
+
+      <h3 class="clearboth">
+        User Submission notifications
+      </h3>
+
+      <p>This is where decide what you want to be notified about in relation to posts you yourself submit to the App</p>      
+
+      <h4 class="clearboth">
+        Submission Published
+      </h4>
+
+      <p>A notification will be sent to you if submission has been published. If it is not accepted we will also let you know, but unfortunately we cannot provide further feedback on individual posts (see More Info [link] for our guidance notes and terms of use)</p>
+
+      <AppBooleanSetting @settingTitle="Submission published notifications" @settingName="submission-published-notifications" @value={{this.model.submissionPublishedNotifications}} @setSetting={{action "setBooleanSetting"}} />
+
+      <h4 class="clearboth">
+        Updates on your post 
+      </h4>
+
+      <p>Further updates will be sent to you to let you know the love your submissions are receiving.</p>
+
+      <AppBooleanSetting @settingTitle="Updates on your post" @settingName="submission-love-notifications" @value={{this.model.submissionLoveNotifications}} @setSetting={{action "setBooleanSetting"}} />
+
+      <h4 class="clearboth">
+        New Content Notifications
+      </h4>
+
+      <p>Be notified when your fellow Shambalans have added awesome events and happenings to the community events listings and their beautiful creations to the People's Gallery.</p>
+
+      <AppBooleanSetting @settingTitle="New People's Gallery posts" @settingName="new-peoples-gallery-notifications" @value={{this.model.newPeoplesGalleryNotifications}} @setSetting={{action "setBooleanSetting"}} />
+
+      <AppBooleanSetting @settingTitle="New Community Events" @settingName="new-community-events-notifications" @value={{this.model.newCommunityEventsNotifications}} @setSetting={{action "setBooleanSetting"}} />
+
+      <h3 class="clearboth">
+        Event reminder notifications
+      </h3>
+
+      <p>If you add an event to your schedule we'll remind you that it's happening to make sure you get to the venue on time.</p>
+
+      <AppBooleanSetting @settingTitle="Reminder Notifications" @settingName="local-notifications" @value={{this.model.localNotificationsSetting}} @setSetting={{action "setLocalNotifications"}} />
+
+    </div>
+
+    <div class="setting">
+      <h3 class="clearboth">
+        Tell us about your favourites
+      </h3>
+      <p>Are you happy for us to collect anonymous data about when you open and the things you look at and love in the app? All this does is help us see what’s popular on the app.  </p>
+
+      <AppBooleanSetting @settingTitle="Anonymous Data Collection" @settingName="pseudonymous-data-collection" @value={{this.model.pseudonymousDataCollection}} @setSetting={{action "setBooleanSetting"}} />
+
+      <p><LinkTo @route="activity">Click here to see exactly what data you have sent us about your app usage.</LinkTo></p>
+    </div>
+
+    <div class="setting">
+      <h3 class="clearboth">
+        <i class="fa fa-universal-access"></i>
+        Accessibility Settings
+      </h3>
+
+      <p>The following settings are designed to make our app easier to navigate.</p>
+
+      {{#if this.enableLessWordyCopy}}
+        <h3 class="clearboth">
+          Less Wordy Event Descriptions
+        </h3>
+
+        <p>Select this setting if you would prefer to see our app with less wordy event descriptions.</p>
+
+        <AppBooleanSetting @settingTitle="Less Wordy Event Descriptions" @settingName="less-wordy-copy" @value={{this.model.lessWordyCopy}} @setSetting={{action "setBooleanSetting"}} />
+      {{/if}}
+
+      <h3 class="clearboth">
+        Larger Text
+      </h3>
+
+      <p>Select this setting if you would text in the app to be larger.</p>
+
+      <AppBooleanSetting @settingTitle="Larger Text" @settingName="larger-text" @value={{this.model.largerText}} @alert="Please completely close and reopen the app to apply this setting.  " @setSetting={{action "setBooleanSetting"}} />
+    </div>
+
+    <BackupImportWallet @model={{this.model}} @subtleWallet={{this.subtleWallet}} />
+
+
+    <div class="setting">
+      <h3 class="clearboth">
+        <i class="fa-light fa-refresh"></i>
+        Reset App Data
+      </h3>
+      <p>
+        Reset all app data. You will lose any saved data - such as your schedule and favourite acts - and any tokens you validated. 
+      </p>
+
+      <a role="button" class="form-btn danger left" {{action "resetData"}}>
+        <i class="fa-solid fa-circle-exclamation"></i>
+        Reset App Data
+      </a>
+    </div>
+
+    <div class="app-version">
+      <h3 class="clearboth">
+        App Version
+      </h3>
+      <p>{{!-- template-lint-disable no-implicit-this --}}<strong>This app is version: </strong>{{app-version}}</p>
+      <p><strong>Data last updated: </strong><FormattedDate @dateTime={{this.model.dataLastUpdatedAt}} @format='ddd Do MMM YYYY h:mma'/></p>
+    </div>
+
+    <div class="privacy">
+      <h3 class="clearboth">
+        Privacy Policy
+      </h3>
+      <p><a target="_blank" href="{{this.privacyPolicyURL}}">Click here to read our Privacy Policy</a></p>
+    </div>
+
+  </div>
+</div>

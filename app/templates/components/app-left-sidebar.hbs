@@ -1,0 +1,69 @@
+{{#if this.multiFestivalApp}}
+	<div id="festival-toggle">
+		{{#each this.sortedFestivals as |festival|}}
+			{{#if (eq festival.aasm_state "published")}}
+				<li><a role="button" class="{{if (eq this.currentFestival festival.couchdb_design_doc_name) 'active'}}" {{action "changeFestival" festival}} style={{festival.image_thumb_base64}}></a></li>
+			{{/if}}
+			{{#if this.isBetaTester}}
+				{{#if (eq festival.aasm_state "preview")}}
+					<li><a role="button" class="{{if (eq this.currentFestival festival.couchdb_design_doc_name) 'active'}} in-preview" {{action "changeFestival" festival}} style={{festival.image_thumb_base64}}></a></li>
+				{{/if}}
+			{{/if}}
+		{{/each}}
+	</div>
+{{/if}}
+
+<div class="left-sidebar-content" {{did-pan onPanEnd=(action "close") threshold=50}}>
+
+	<div id="left-sidebar-brand">
+		{{!-- <img src="assets/images/logo-no-dates.svg" alt="brand"> --}}
+	</div>
+
+	<ul class="left-sidebar-navigation">
+		<li><a role="button" {{action "goToRoute" 'events' (hash preferences="false" selectedTags="" selectedVenues="" selectedDays="" searchKeyword="" productionModal=false viewType="") }}>What's On</a></li>
+		<li><a role="button" {{action "goToRoute" 'events' (hash preferences="true" selectedTags="" selectedVenues="" selectedDays="" searchKeyword="" productionModal=false viewType="")}}>
+		My Schedule</a></li>
+		<li><a role="button" {{action "goToRoute" 'events' (hash preferences="false" selectedTags="" selectedVenues="" selectedDays="" searchKeyword="" productionModal=false viewType="clashfinder")}}>
+		Clashfinder</a></li>
+		<li><a role="button" {{action "goToRoute" 'productions' (hash searchKeyword="")}}>Lineup</a></li>
+		<li><a role="button" {{action "goToRoute" 'venues' (hash venueType="performance" venueModal=false searchKeyword="" selectedTags='')}}>Venues</a></li>
+		<li><a role="button" {{action "goToRoute" 'map' (hash showMapTiles=false showBack=false mlabel=null)}}>Map</a></li>		
+		<li><a role="button" {{action "goToRoute" 'venues' (hash venueType="retailer" venueModal=false searchKeyword="" selectedTags='')}}>Food & Drink</a></li>
+		<li><a role="button" {{action "goToRoute" 'messages' }}>Notifications</a></li>
+		<li><a role="button" {{action "goToRoute" 'suggestions' }}>Feedback</a></li>		
+		<li><a role="button" {{action "goToRoute" 'pages' }}>Info &amp; Contact</a></li>
+		<li><a role="button" {{action "goToRoute" 'wallet' }}>Wallet</a></li>
+		<li><a role="button" {{action "goToRoute" 'community-events' (hash selectedTags='' showSubscribePanel=false)}}>Community Events</a></li>
+		<li><a role="button" {{action "goToRoute" 'articles' (hash articleType='boma_article' selectedTags='' selectedExcludedTags=this.audioTagID pageName='Articles')}}>Articles</a></li>
+		<li><a role="button" {{action "goToRoute" 'articles' (hash articleType='boma_article' selectedTags=this.audio_id_as_array selectedExcludedTags='' pageName='Podcasts')}}>Podcasts</a></li>
+		<li><a role="button" {{action "goToRoute" 'articles' (hash articleType='community_article' selectedTags='' selectedExcludedTags='' pageName='Community Notices')}}>Community Notices</a></li>
+	</ul>
+	
+	<div class="sidebar-bottom">
+		{{#if this.isPlaying}}
+			{{#if (eq this.currentMediaModelName "article")}}
+				<a role="button" {{action "goToRoute" 'articles' (hash articleType='boma_article' selectedTags=this.audio_id_as_array selectedExcludedTags='' pageName='Sounds of Shambala' articleModal=true articleModalModelID=this.currentMediaModelID)}}>
+					<i class="fa fa-volume-up" aria-hidden="true"></i>
+					Playing audio
+				</a>		
+			{{/if}}
+			{{#if (eq this.currentMediaModelName "event")}}
+				<a role="button" {{action "goToRoute" 'community-events' (hash eventModal=true eventModalModelID=this.currentMediaModelID)}}>
+					<i class="fa fa-volume-up" aria-hidden="true"></i>
+					Playing audio
+				</a>
+			{{/if}}
+		{{/if}}<br>
+		{{#unless this.subtleWallet}}
+			<a role="button" {{action "goToRoute" 'wallet' }}>
+				<i class="fa fa-user-circle" aria-hidden="true"></i>
+				Wallet
+			</a>
+		{{/unless}}
+		<a role="button" {{action "goToRoute" 'settings' }}>
+			<i class="fa fa-cog" aria-hidden="true"></i>
+			Settings
+		</a>
+	</div>
+</div>
+

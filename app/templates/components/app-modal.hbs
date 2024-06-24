@@ -1,0 +1,7 @@
+<FromElsewhere @name="appModal" as |modal|>
+  {{#if modal}}
+    <div id="full-page-modal" class={{this.currentFestival}}>
+      {{component modal}}
+    </div>
+  {{/if}}
+</FromElsewhere>

@@ -1,0 +1,68 @@
+{{#if this.article.video_url}}
+	<AppVideo @video_url={{this.article.video_url}} @poster_url={{this.article.image_name}} />	
+{{else}}
+	<a role="button" {{action (action "doCloseModal")}}>
+		<AppModalImage @model={{this.article}} @closeModal={{action "doCloseModal"}} @showTitle={{true}} @showCreateAt={{true}} />
+	</a>
+{{/if}}
+
+{{#if this.article.video_url}}
+	<a role="button" {{action (action "doCloseModal")}}>
+		<button class="back back-top" type="button">Back</button>
+	</a>
+{{/if}}
+
+<div class="content-wrap {{this.article.article_type}} " id="article-show">
+	<div class="actions">
+		<div class="right">
+			{{#if this.article}}
+				<PreferenceToggle @modelName="article" @modelId={{this.article.id}} @model={{this.article}} @wallet={{this.wallet}} />
+			{{/if}}
+		</div>
+	</div>
+
+
+	{{#if (eq this.article.article_type "boma_article")}}
+		{{#if this.article.last_updated_at}}
+			<h3><FormattedDate @dateTime={{this.article.last_updated_at}} @format='dddd, MMMM Do YYYY'/></h3>
+		{{/if}}
+	{{/if}}
+  
+  <h2 id="info-article-name">{{this.article.title}}</h2>
+
+	{{#if this.article.meta.talk_artists_text}}
+		<h3>{{this.article.meta.talk_artists_text}}</h3>
+	{{/if}}
+
+	<div class="article-content">
+		{{#if this.article.audio_url}}
+			<AudioPlayer @url={{this.article.audio_url}} @model={{this.article}} />
+		{{/if}}
+
+    <div role="button" {{did-pan onPanEnd=(action "doCloseModal") threshold=100}}>
+      <div class="clearboth"></div>
+      {{#if this.article.standfirst}}
+        <p class="standfirst">{{this.article.standfirst}}</p>
+      {{/if}}
+      <HtmlSafeString @string={{this.article.content}}/>
+
+      {{#if this.article.external_link}}
+        <p>
+          <a href={{this.article.external_link}} target="_blank" class="btn" rel="noopener noreferrer">More Information</a>
+        </p>
+      {{/if}}
+
+      {{#each this.article.surveys as |survey|}}
+        <AppSurvey @survey={{survey}} @wallet={{this.wallet}} />
+      {{/each}}
+
+      {{#if this.article.tags}}
+        <p>
+          {{#each this.article.tags as |tag_id|}}
+            <AppTag @tag_id={{tag_id}} />
+          {{/each}}
+        </p>
+      {{/if}}
+    </div>
+	</div>
+</div>

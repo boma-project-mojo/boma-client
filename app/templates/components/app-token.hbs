@@ -1,0 +1,10 @@
+<LinkTo @route="token" @model={{this.token.id}}>
+  <div class="fw-list-style">
+    <img class="fw-list-style-image" src={{this.token.event_image_base64}} alt="Token QR Code">
+    <div class="fw-list-style-details">
+      <h1 class="token-event-name">{{this.token.event_name}}</h1>
+      <h3 class="token-status"><TokenState @tokenState={{this.token.token_state}} /></h3>
+      <i class="fa fa-chevron-right" aria-hidden="true"></i>
+    </div>
+  </div>
+</LinkTo>

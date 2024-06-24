@@ -1,0 +1,180 @@
+#cf-wrap {
+  height: 100vh;
+  overflow: auto;
+  -webkit-transform: translate3d(0, 0, 0);
+  -webkit-perspective: 1000;
+
+  will-change: transform;
+  -webkit-transform: translateZ(0);
+  -moz-transform: translateZ(0);
+  -ms-transform: translateZ(0);
+  -o-transform: translateZ(0);
+  transform: translateZ(0);
+}
+
+.cf-buttons a {
+  color: #fff;
+}
+
+.cf-buttons {
+  /*position: sticky;*/
+  display: flex;
+  flex: 1;
+  /*top: 0;*/
+  background-color: #ccc;
+  z-index: 100;
+}
+
+.cf-buttons a {
+  align-items: stretch;
+  flex-grow: 1;
+  padding: 10px;
+  text-align: center;
+  padding-top: 8px;
+  white-space: nowrap;
+}
+
+.cf-buttons a:focus {
+  background-color: #333;
+}
+
+.cf-buttons a:focus,
+.cf-buttons a:hover,
+.cf-buttons a:active {
+  text-decoration: none !important;
+}
+
+#cf-now {
+  min-height: calc(100vh - 95px);
+  border-left: 1px solid #ccc;
+  position: absolute;
+  z-index: 0;
+}
+
+#cf-now {
+  display: none;
+}
+
+.event-day-Mon-shown .event-day-Mon,
+.event-day-Mon-shown #cf-now.Mon,
+#cf-now.Mon {
+  display: block;
+}
+
+.event-day-Tue-shown .event-day-Tue,
+.event-day-Tue-shown #cf-now.Tue,
+#cf-now.Tue {
+  display: block;
+}
+
+.event-day-Wed-shown .event-day-Wed,
+.event-day-Wed-shown #cf-now.Wed,
+#cf-now.Wed {
+  display: block;
+}
+
+.event-day-Thu-shown .event-day-Thu,
+.event-day-Thu-shown #cf-now.Thu,
+#cf-now.Thu {
+  display: block;
+}
+
+.event-day-Fri-shown .event-day-Fri,
+.event-day-Fri-shown #cf-now.Fri,
+#cf-now.Fri  {
+  display: block;
+}
+
+.event-day-Sat-shown .event-day-Sat,
+.event-day-Sat-shown #cf-now.Sat,
+#cf-now.Sat {
+  display: block;
+}
+
+.event-day-Sun-shown .event-day-Sun,
+.event-day-Sun-shown #cf-now.Sun,
+#cf-now.Sun {
+  display: block;
+}
+
+#cf-no-results {
+  position: absolute;
+  width: 100%;
+  text-align: center;
+  top: 100px;
+}
+
+.cf-venue + #cf-no-results {
+  display: none;
+}
+
+/* V2 */
+
+* {
+  font-family: serif;
+}
+
+#cf-container {
+  width: 100vw;
+  height: calc(100vh - (95px + env(safe-area-inset-top)));
+  overflow: auto;
+  position: relative;
+}
+
+#canvas-time {
+  position: sticky;
+  top: 0;
+  right: 0;
+  left: 0;
+  z-index: 10;
+  height: 30px;
+}
+
+#canvas-venues {
+  left: 0;
+  position: sticky;
+}
+
+#cf-events-canvases {
+  position: absolute;
+  top: 30px;
+  overflow: hidden;
+}
+
+canvas {
+  display: block;
+}
+
+.cf-nav-date {
+  display: none;
+}
+
+.cf-buttons a.cf-long-festival {
+  padding: 5px;
+  padding-top: 2px;
+}
+
+.cf-long-festival .cf-nav-date {
+  display: block;
+}
+
+.cf-long-festival .cf-nav-day {
+  font-size: 10px;
+}
+
+.konvajs-content,
+.konvajs-content canvas,
+#cf-events-canvases,
+#cf-container {
+  overscroll-behavior: none;
+}
+
+#cf-container.in {
+  opacity: 1;
+  transition: opacity 0.4s linear;
+}
+
+#cf-container.out {
+  opacity: 0;
+  transition: opacity 0.2s linear;
+}

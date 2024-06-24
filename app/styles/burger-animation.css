@@ -1,0 +1,74 @@
+.slideout-panel-left.panel-open .top {
+  transform: translate3d(0, 9px, 0) rotateZ(45deg);
+}
+
+#menu-toggle {
+  padding: 4px;
+  z-index: 10;
+  transform: translate3d(0, 0, 0);
+  padding-bottom: 0;
+}
+
+.con {
+  width: auto;
+  margin: 0 auto;
+  cursor: pointer;
+  display: inline-block;
+  transition: 0.25s ease;
+}
+
+.slideout-panel-left.panel-open .middle {
+  width: 0;
+}
+
+.con .bar.middle {
+  margin: 0 auto;
+}
+
+.con .bar {
+  display: block;
+  height: 4px;
+  width: 21px;
+  background: #000;
+  margin: 5px auto;
+  transition: 0.25s ease;
+}
+
+.slideout-panel-left.panel-open .bottom {
+  transform: translate3d(0, -9px, 0) rotateZ(-45deg);
+}
+
+/* Close */
+
+.close-x {
+  margin: auto;
+  text-align: center;
+  height: 43px;
+  width: 30px;
+  padding-top: 0;
+}
+
+.close-x .bar {
+  display: block;
+  height: 4px;
+  width: 2px;
+  background: #fff;
+  margin: 14px auto;
+  transition: 0.25s ease;
+}
+
+.close-x .bar.top {
+  transform: translate3d(0, 9px, 0) rotateZ(45deg);
+}
+
+.close-x .bar.bottom {
+  transform: translate3d(0, -9px, 0) rotateZ(-45deg);
+}
+
+.right-sidebar-shown .close-x .bar {
+  width: 21px;
+  -webkit-transition: width 0.25s; /* For Safari 3.1 to 6.0 */
+  transition: width 0.25s;
+  -webkit-transition-delay: 0.25s; /* Safari */
+  transition-delay: 0.25s;
+}

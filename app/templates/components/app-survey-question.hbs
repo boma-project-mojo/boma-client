@@ -1,0 +1,12 @@
+<div class="survey__question button-group">
+	{{#if this.errors}}
+		<div class="errors">
+			{{#each this.errors as |error|}}
+				<li>{{error}}</li>
+			{{/each}}
+		</div>
+	{{/if}}
+	{{#each this.question.answers as |answer|}}
+		<AppRadioButton @isDisabled={{this.isDisabled}} @id={{answer.id}} @name={{answer.answer_text}} @modelName={{this.question.id}} @selected={{this.selectedAnswer}} @updateSelectedRadio={{action this.updateSelectedRadio}} />
+	{{/each}}
+</div>

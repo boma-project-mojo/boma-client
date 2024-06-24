@@ -1,0 +1,24 @@
+<SelectBox
+  @classNamePrefix="search-select"
+  @value={{@value}}
+  @searchSlowTime={{3000}}
+  @onSelect={{@onSelect}}
+  @onSearch={{@onSearch}}
+  @networkError={{@networkError}}
+  @onSearched={{action "searched"}}
+  @onPressEscape={{action "close"}}
+  @onClickOutside={{action "close"}}
+  ...attributes as |sb|>
+  <sb.Input @value={{this.selected}} />
+  {{#if sb.isSearching}}
+      <sb.Option>
+        {{#if this.networkError}}
+          Network Error. You are offline.  
+        {{else}}
+          Searching...
+        {{/if}}
+      </sb.Option>
+  {{else if sb.isOpen}}
+      {{yield sb this.lastQuery}}
+  {{/if}}
+</SelectBox>

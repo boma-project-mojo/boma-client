@@ -1,0 +1,30 @@
+/* Grid Style */
+
+.gs .model-name {
+  color: #fff;
+  text-transform: none;
+  font-family: inherit !important;
+  font-weight: bold;
+  letter-spacing: inherit;
+  margin-bottom: 0;
+
+  position: absolute;
+  bottom: 6px;
+  font-size: 15px;
+  max-width: 80%;
+  line-height: 18px;
+}
+
+.gs .model-details {
+  font-size: 17px;
+  position: absolute;
+  bottom: 8px;
+  left: 0;
+  color: #fff;
+  padding: 0 8px;
+  padding: 8px 8px;
+  width: 100%;
+  bottom: 0px;
+}
+
+/* List Style */

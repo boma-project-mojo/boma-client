@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html class="">
+  <head>
+    <meta charset="utf-8">
+    <title>Boma</title>
+    <meta name="description" content="">
+    <!-- <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=0"> -->
+
+    <meta name="viewport" content="initial-scale=1, width=device-width, height=device-height, viewport-fit=cover, user-scalable=0">
+
+    {{content-for "head"}}
+
+    <link rel="stylesheet" href="{{rootURL}}assets/vendor.css">
+    <link rel="stylesheet" href="{{rootURL}}assets/boma.css">
+
+    <style type="text/css">
+      .loading-splash {
+        background-color: #000;
+        background-image: url('assets/images/splash.png');
+        background-position: center center;
+        height: 100vh;
+        width: 100vw;
+        background-size: cover;
+        background-repeat: no-repeat;
+        z-index: 5000;
+        overflow: hidden;
+        position: relative;
+      }
+    </style>
+
+    <script type="text/javascript">
+      function onDeviceReady() {
+        window.wasTriggered = false;                  
+      }
+    </script>
+
+    {{content-for "head-footer"}}
+  </head>
+  <body class="loading-splash">
+    <!-- <a style="font-size:100px;" onclick="requestSession()">Request Session</a> -->
+
+    {{content-for "body"}}
+
+    <script src="{{rootURL}}assets/vendor.js"></script>
+    <script src="{{rootURL}}assets/boma.js"></script>
+
+    {{content-for "body-footer"}}
+  </body>
+</html>

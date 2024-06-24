@@ -1,0 +1,15 @@
+{{#if this.image_loader}}
+	{{#if this.image_thumb.isPending}}
+    <div class="{{this.model.constructor.modelName}}-{{this.model.id}} {{this.className}} {{this.imageIsLoaded}}" style={{this.image_loader}}>
+  		{{yield}}
+  	</div>
+	{{else}}
+    <div class="{{this.model.constructor.modelName}}-{{this.model.id}} {{this.className}} {{this.imageIsLoaded}}" style={{await this.image_thumb}}>
+  		{{yield}}
+  	</div>
+  {{/if}}
+{{else}}
+	<div id="{{this.model.constructor.modelName}}-{{this.model.id}}" class="{{this.className}} {{this.imageIsLoaded}}" style={{await this.image_thumb}}>
+		{{yield}}
+	</div>
+{{/if}}

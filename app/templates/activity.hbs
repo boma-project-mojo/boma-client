@@ -1,0 +1,219 @@
+<div id="main" class="activity">  
+  <AppHeader>
+    <div class="header-top">
+      <div class="left">
+        <a id="toggle-left-sidebar">
+          <div id="menu-toggle" class="con close">
+            <span class="bar top"></span>
+            <span class="bar middle"></span>
+            <span class="bar bottom"></span>
+          </div>
+        </a>
+      </div>
+      <div class="left">
+          <div class="header-title">
+            <a>Activity</a>
+          </div>
+      </div>
+      <div class="right">
+
+      </div>
+    </div>
+  </AppHeader>
+
+  <div class="content-wrap">
+    <LinkTo @route="settings">
+      <button class="btn" type="button">Back to Settings</button>
+    </LinkTo>
+
+    <br><br>
+
+    <h3 class="clearboth">
+      Activity Report
+    </h3>
+    
+    <p>Here's a breakdown of all of the data we store about you for the festival you're currently browsing.</p>
+
+    <p>You can choose to enable or disable this in the app settings at any time.</p>
+
+    <h4>Global</h4>
+    <table class="table">
+      <tr>
+        <th>App Opens</th>
+        <th></th>
+      </tr>
+      <tr>
+        <td>Total</td>
+        <td>
+          {{#if this.model.activities.activities.ping.total_all}}
+            {{this.model.activities.activities.ping.total_all}}
+          {{else}}
+            0
+          {{/if}}
+        </td>
+      </tr>
+    </table>
+
+    <h4>Article</h4>
+    <table class="table">
+      <tr>
+        <th>Views of Articles</th>  
+        <th></th>
+      </tr>
+      <tr>
+        <td>Total</td>
+        <td>
+          {{#if this.model.activities.activities.view.article.total}}
+            {{this.model.activities.activities.view.article.total}}
+          {{else}}
+            0
+          {{/if}}
+        </td>
+      </tr>
+      <tr>
+        <th>Views by Article Type</th>
+        <th></th>
+      </tr>
+      {{#each-in this.model.activities.activities.view.article.article_type as |key value|}}
+        <tr>
+          <td>{{key}}</td>
+          <td>{{value}}</td>
+        </tr>
+      {{else}}
+        <td colspan="2"><i>No data</i></td>
+      {{/each-in}}
+      <tr>
+        <th>Views by Tag</th>
+        <th></th>
+      </tr>
+      {{#each-in this.model.activities.activities.view.article.tags as |key value|}}
+        <tr>
+          <td><AppTag @tag_id={{key}} @noStyle={{true}}/></td>
+          <td>{{value}}</td>
+        </tr>
+      {{else}}
+        <td colspan="2"><i>No data</i></td>
+      {{/each-in}}
+      <tr>
+        <th>Love Shown For Articles</th>
+        <th></th>
+      </tr>
+      <tr>
+        <td>Total</td>
+        <td>
+          {{#if this.model.activities.activities.love.article.total}}
+            {{this.model.activities.activities.love.article.total}}
+          {{else}}
+            0
+          {{/if}}
+        </td>
+      </tr>
+      <tr>
+        <th>Love by Article Type</th>
+        <th></th>
+      </tr>
+      
+      {{#each-in this.model.activities.activities.love.article.article_type as |key value|}}
+        <tr>
+          <td>{{key}}</td>
+          <td>{{value}}</td>
+         </tr>
+      {{else}}
+        <td colspan="2"><i>No data</i></td>
+      {{/each-in}}
+     
+      <tr>
+        <th>Love by Tag</th>
+        <th></th>
+      </tr>
+      {{#each-in this.model.activities.activities.love.article.tags as |key value|}}
+        <tr>
+          <td><AppTag @tag_id={{key}} @noStyle={{true}} /></td>
+          <td>{{value}}</td>
+        </tr>
+      {{else}}
+      <td colspan="2"><i>No data</i></td>
+      {{/each-in}}
+    </table>
+
+    <h4>Event</h4>
+    <table class="table">
+      <tr>
+        <th>Views of Events</th>  
+        <th></th>
+      </tr>
+      <tr>
+        <td>Total</td>
+        <td>
+          {{#if this.model.activities.activities.view.event.total}}
+            {{this.model.activities.activities.view.event.total}}
+          {{else}}
+            0
+          {{/if}}
+        </td>
+      </tr>
+      <tr>
+        <th>Views by Event Type</th>
+        <th></th>
+      </tr>
+      {{#each-in this.model.activities.activities.view.event.event_type as |key value|}}
+        <tr>
+          <td>{{key}}</td>
+          <td>{{value}}</td>
+        </tr>
+      {{else}}
+      <td colspan="2"><i>No data</i></td>
+      {{/each-in}}
+      <tr>
+        <th>Views by Tag</th>
+        <th></th>
+      </tr>
+      {{#each-in this.model.activities.activities.view.event.tags as |key value|}}
+        <tr>
+          <td><AppTag @tag_id={{key}} @noStyle={{true}} /></td>
+          <td>{{value}}</td>
+        </tr>
+      {{else}}
+        <td colspan="2"><i>No data</i></td>
+      {{/each-in}}
+      <tr>
+        <th>Love Shown For Events</th>
+        <th></th>
+      </tr>
+      <tr>
+        <td>Total</td>
+        <td>
+          {{#if this.model.activities.activities.love.event.total}}
+            {{this.model.activities.activities.love.event.total}}
+          {{else}}
+            0
+          {{/if}}
+        </td>
+      </tr>
+      <tr>
+        <th>Love by Event Type</th>
+        <th></th>
+      </tr>
+      <tr>
+        {{#each-in this.model.activities.activities.love.event.event_type as |key value|}}
+          <td>{{key}}</td>
+          <td>{{value}}</td>
+        {{else}}
+          <td colspan="2"><i>No data</i></td>
+        {{/each-in}}
+      </tr>
+      <tr>
+        <th>Love by Tag</th>
+        <th></th>
+      </tr>
+      {{#each-in this.model.activities.activities.love.event.tags as |key value|}}
+        <tr>
+          <td><AppTag @tag_id={{key}} @noStyle={{true}} /></td>
+          <td>{{value}}</td>
+        </tr>
+      {{else}}
+        <td colspan="2"><i>No data</i></td>
+      {{/each-in}}
+    </table>
+  </div>    
+</div>

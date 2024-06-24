@@ -1,0 +1,25 @@
+{{#if this.linkOnly}}
+	<InAppBrowserLink @url={{this.model.external_link}}>
+		<div class="article-item embedded-image {{this.imageIsLoaded}}" {{did-pan onPanEnd=(action this.favouriteArticle this.model.id) threshold=100}} role="button">
+			<h2>
+				{{this.model.title}} 
+			</h2>
+			<PreferenceDisplay @model={{this.model}} @wallet={{this.wallet}} />
+		</div>
+	</InAppBrowserLink>
+{{else}}
+	<a role="button" {{action (action this.openArticleModal) this.model.id}}>
+		<div class="article-item {{this.model.article_type}}" {{did-pan onPanEnd=(action this.favouriteArticle this.model.id) threshold=100}}>
+			<AppListImage @model={{this.model}}>
+				<div class="appArticleImageTitles">
+					<h2>
+						<mark>{{this.model.title}}</mark> 
+					</h2>
+					<br>
+					<h3 id="created-at">{{this.model.created_at_formatted}}</h3>
+				</div>
+				<PreferenceDisplay @model={{this.model}} @wallet={{this.wallet}} />
+			</AppListImage>
+		</div>
+	</a>
+{{/if}}

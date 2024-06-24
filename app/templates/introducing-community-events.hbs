@@ -1,0 +1,16 @@
+<div id="main">
+	<div class="intro-page" id="community-events">
+	  <div class="intro-page-copy">
+	    <h3>Introducing: COMMUNITY EVENTS LISTINGS</h3>
+
+	    <p>We know that you lot are a talented, creative bunch, involved in all manner of awesome projects and happenings. Whether it’s a cause that needs volunteer support, a call out for activists or an upcoming gig that your band are playing, this is your chance to get the Shambala audience along! </p>
+	    
+	    <p>Add your upcoming events (whether they’re virtual or ‘real world’) to or community calendar, where others can find them and get involved. </p>
+
+	    <div class="btn-wrapper right">
+	      <a role="button" {{action (action "goToRoute" "community-events")}} class="btn">Go to Community Events</a>
+	    </div>
+	    <LinkTo @route="pages" @query={{hash pageModal=true pageModalModelID=8}} class="more-info">More info</LinkTo>
+	  </div>
+	</div>
+</div>

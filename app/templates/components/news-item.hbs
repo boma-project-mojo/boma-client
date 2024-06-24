@@ -1,0 +1,14 @@
+<div class="news-item {{if this.isShowcaseNotification "showcase-notification" ""}}">
+	<h4><FormattedDate @dateTime={{this.sent_at}} @format='ddd Do MMM, h:mma'/></h4>
+	<h3>{{this.title}}</h3>
+	<p><HtmlSafeString @string={{this.message.body}}/></p>
+	{{#if this.name}}
+		<LinkTo @route={{this.route}} @query={{this.params}} class="notification--link-to-related-model boma-btn">
+			Go to: {{this.name}}
+		</LinkTo>
+	{{else if (eq this.message.notifiable_params.articleType "community_article")}}
+		<LinkTo @route={{this.route}} @query={{this.params}} class="notification--link-to-related-model boma-btn">
+			Go to this People's Gallery Post
+		</LinkTo>
+	{{/if}}
+</div>

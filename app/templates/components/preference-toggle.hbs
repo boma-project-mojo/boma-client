@@ -1,0 +1,11 @@
+{{#unless this.model.isDestroyed}}
+	<a role="button" {{action "togglePreference"}} class="toggle-preference {{if this.buttonStyleActions 'btn'}}">
+		{{#if this.model.isPreferred}}
+    	<i class="fa fa-solid fa fa-heart active {{if (eq this.beat true) "beat"}}" aria-hidden="true"></i>
+      <span class="button-style-actions-label">Added to Schedule</span>
+		{{else}}
+			<i class="fa fa-light fa-heart fa-heart-o" aria-hidden="true"></i>
+      <span class="button-style-actions-label">Add To Schedule</span>
+		{{/if}}
+	</a>
+{{/unless}}

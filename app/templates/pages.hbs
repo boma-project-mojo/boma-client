@@ -1,0 +1,40 @@
+<AppRightSidebar>
+
+	<div class="right-sidebar-content">
+		
+	</div>
+
+</AppRightSidebar>
+
+<div id="main">	
+	<AppHeader>
+		<div class="header-top">
+			<div class="left">
+				<a id="toggle-left-sidebar">
+					<div id="menu-toggle" class="con close">
+						<span class="bar top"></span>
+						<span class="bar middle"></span>
+						<span class="bar bottom"></span>
+					</div>
+				</a>
+				<div class="header-title">
+					<a>Info &amp; Contact</a>
+				</div>
+			</div>
+			<div class="right">
+				<a role="button" id="reload-model-anchor" {{action "reloadModel" true}}>
+        	<i id="reload-model" class="fa fa-light fa-arrows-rotate {{this.isRetryingNowClass}} fa-3x messages-loading {{if this.successReloadingModel 'pulse fa-check-circle'}} {{if this.failedReloadingModel 'shake fa-exclamation-circle'}}"></i>
+        </a>
+			</div>
+		</div>
+	</AppHeader>
+
+	<CollectionList @model={{this.model}} @scrollChange="scrollChange" @scrollTop={{this.scrollTop}} @displayFormat="list" @isLoadingModel={{this.isLoadingModel}} @listItemComponent={{component "app-page-list-style" 
+			openPageModal=(action "openPageModal")
+		}} />
+
+</div>
+
+{{#if this.pageModal}}
+	<ToElsewhere @named="appModal" @send={{component "page-detail" pageID=this.pageModalModelID closeModal=(action "closePageModal")}} />
+{{/if}}

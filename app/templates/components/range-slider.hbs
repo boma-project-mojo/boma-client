@@ -1,0 +1,2 @@
+{{!-- template-lint-disable require-input-label  --}}
+<input type="range" min="0" max={{this.duration}} step="1" value={{this.currentPosition}} onchange={{action (action this.seekTo)}} disabled="{{if this.isPlayingOrPaused "" "disabled"}}">

@@ -1,0 +1,29 @@
+.video-js {
+  width: 100vw;
+  height: 100vw;
+}
+
+.video-js .vjs-big-play-button {
+  border: none;
+  background-color: transparent;
+}
+
+.video-js .vjs-big-play-button {
+  font-size: 70px;
+}
+
+.video-js .vjs-control-bar {
+  background-color: transparent;
+}
+
+.video-js .vjs-load-progress,
+.video-js .vjs-load-progress div {
+  background-color: #ffb80e;
+}
+
+.video-js .vjs-load-progress:focus,
+.video-js .vjs-load-progress div:focus,
+.vjs-button:focus {
+  outline: none;
+  outline-style: none;
+}

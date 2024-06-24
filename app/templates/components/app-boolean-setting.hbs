@@ -1,0 +1,10 @@
+<p>{{this.settingTitle}}
+<label class="form-switch">
+  <input 
+    type="checkbox" 
+    disabled={{this.disabled}} 
+    checked={{this.isChecked}} 
+    onClick={{action (action this.setSetting) this.settingName this.value this.alert}}>
+  <i></i>
+</label>
+</p>

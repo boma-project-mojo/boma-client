@@ -1,0 +1,635 @@
+/* Shambala 2018 */
+
+/* Fonts */
+
+@font-face {
+  font-family: "Brandon Grotesque";
+  src:
+    url("fonts/brandon/BrandonGrotesque-Light.woff2") format("woff2"),
+    url("fonts/brandon/BrandonGrotesque-Light.woff") format("woff");
+  font-weight: 300;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Brandon Grotesque";
+  src:
+    url("fonts/brandon/BrandonGrotesque-Medium.woff2") format("woff2"),
+    url("fonts/brandon/BrandonGrotesque-Medium.woff") format("woff");
+  font-weight: 500;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Brandon Grotesque";
+  src:
+    url("fonts/brandon/BrandonGrotesque-RegularItalic.woff2") format("woff2"),
+    url("fonts/brandon/BrandonGrotesque-RegularItalic.woff") format("woff");
+  font-weight: normal;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: "Brandon Grotesque";
+  src:
+    url("fonts/brandon/BrandonGrotesque-Black.woff2") format("woff2"),
+    url("fonts/brandon/BrandonGrotesque-Black.woff") format("woff");
+  font-weight: 900;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Brandon Grotesque";
+  src:
+    url("fonts/brandon/BrandonGrotesque-Regular.woff2") format("woff2"),
+    url("fonts/brandon/BrandonGrotesque-Regular.woff") format("woff");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Brandon Grotesque";
+  src:
+    url("fonts/brandon/BrandonGrotesque-Bold.woff2") format("woff2"),
+    url("fonts/brandon/BrandonGrotesque-Bold.woff") format("woff");
+  font-weight: bold;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Brandon Grotesque";
+  src:
+    url("fonts/brandon/BrandonGrotesque-BlackItalic.woff2") format("woff2"),
+    url("fonts/brandon/BrandonGrotesque-BlackItalic.woff") format("woff");
+  font-weight: 900;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: "Brandon Grotesque";
+  src:
+    url("fonts/brandon/BrandonGrotesque-LightItalic.woff2") format("woff2"),
+    url("fonts/brandon/BrandonGrotesque-LightItalic.woff") format("woff");
+  font-weight: 300;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: "Brandon Grotesque";
+  src:
+    url("fonts/brandon/BrandonGrotesque-BoldItalic.woff2") format("woff2"),
+    url("fonts/brandon/BrandonGrotesque-BoldItalic.woff") format("woff");
+  font-weight: bold;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: "Brandon Grotesque";
+  src:
+    url("fonts/brandon/BrandonGrotesque-ThinItalic.woff2") format("woff2"),
+    url("fonts/brandon/BrandonGrotesque-ThinItalic.woff") format("woff");
+  font-weight: 100;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: "Brandon Grotesque";
+  src:
+    url("fonts/brandon/BrandonGrotesque-Thin.woff2") format("woff2"),
+    url("fonts/brandon/BrandonGrotesque-Thin.woff") format("woff");
+  font-weight: 100;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Brandon Grotesque";
+  src:
+    url("fonts/brandon/BrandonGrotesque-MediumItalic.woff2") format("woff2"),
+    url("fonts/brandon/BrandonGrotesque-MediumItalic.woff") format("woff");
+  font-weight: 500;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: "Alternate Gothic No2 D";
+  src:
+    url("fonts/alternative-gothic-d/AlternateGotNo2D.woff2") format("woff2"),
+    url("fonts/alternative-gothic-d/AlternateGotNo2D.woff") format("woff");
+  font-weight: normal;
+  font-style: normal;
+}
+
+/* Typography */
+
+* {
+  font-family: "Brandon Grotesque", "Helvetica Neue", Helvetica, Arial,
+    sans-serif;
+}
+
+p,
+.messages {
+  line-height: 16px;
+}
+
+h3 {
+  font-size: 1em;
+}
+
+.left-sidebar-content li a,
+.production h1,
+#production-name,
+.header-title a,
+.right-sidebar-content h2,
+h2#venue-name,
+#welcome h3,
+#welcome p strong,
+#productions-show h2#production-name,
+#full-page-modal h2#venue-name,
+#full-page-modal h2#info-page-name,
+.btn,
+.back,
+.embedded-image .back,
+.venue-wrap h1,
+.page-item h2,
+.filter label,
+#venue-show h3,
+h2#token-title {
+  font-family: "Alternate Gothic No2 D";
+}
+
+.btn {
+  padding: 6px 12px 2px;
+}
+
+/*.right-sidebar-content .btn {
+  font-family: "Brandon Grotesque", "Helvetica Neue", Helvetica, Arial, sans-serif;
+}*/
+
+/* Header */
+
+#header,
+.header-marquee,
+.token-info-header {
+  background-color: #3e64ce;
+  background-repeat: no-repeat;
+  background-image: url("images/sham-2018-emblem-small.svg"),
+    url("images/sham-2018-emblem-small.svg");
+  background-position:
+    right -40px top -112px,
+    left -40px top -112px;
+  border-bottom: none;
+}
+
+#header a {
+  color: #fff;
+}
+
+#header .con .bar {
+  background-color: #fff;
+}
+
+#header .header-title {
+  padding-top: 12px;
+}
+
+#header .header-title a {
+  font-size: 24px;
+}
+
+#header .fa-heart,
+#header .fa-search,
+#header .fa-sliders,
+#header .fa-info {
+  height: 40px;
+  width: 40px;
+  border-radius: 40px;
+  /*margin-top: 10px;*/
+  margin-left: 10px;
+}
+
+#header a {
+  padding: 6px 0;
+  text-align: center;
+}
+
+#header .fa-heart {
+  background-color: #f6a8b0;
+}
+
+#header .fa-sliders {
+  background-color: #eeb708;
+  padding-top: 6px;
+}
+
+#header .fa-search {
+  background-color: rgb(123, 181, 132);
+  padding-top: 7px;
+}
+
+#header .fa-times {
+  font-size: 18px;
+}
+
+#header .fa-info {
+  background-color: #eeb708;
+  padding-top: 6px;
+  text-align: center;
+  color: #fff;
+  line-height: 30px;
+}
+
+.header-marquee {
+  color: #eeb708;
+}
+
+.header-marquee .marquee {
+  padding-top: 6px;
+}
+
+#header .active .fa-heart,
+.header-bottom-shown #header #toggle-header-bottom,
+.filters-set .fa-sliders {
+  color: #23378b;
+}
+
+/* Left Sidebar */
+
+.left-sidebar {
+  background-image: url(images/sham-2018-emblem-lg.svg);
+  background-repeat: no-repeat;
+  background-position: bottom -244px center;
+  background-color: #3e64ce;
+}
+
+.left-sidebar a {
+  text-align: left;
+}
+
+.left-sidebar-content li a {
+  color: #fff;
+  text-align: left;
+  font-size: 24px;
+  border-bottom: 1px solid #4599d4;
+  padding-bottom: 4px;
+  font-weight: normal;
+}
+
+.left-sidebar-content li a:after {
+  font-family: FontAwesome;
+  content: "\f105";
+  float: right;
+  font-size: 20px;
+}
+
+/* Right Sidebar */
+
+.right-sidebar {
+  background-color: #3e64ce;
+}
+
+/* Events list */
+
+.production .preference-display {
+  float: right;
+  margin: 0px 0px;
+  color: white;
+}
+
+.production {
+  position: relative;
+}
+
+.production h1 {
+  position: absolute;
+  bottom: 5px;
+  font-size: 15px;
+  font-weight: normal;
+  max-width: 80%;
+  line-height: 18px;
+}
+
+.production-details {
+  height: 100%;
+}
+
+h3.production-venue {
+  position: absolute;
+  top: 5px;
+  font-size: 12px;
+  line-height: 16px;
+  max-width: 50%;
+  font-weight: bold;
+}
+
+h3.production-datetime {
+  position: absolute;
+  top: 5px;
+  right: 10px;
+  font-size: 12px;
+  line-height: 16px;
+  font-weight: bold;
+}
+
+.production .embedded-image:before {
+  background-color: transparent;
+  background-image: url("images/bg-gradient-2.png");
+  opacity: 0.6;
+}
+
+.preference-display {
+  position: absolute;
+  right: 10px;
+  bottom: 5px;
+}
+
+.preference-display .fa-heart {
+  color: #fff0;
+}
+
+.preference-display .fa-heart.active {
+  color: #23527c;
+}
+
+/* Production */
+
+#productions-show h2#start-end-time,
+#productions-show h3#venue-name {
+  font-size: 12px;
+  color: #f6a8b0;
+  text-transform: uppercase;
+}
+
+#productions-show h2#start-end-time {
+  line-height: 1em;
+  padding-top: 4px;
+  line-height: 10px;
+}
+
+h2#production-name,
+h2#venue-name,
+h2#info-page-name,
+h2#token-title {
+  font-size: 26px;
+  color: #3e64ce;
+  border-bottom: 1px solid #3e64ce;
+}
+
+#full-page-modal .embedded-image:before {
+  content: none;
+}
+
+/* Welcome */
+
+#welcome #welcome-copy {
+  background-color: rgba(62, 100, 206, 0.8);
+  bottom: 30px;
+}
+
+#welcome h3 {
+  font-size: 26px;
+  line-height: 28px;
+  font-weight: normal;
+}
+
+#welcome p {
+  font-size: 15px;
+  line-height: 17px;
+  margin-bottom: 15px;
+  font-weight: normal;
+}
+
+#welcome p strong {
+  font-size: 20px;
+  color: #f6a8b0;
+  text-transform: uppercase;
+}
+
+/* Venues */
+
+.venue-wrap h1 {
+  padding: 8px;
+  font-size: 17.5px;
+  line-height: 1.1em;
+}
+
+#venue-show #venue-name {
+  margin-bottom: 0;
+}
+
+#venue-show h3 {
+  color: #3e64ce;
+  font-size: 20px;
+  border-bottom: 1px solid #3e64ce;
+  margin-bottom: 10px;
+}
+
+#venue-show .dietary-requirements {
+  float: left;
+  /*border-bottom: 1px solid #3E64CE;*/
+}
+
+/* Page */
+
+.page .embedded-image:before {
+  background-color: transparent;
+  background-image: url("images/bg-gradient.png");
+}
+
+/* Other */
+
+.suggestion-box-wrap .feedback h3,
+.messages h3 {
+  font-size: 16px;
+  margin-bottom: 4px;
+}
+
+.messages h3 {
+  margin-bottom: 4px;
+  line-height: 18px;
+  padding-top: 4px;
+}
+
+.news-item h4 {
+  margin-bottom: 4px;
+}
+
+.suggestion-box-wrap button {
+  font-size: 20px;
+  line-height: 20px;
+  padding-bottom: 3px;
+}
+
+.back {
+  font-size: 18px;
+  padding: 1px 8px;
+  padding-top: 5px;
+}
+
+/* White Borders */
+
+.venues,
+#pages-index {
+  border: 2px solid white;
+  border-top: none;
+  overflow: auto;
+  /*border-bottom: 4px solid white;*/
+}
+
+.venue-wrap,
+.page-item {
+  border: 2px solid white;
+  border-top: 4px solid white;
+  border-bottom: none;
+}
+
+/* Filters */
+
+#venues-filter-wrap,
+#tags-filter-wrap,
+#days-filter-wrap {
+  width: 100%;
+  max-height: 158px;
+  overflow: scroll;
+}
+
+.filter label,
+.right-sidebar-content .btn {
+  padding: 7px 10px;
+  font-size: 20px;
+  line-height: 1em;
+  padding-bottom: 3px;
+  display: block;
+}
+
+#venues-filter-wrap,
+#days-filter-wrap,
+#tags-filter-wrap {
+  background-color: #23378b;
+  padding: 10px;
+}
+
+.filter label {
+  background-color: transparent;
+  padding: 0;
+  color: #fff;
+  font-family: "Brandon Grotesque", "Helvetica Neue", Helvetica, Arial,
+    sans-serif;
+  font-size: 12px;
+  line-height: 12px;
+  width: 100%;
+  position: relative;
+  text-align: left;
+  margin: 1px 0;
+  padding: 5px 8px;
+  z-index: 10;
+}
+
+#venues-filter div,
+#tags-filter div,
+#days-filter div {
+  display: block;
+}
+
+#venues-filter,
+#tags-filter,
+#days-filter {
+  display: block;
+  width: auto;
+}
+
+.right-sidebar {
+  padding-left: 12px;
+}
+
+.filter input[type="checkbox"]:checked + label,
+.filter input[type="checkbox"]:active + label,
+.filter label:active {
+  background-color: transparent !important;
+}
+
+#venues-filter div,
+#tags-filter div,
+#days-filter div {
+  position: relative;
+}
+
+#venues-filter div:after,
+#tags-filter div:after,
+#days-filter div:after {
+  content: "";
+  width: 15px;
+  height: 15px;
+  border-radius: 3px;
+  border: 1px solid #fff;
+  position: absolute;
+  right: 7px;
+  top: 3px;
+  z-index: 0;
+}
+
+#tags-filter div {
+  max-width: none;
+}
+
+.filter input[type="checkbox"]:checked + label:after {
+  font-family: FontAwesome;
+  content: "\f00c";
+  position: absolute;
+  right: 8px;
+  z-index: 0;
+  top: 5px;
+}
+
+.filters-set.show-all {
+  background-color: #eeb708;
+  color: #fff;
+}
+
+/* Venues */
+
+.menu {
+  padding: 5px 10px;
+  background-color: rgba(54, 83, 197, 0.05);
+}
+
+/* Welcome */
+
+#welcome .welcome-loading * {
+  color: rgb(62, 100, 206);
+}
+
+/* Feedback */
+
+.suggestion-box-wrap textarea {
+  font-size: 16px;
+  line-height: 20px;
+}
+
+/* Tag Styles */
+
+.tag.dr {
+  background-color: transparent;
+  color: #3e64ce;
+  border: 1px solid #3e64ce;
+}
+
+#venue-show .dietary-requirements {
+  padding-left: 0;
+}
+
+#venue-show .editor-content {
+  margin-top: 10px;
+}
+
+/* Welcome */
+
+#welcome {
+  background-image: url(images/welcome-6.jpg);
+}
+
+#welcome #logo {
+  display: none;
+  background-color: rgba(62, 100, 206, 0.3);
+  padding: 5px;
+  border-radius: 5px;
+}

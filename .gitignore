@@ -1,0 +1,92 @@
+# Never include keystore files in the repo
+*.keystore
+# Never include zip files in the repo
+*.zip
+# the following are stored in /res and these versions are populated by the build process.
+corber/icon.svg
+corber/splash.svg
+corber/cordova/ding.caf
+corber/cordova/ding.mp3
+corber/cordova/config.xml
+corber/cordova/res
+# Keep only the neccesary bits of the cordova project
+corber/tmp-livereload
+corber/cordova/node_modules
+corber/cordova/package.json
+corber/cordova/package-lock.json
+corber/cordova/platforms/*
+!corber/cordova/platforms/.gitkeep
+corber/cordova/plugins/*
+!corber/cordova/plugins/.gitkeep
+corber/cordova/www/*
+!corber/cordova/www/.gitkeep
+# don't check in dependencies
+node_modules
+bower_components
+
+tmp
+dist
+.DS_Store
+google-services.json
+GoogleService-Info.plist
+
+# misc
+/.sass-cache
+/connect.lock
+/coverage/
+/libpeerconnection.log
+/npm-debug.log*
+/testem.log
+/yarn-error.log
+
+# ember-try
+/.node_modules.ember-try/
+/bower.json.ember-try
+/package.json.ember-try
+
+# See https://help.github.com/ignore-files/ for more about ignoring files.
+
+# compiled output
+/dist/
+/declarations/
+
+# dependencies
+/node_modules/
+
+# misc
+/.env*
+/.pnp*
+<<<<<<< HEAD
+/.sass-cache
+/connect.lock
+=======
+/.eslintcache
+>>>>>>> 97e011728 (v4.12.2...v5.0.0)
+/coverage/
+/npm-debug.log*
+/testem.log
+/yarn-error.log
+
+# ember-try
+/.node_modules.ember-try/
+/npm-shrinkwrap.json.ember-try
+/package.json.ember-try
+
+*.apk
+*.aab
+*.apk.idsig
+
+res/*
+# Include the following assets from 
+!res/config.xml
+!res/splash.svg
+!res/icon.svg
+!res/android-splash.png
+!res/ding.mp3
+!res/ding.caf
+
+/package-lock.json.ember-try
+/yarn.lock.ember-try
+
+# broccoli-debug
+/DEBUG/

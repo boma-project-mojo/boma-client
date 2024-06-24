@@ -1,0 +1,43 @@
+{{#if (eq this.tokenState "waiting")}}
+	Waiting
+{{/if}}
+
+{{#if (eq this.tokenState "closed")}}
+	Closed
+{{/if}}
+
+{{#if (eq this.tokenState "ready")}}
+	Ready to Validate
+{{/if}}
+
+{{#if (eq this.tokenState "validating")}}
+	Validating
+{{/if}}
+
+{{#if (eq this.tokenState "out-of-bounds")}}
+	Out of Bounds
+{{/if}}
+
+{{#if (eq this.tokenState "location-inaccurate")}}
+	Inaccurate Location
+{{/if}}
+
+{{#if (eq this.tokenState "registering")}}
+	Registering
+{{/if}}
+
+{{#if (eq this.tokenState "queued")}}
+	Queued for Mining
+{{/if}}
+
+{{#if (eq this.tokenState "mining")}}
+	Mining
+{{/if}}
+
+{{#if (eq this.tokenState "mined")}}
+	Mined
+{{/if}}
+
+{{#if (eq this.tokenState.message "Illegal Access")}}
+	Permissions Error
+{{/if}}

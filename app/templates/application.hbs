@@ -1,0 +1,37 @@
+<div class="ember-view">
+  <div id="loading-screen" class="loading-splash">
+    {{#if this.loadingScreenMessage}}
+      <div id="loading-screen-message">
+        <span>{{{this.loadingScreenMessage}}}</span>
+      </div>
+    {{/if}}
+  </div>
+
+  <div id="wrap" class="
+    {{if this.QRScannerShown 'opacity-zero' ''}} 
+    {{this.rightSidebarShownClass}} 
+    {{this.headerShownClass}} 
+    {{this.headerBottomShownClassForWrap}} 
+    {{this.isEventsClass}} 
+    {{this.currentRouteName}} 
+    {{this.currentFestival}} 
+    {{if (eq this.model.largerText true) 'accessibility--larger-text'}}
+    ">
+    {{#if this.flashShown}}
+      <div class="flash {{if this.flashLeaving 'fadeOut'}}">
+        <span>{{this.flashMessage}}</span>
+      </div>
+    {{/if}}
+    
+    <div class="container">
+      <AppLeftSidebar @festivals={{this.model.festivals}} @tokens={{this.model.tokens}} />
+      <div id="main-outlet-wrapper">{{outlet}}</div>
+    </div> {{!-- .container --}}
+  </div> {{!-- #wrap --}}
+
+  <QrScanner />
+
+  <AppModal @currentFestival={{this.currentFestival}} />
+
+  <UpdateNag @showUpdateNag={{this.showUpdateNag}} @bundleId={{this.bundleId}} @appleAppId={{this.appleAppId}} />
+</div>

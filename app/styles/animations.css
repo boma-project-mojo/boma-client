@@ -1,0 +1,439 @@
+@keyframes colorChanger {
+  0% {
+    color: #000;
+  }
+  50% {
+    color: #ccc;
+  }
+  100% {
+    color: #000;
+  }
+}
+
+@keyframes fadein {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes fadeout {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
+
+@keyframes slideDown {
+  from {
+    height: 0;
+  }
+  to {
+    height: 100%;
+  }
+}
+
+#loading-screen {
+  opacity: 1;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  position: absolute;
+  z-index: 10000;
+  transition: opacity 0.5s;
+  display: table;
+}
+
+#loading-screen-message {
+  display: table-cell;
+  vertical-align: middle;
+  width: 100%;
+}
+
+#loading-screen-message span {
+  background: rgba(255, 255, 255, 0.65);
+  display: block;
+  text-align: center;
+  margin: 100px;
+  padding: 10px;
+  border-radius: 4px;
+}
+
+#loading-screen.loading-hidden {
+  opacity: 0;
+}
+
+#loading-screen.loading-removed {
+  visibility: hidden;
+}
+
+#loading-screen.loading-shown {
+  opacity: 1;
+  visibility: visible;
+  transition: opacity 0.5s;
+}
+
+#loading-screen.full-image-splash {
+  background-image: url('images/splash.jpg');
+}
+
+#loading-screen.blackout {
+  background-image: none;
+}
+
+#header {
+  top: 0;
+  left: 0;
+  width: 100%;
+  transition: transform 0.2s;
+  z-index: 1000;
+  background: #fff;
+  transform: translateZ(0);
+  -webkit-transform: translateZ(0);
+}
+
+#main {
+  overflow: scroll;
+}
+
+/*
+  Header toggling logic
+
+  The #main-outlet-wrapper div is forced to be 100vh 
+  When the header is shown the entire screen is actually 100vh + height of header (53px)
+  When the header bottom is shown the entire screen is actually 100vh + height of header (53px) + height of search bar (47px)
+
+  When header is hidden #main-outlet-wrapper translates by the height of the header or the height of the header + the height of the searchbar if it's open
+*/
+
+#main-outlet-wrapper {
+  transition: transform 0.5s;
+}
+
+.header-hidden #main-outlet-wrapper {
+  transform: translate3d(0, calc((env(safe-area-inset-top) * -1) - 52px), 0);
+}
+
+.header-hidden.header-bottom-shown #main-outlet-wrapper {
+  will-change: transform;
+  transform: translate3d(
+    0,
+    calc((env(safe-area-inset-top) * -1) - 52px - 47px),
+    0
+  );
+}
+
+.slideout-panel-left.panel-open #main-outlet-wrapper {
+  -webkit-transform: translate3d(0, 0px, 0);
+}
+
+.header-hidden .events-list > div > div > div {
+  margin: 0px;
+}
+
+.header-bottom {
+  max-height: 0;
+  transition: max-height 0.2s;
+  overflow: hidden;
+  background: #d5d5d5;
+}
+
+.header-bottom input {
+  opacity: 0;
+  transition: opacity 1s;
+}
+
+.header-bottom-wrap-shown {
+  opacity: 1;
+  max-height: 40px;
+  transition: max-height 0.3s;
+  will-change: transform;
+}
+
+.header-bottom-wrap-shown input {
+  opacity: 1;
+  transition: opacity 1s;
+}
+
+.article-item.embedded-image,
+.full-screen-image img {
+  opacity: 0;
+}
+
+.fadeOut {
+  opacity: 1;
+}
+
+.flash.fadeOut {
+  opacity: 0;
+  transition: opacity 0.66s;
+}
+
+.event .embedded-image.image-is-loaded,
+#productions-show .embedded-image.image-is-loaded,
+#venue-show .embedded-image.image-is-loaded,
+.production .thumbnail-image.image-is-loaded,
+.article-item.embedded-image.image-is-loaded,
+.page-item.image-is-loaded,
+.article-ei.embedded-image.image-is-loaded,
+#event-show .embedded-image.image-is-loaded,
+.embedded-image.image-is-loaded {
+  opacity: 1;
+  transition: opacity 0.66s;
+}
+
+.full-screen-image img.image-is-loaded {
+  opacity: 1;
+  transition: opacity 0.33s;
+}
+
+#productions-show .embedded-image.true,
+#venue-show .embedded-image.true {
+  opacity: 1;
+}
+
+.ls-thumbnail-image-wrap,
+.article-wrap a,
+.article-wrap,
+.event-wrap {
+  will-change: filter;
+}
+
+.article-item.embedded-image,
+#full-page-modal .embedded-image {
+  opacity: 1 !important;
+  filter: blur(10px);
+  transform: translate3d(0, 0, 0);
+}
+
+.event .embedded-image:before,
+.venue .embedded-image:before {
+  backdrop-filter: blur(10px);
+}
+
+.ls-thumbnail-image.image-is-loaded,
+.article-item.embedded-image.image-is-loaded,
+.event .embedded-image.image-is-loaded:before,
+.venue .embedded-image.image-is-loaded:before,
+#full-page-modal .embedded-image.image-is-loaded {
+  filter: unset;
+  backdrop-filter: unset;
+}
+
+/* Animate the list images when loading has completed */
+.ls-thumbnail-image.image-is-loaded {
+  transition: opacity 0.25s;
+  /* transition-delay: .2s; */
+  opacity: 1;
+}
+/* Show images with loading images */
+.ls-thumbnail-image.image-loading {
+  opacity: 1;
+  filter: blur(10px);
+}
+
+/* Show failed images anyway as a fail safe */
+.embedded-image.image-loading-failed {
+  transition: opacity 0.25s;
+  opacity: 1;
+}
+
+@keyframes heartbeat {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.23);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+.preference-display .fa-heart.active {
+  animation-name: heartbeat;
+  animation-duration: 0.77s;
+  animation-iteration-count: 2;
+}
+
+#map {
+  height: calc(100vh - 52px);
+}
+
+.events-list {
+  height: 100vh;
+}
+
+.header-marquee {
+  opacity: 1;
+  transition: opacity 0.5s;
+}
+
+.header-marquee.header-message-hidden {
+  transition: transform 0.2s;
+  transform: translate3d(0, -54px, 0);
+  -webkit-transform: translate3d(
+    0,
+    calc((env(safe-area-inset-top) * -1) - 54px),
+    0
+  );
+}
+
+.header-marquee.header-message-hidden + #close-header-marquee {
+  opacity: 0;
+  transition: opacity 1s;
+}
+
+#main {
+  opacity: 1;
+  transition: opacity 0.22s ease-in-out;
+}
+
+.is-transitioning #main {
+  opacity: 0;
+}
+
+/*setting opacity to zero when hidden avoids weird ios 9 bug*/
+
+.left-sidebar {
+  opacity: 0;
+}
+
+.right-sidebar-shown .right-sidebar,
+.slideout-open .left-sidebar {
+  opacity: 1;
+  transition: opacity 0.25s ease-in-out;
+}
+
+/* Beating Heart */
+
+.active .fa-heart.beat,
+.active.fa-heart.beat {
+  animation: 1s both beatHeart;
+  animation-iteration-count: 2;
+}
+
+@keyframes beatHeart {
+  0% {
+    transform: scale(1);
+  }
+  20% {
+    transform: scale(1.2);
+  }
+  40% {
+    transform: scale(1);
+  }
+  60% {
+    transform: scale(1.2);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+/* Pulsating */
+
+@-webkit-keyframes pulse {
+  0% {
+    -webkit-transform: scale(0.9);
+    opacity: 0.7;
+  }
+  50% {
+    -webkit-transform: scale(1);
+    opacity: 1;
+  }
+  75% {
+    -webkit-transform: scale(0.9);
+    opacity: 0.7;
+  }
+  100% {
+    -webkit-transform: scale(1);
+    opacity: 1;
+  }
+}
+
+#header .pulse {
+  color: green !important;
+  animation: 0.8s normal pulse !important;
+  animation-iteration-count: 1 !important;
+}
+
+#header .fa-refresh {
+  animation: fa-spin 2s infinite linear;
+  animation-play-state: paused;
+}
+
+#header .fa-spin {
+  animation-play-state: inherit !important;
+  opacity: 0.25;
+}
+
+/* Shake */
+
+@keyframes shake {
+  10%,
+  90% {
+    transform: translate3d(-1px, 0, 0);
+  }
+
+  20%,
+  80% {
+    transform: translate3d(2px, 0, 0);
+  }
+
+  30%,
+  50%,
+  70% {
+    transform: translate3d(-4px, 0, 0);
+  }
+
+  40%,
+  60% {
+    transform: translate3d(4px, 0, 0);
+  }
+}
+
+#header .shake {
+  color: red !important;
+  animation: 0.8s normal shake !important;
+  animation-iteration-count: 1 !important;
+}
+
+.fa-spin {
+  -webkit-animation: fa-spin 2s infinite linear !important;
+  animation: fa-spin 2s infinite linear !important;
+}
+
+#full-page-modal {
+  /* animation: .15s normal fadein !important; */
+  animation-iteration-count: 1 !important;
+}
+
+#full-page-modal.out {
+  animation: 0.15s normal fadeout !important;
+  animation-iteration-count: 1 !important;
+}
+
+/* Fade in list items */
+/* Classes added in list-image-loading mixin */
+.article-wrap,
+.event-wrap {
+  opacity: 0;
+}
+
+.fadein {
+  opacity: 1 !important;
+  transition: opacity 0.2s ease;
+}
+
+@supports not (-webkit-touch-callout: none) {
+  .fadein {
+    opacity: 1 !important;
+    transition: opacity 0.05s ease;
+  }
+}

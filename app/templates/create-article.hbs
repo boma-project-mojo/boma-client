@@ -1,0 +1,165 @@
+<div id="main" class="create-event">
+  <AppHeader>
+    <div class="header-top">
+      <div class="left">
+        <a id="toggle-left-sidebar">
+          <div id="menu-toggle" class="con close">
+            <span class="bar top"></span>
+            <span class="bar middle"></span>
+            <span class="bar bottom"></span>
+          </div>
+        </a>
+        <div class="header-title">
+          <a>New Creation</a>
+        </div>
+      </div>    
+      <div class="right">
+      </div>
+    </div>
+  </AppHeader>
+  {{#unless this.formSubmitted}}
+    <div id="create-article-form" class="form-wrap">  
+      {{#if this.serverErrors}}
+        <div class="errors-wrap">
+          <ul class="errors"> 
+            {{#if this.serverErrors.base}}
+              {{#each this.serverErrors.base as |error|}}
+                <li>{{error}}</li>
+              {{/each}}
+            {{/if}}
+            {{#if this.serverErrors.event_errors}}
+              {{#each this.serverErrors.event_errors as |error|}}
+                <li>Event {{error.detail}}</li>
+              {{/each}}
+            {{/if}}
+            {{#if this.serverErrors.venue_errors}}
+              {{#each this.serverErrors.venue_errors as |error|}}
+                <li>Venue {{error.detail}}</li>
+              {{/each}}
+            {{/if}}
+          </ul>
+        </div>
+      {{/if}}
+      <FormWrap>
+        <FormPane @id="select-tag" @registerFormElement={{action "registerFormElement"}} @next={{action "validateThenNext" "article.tag"}} @prev={{action "goToRoute" "articles" (hash articleType="community_article" pageName="People's Gallery" tagType="community_article")}} @formPanes={{this.formPanes}} @currentPaneIndex={{this.currentPaneIndex}}>
+          <h1>What would you like to submit to the People's Gallery</h1>
+          <h2>Choose the tag that best describes your submission</h2>
+
+          <div id="article-tags">
+            {{#each this.model.tags as |tag|}}
+              {{#if (eq tag.tag_type "community_article")}}
+                {{#if (eq tag.aasm_state "published")}}
+                  <span class="tag tag-select-button {{if (eq tag.id this.article.tag) 'active'}}" {{action (action 'setTag' tag)}} role="button">{{tag.name}}</span>
+                {{/if}}
+              {{/if}}
+            {{/each}}
+          </div>
+
+          <div class="error">
+            {{#if this.errors}}
+              {{#if (v-get this 'article.tag' 'isInvalid')}}
+                  {{v-get this 'article.tag' 'message'}}
+              {{/if}}
+            {{/if}}
+          </div>
+
+          {{#if this.selectedTag}}
+            <div id="tag-explainer">
+              {{this.selectedTag.description}}
+            </div>
+          {{/if}}
+        </FormPane>
+
+        <FormPane @id="image" @registerFormElement={{action "registerFormElement"}} @next={{action "cropAndNext"}} @prev={{action "prev"}} @formPanes={{this.formPanes}} @currentPaneIndex={{this.currentPaneIndex}}>
+          <h1>A picture is worth a 1000 words</h1>
+          <h2>Snap a photo, upload an image or choose a background and add some text.</h2>
+
+          {{#if (eq this.imageType 'photo')}}
+            <ImageUploader @model={{this.article}} @cropper={{this.cropper}} />
+          {{else}}
+            <ImageEditor @backgroundImages={{this.model.backgroundImages}} @fabricjs={{this.fabricjs}} @textPlaceholder="Tap to type..." @fontFamily="Brandon Grotesque" />
+          {{/if}}
+
+          <div class="form-group-radio-buttons">
+            <FormRadioButton @name="photo" @value="photo" @label="Photo" @selected={{this.imageType}} @updateSelectedRadio={{action (mut this.imageType) "photo"}} />
+            <FormRadioButton @name="background" @value="background" @label="Note" @selected={{this.imageType}} @updateSelectedRadio={{action (mut this.imageType) "background"}} />
+          </div>
+        </FormPane>
+
+        <FormPane @id="external-link" @registerFormElement={{action "registerFormElement"}} @next={{action "validateThenNext" "article.external_link,article.content"}} @prev={{action "prev"}} @formPanes={{this.formPanes}} @currentPaneIndex={{this.currentPaneIndex}}>
+          <div class="scrolling-content">
+            <h1>Add an optional link and more information about your post</h1>
+            <h2>External link</h2>
+            <div class="form-group" id="eventStartDateWrap">
+              <label for="external_link">External Link</label>
+              <Input @type="url" id="external_link" @value={{this.article.external_link}}/>
+              <div class="error">
+                {{#if this.errors}}
+                  {{#if (v-get this 'article.external_link' 'isInvalid')}}
+                      {{v-get this 'article.external_link' 'message'}}
+                  {{/if}}
+                {{/if}}
+              </div>
+            </div>
+            <div class="form-group clearboth">
+              <label for="content">Info</label>
+              <Textarea id="content" class="short-textarea" @value={{this.article.content}} />
+              {{#if this.errors}}
+                {{#if (v-get this 'article.content' 'isInvalid')}}
+                  <div class="error">
+                    {{v-get this 'article.content' 'message'}}
+                  </div>
+                {{/if}}
+              {{/if}}
+            </div>
+          </div>
+        </FormPane>
+
+        <FormPane @id="confirm-and-submit" @registerFormElement={{action "registerFormElement"}} @prev={{action "prev"}} @next={{action "createArticle"}} @nextButtonText={{this.submitButtonText}} @loading={{this.loading}} @formPanes={{this.formPanes}} @currentPaneIndex={{this.currentPaneIndex}}>
+          <h1>Confirm details and submit your notice</h1>
+          <h2>You won't be able to edit the details once they are submitted.</h2>
+
+          {{#if this.is_publisher}}
+            <div class="alert message validateOtherError">
+              You have a publisher token, this notice will be published immediately to all app users!
+            </div>
+          {{/if}}
+
+          <span class="left tag tag-select-button">{{this.selectedTag.name}}</span>
+    
+          {{#if this.article.external_link}}
+            <span class="right" id="cnb-external-link"><i class="fa fa-external-link"></i>{{this.article.external_link}}</span>
+          {{/if}}
+
+          {{#if this.article.image_base64}}
+            <img id="cnb-image-preview" src={{this.article.image_base64}} alt="Event preview">
+          {{/if}}
+
+          {{#if this.article.content}}
+            <p id="cnb-description-preview">{{this.article.content}}</p>
+          {{/if}}
+        </FormPane>
+      </FormWrap>
+    </div>
+  {{else}}
+    <div id="create-article-form" class="form-wrap">
+      <div class="full-page-success">
+        <div class="full-page-success-inner">
+          <i class="fa fa-light fa-check-circle fa-check-circle-o"></i>
+          <h1>Article submitted.</h1>
+          {{#if this.is_publisher}}
+            You have a publisher token, this article will be published immediately to all app users!
+          {{else}}
+            <h2>Thank you for your submission! It is now with our team who will approve and publish it (providing it doesn't violate our terms of use) so check back soon! x</h2>
+          {{/if}}
+        </div>
+      </div>       
+    </div>
+    <div class="form-page-actions">
+      <a role="button" class="form-btn subtle left" {{action (action "resetForm")}}>Submit Another</a>
+      <LinkTo @route="articles" @query={{hash articleType='community_article' selectedTags='' selectedExcludedTags='' pageName="People's Gallery"}} class="form-btn primary right">
+        People's Gallery
+      </LinkTo>
+    </div>
+  {{/unless}}
+</div>

@@ -1,0 +1,16 @@
+<i id="map-loading" class="fa fa-circle-o-notch fa-circle-notch fa-spin fa-3x fa-fw loading"></i>
+
+<div id='map'>
+  <div id="map-crosshair" class="{{if this.showAddPinUI "shown"}} map-pin-ui">
+    {{#if (eq this.activePinType "tent")}}
+      <i class="tent-pin"></i>
+    {{else if (eq this.activePinType "car")}}
+      <i class="car-pin"></i>
+    {{else}}
+      <i class="fa fa-light fa-location-dot"></i>
+    {{/if}}
+  </div>
+
+  <button id="add-map-pin" class="btn {{if this.showAddPinUI "shown"}} map-pin-ui" type="button" {{action (action "placePin")}}>Place Pin</button>
+  <a role="button" id="cancel-add-map-pin" class="{{if this.showAddPinUI "shown"}} map-pin-ui" {{action (action "cancelPlacePin")}}>Cancel</a>
+</div>

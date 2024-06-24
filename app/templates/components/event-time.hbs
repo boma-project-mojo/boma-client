@@ -1,0 +1,64 @@
+{{#if (eq this.event.aasm_state "cancelled")}}
+	<div class="event-cancelled-banner">This event is cancelled</div>
+{{/if}}
+<div class="production-event {{if (eq this.event.aasm_state "cancelled") "event-cancelled" }} {{if this.buttonStyleActions 'button-style-actions'}}">
+	<div class="production-event-time-venue">
+		{{#if this.includeEventName}}
+			<LinkTo @route="events" @query={{hash searchKeyword="" eventModal=true eventModalModelID=(readonly this.event.id) goBack=true}}>
+        <h1 id="event-name">{{this.event.name}}</h1>
+      </LinkTo>
+		{{/if}}
+		<h2 id="start-end-time">
+			{{#if this.show_full_date}}
+				<span id="start-time"><FormattedDate @dateTime={{this.event.start_time}} @format='ddd Do MMM, h:mma'/></span>
+			{{else}}
+				<span id="start-time">{{this.event.date_string_start}}</span>
+        {{#if this.event.date_string_end}}<span id="end-time"> - {{this.event.date_string_end}}</span>{{/if}}
+			{{/if}}
+		</h2>
+		<h3 id="venue-name">
+			{{#unless this.is_community_event}}
+				<LinkTo @route="venues" @query={{hash searchKeyword="" venueType="performance" venueModal=true venueModalModelID=(readonly this.venue_id) goBack=true}}>
+					{{this.venue_name}}			
+				</LinkTo>
+      {{else}}
+        {{this.venue_name}}
+			{{/unless}}
+		</h3>
+	</div>
+	<div class="actions production-event-actions">
+    {{#if this.event.venue_use_external_map_link}}
+      <a target="_blank" rel="noopener noreferrer" href={{this.event.venue_external_map_link}} class="locate-on-map-action"><i class="fa fa-light fa-location-dot" aria-hidden="true"></i></a>
+    {{else}}
+      {{#if this.event.venue_has_location}}
+        {{#if this.event.is_community_event}}
+          <LinkTo @route="map" @query={{hash mlat=this.event.venue_lat mlong=this.event.venue_long showBack="true" mlabel=this.event.venue_name showMapTiles=true}} class="locate-on-map-action {{if this.buttonStyleActions 'btn'}}">
+            <i class="fa fa-light fa-location-dot" aria-hidden="true"></i>
+            <span class="button-style-actions-label">Show location on the map</span>
+          </LinkTo>
+        {{else}}
+          <LinkTo @route="map" @query={{hash venueID=(readonly this.venue_id) productionID=(readonly this.productionID) showBack="true" mlabel=this.venue_name}} class="locate-on-map-action {{if this.buttonStyleActions 'btn'}}">
+            <i class="fa fa-light fa-location-dot" aria-hidden="true"></i>
+            <span class="button-style-actions-label">Show location on the map</span>
+          </LinkTo>
+        {{/if}}
+      {{else}}
+        {{#unless this.event.audio_stream}}
+          {{#if this.event.virtual_event}}
+            <InAppBrowserLink @url={{this.event.external_link}}>
+              <img alt="virtual event icon" class="virtual-event-glyph" src="assets/images/world.svg">
+            </InAppBrowserLink>
+          {{/if}}
+        {{/unless}}
+      {{/if}}
+    {{/if}}
+
+    {{#if this.event.ticket_link}}
+      <a href={{this.event.ticket_link}} target="_blank" rel="noopener noreferrer" class="{{if this.buttonStyleActions 'btn'}}">
+        <i class="fa-light fa-ticket" aria-hidden="true"></i>
+        <span class="button-style-actions-label">Buy tickets</span>
+      </a>
+    {{/if}}
+    <PreferenceToggle @modelName="event" @modelId={{this.event.id}} @buttonStyleActions={{this.buttonStyleActions}} />
+	</div>
+</div>

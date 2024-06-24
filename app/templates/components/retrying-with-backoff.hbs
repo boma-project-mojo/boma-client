@@ -1,0 +1,21 @@
+{{#if this.showRefreshButton}}
+  {{#if this.buttonStyle}}
+    <div class="right">
+      {{#if this.secondsUntilNextAttempt}}
+        {{#unless this.retryingNow}}
+          <span id="secondsTillBackoffRetry">Retrying in <br>{{this.humanReadableRetryIn}}</span>
+        {{/unless}}
+      {{/if}}
+      <a role="button" id="retry-token" class="form-btn primary right" {{action (action this.retryNow) }}><i class="fa fa-refresh {{if this.retryingNow 'fa-spin'}} fa-3x fa-fw messages-loading {{if this.loadingSucceeded 'pulse fa-check-circle'}} {{if this.loadingFailed 'shake fa-exclamation-circle'}}"></i></a>
+    </div>
+  {{else}}
+    <div class="right">
+      {{#if this.secondsUntilNextAttempt}}
+        {{#unless this.retryingNow}}
+          <span id="secondsTillBackoffRetry">Retrying in <br>{{this.humanReadableRetryIn}}</span>
+        {{/unless}}
+      {{/if}}
+      <a id="reload-model-anchor" {{action (action this.retryNow) }}><i id="reload-model" class="fa fa-light fa-arrows-rotate fa-refresh {{if this.retryingNow 'fa-spin'}} fa-3x messages-loading {{if this.loadingSucceeded 'pulse fa-check-circle'}} {{if this.loadingFailed 'shake fa-exclamation-circle'}}"></i></a>
+    </div>
+  {{/if}}
+{{/if}}

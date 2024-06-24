@@ -1,0 +1,13 @@
+{{#if this.isCreator}}
+	{{#if this.model.isPreferred}}
+	  <i class="fa fa-heart active" aria-hidden="true"></i>
+	{{else}}
+	  <i class="fa fa-heart-o" aria-hidden="true"></i>
+	{{/if}}
+{{else}}
+	{{#if this.model.isPreferred}}
+	  <i class="fa fa-heart active" aria-hidden="true"></i>
+	{{else}}
+	  <i class="fa fa-heart-o" aria-hidden="true"></i>
+	{{/if}}
+{{/if}}

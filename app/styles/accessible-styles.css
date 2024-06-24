@@ -1,0 +1,159 @@
+.accessibility--larger-text ~ .app-modal .content-wrap p,
+.accessibility--larger-text ~ .app-modal .content-wrap strong,
+.accessibility--larger-text ~ .app-modal .content-wrap a,
+.accessibility--larger-text ~ .app-modal .content-wrap span,
+.accessibility--larger-text ~ .app-modal .content-wrap li,
+.accessibility--larger-text #news .news-item p,
+.accessibility--larger-text #page-show.content-wrap p,
+.accessibility--larger-text ~ .app-modal .content-wrap .btn,
+.accessibility--larger-text .no-preferences {
+  font-size: 20px;
+  line-height: 30px;
+}
+
+.accessibility--larger-text
+  ~ .app-modal
+  .content-wrap#article-show
+  h2#info-article-name,
+.accessibility--larger-text
+  ~ .app-modal
+  #event-show
+  .content-wrap
+  h2#event-name,
+.accessibility--larger-text
+  ~ .app-modal
+  #productions-show
+  .content-wrap
+  h2#production-name,
+.accessibility--larger-text
+  ~ .app-modal
+  #venue-show
+  .content-wrap
+  h2#venue-name,
+.accessibility--larger-text ~ .app-modal #page-show h2#info-page-name {
+  font-size: 35px;
+  line-height: 40px;
+}
+
+.accessibility--larger-text #news .news-item {
+  padding-bottom: 12px;
+}
+
+.accessibility--larger-text #news .news-item h3 {
+  margin-bottom: 5px;
+}
+
+.accessibility--larger-text
+  ~ .app-modal
+  .content-wrap#article-show
+  #info-article-created-at,
+.accessibility--larger-text #news .news-item h3,
+.accessibility--larger-text .setting h3  {
+  font-size: 20px;
+  line-height: 30px;
+}
+
+.accessibility--larger-text .ls-event-name,
+.accessibility--larger-text .ls-title,
+.accessibility--larger-text #news .news-item h4,
+.accessibility--larger-text .ls-page .ls-title {
+  font-size: 19px;
+  line-height: 21px;
+  max-height: 45px;
+  overflow: hidden;
+}
+
+.accessibility--larger-text .ls-venue-name,
+.accessibility--larger-text .ls-created-at,
+.accessibility--larger-text .ls-event-starttime {
+  font-size: 17px;
+  line-height: 1em;
+}
+
+.accessibility--larger-text .ls-venue-name {
+  max-width: 66%;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+
+.accessibility--larger-text .venue-wrap h1,
+.accessibility--larger-text h1.event-name,
+.accessibility--larger-text h3.event-venue,
+.accessibility--larger-text h3.event-datetime,
+.accessibility--larger-text h1.model-name {
+  font-size: 20px;
+  line-height: 1em;
+  text-shadow: 1px 1px 0px #000;
+}
+
+.accessibility--larger-text .ls-event-starttime {
+  max-width: 47px;
+}
+
+.accessibility--larger-text .filter label {
+  font-size: 17px;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.accessibility--larger-text .filter h2 {
+  font-size: 20px;
+}
+
+.accessibility--larger-text ~ .app-modal #productions-show h2#start-end-time,
+.accessibility--larger-text ~ .app-modal #event-show h2#start-end-time,
+.accessibility--larger-text ~ .app-modal #productions-show h2#start-end-time span,
+.accessibility--larger-text ~ .app-modal #event-show h2#start-end-time span,
+.accessibility--larger-text ~ .app-modal h3#venue-name,
+.accessibility--larger-text ~ .app-modal h3#venue-name a,
+.accessibility--larger-text ~ .app-modal #event-show h3#venue-name,
+.accessibility--larger-text ~ .app-modal #event-show h3#venue-name a,
+.accessibility--larger-text ~ .app-modal #event-show #event-productions,
+.accessibility--larger-text ~ .app-modal #event-show #event-productions a,
+.accessibility--larger-text ~ .app-modal #productions-show h1#event-name,
+.accessibility--larger-text ~ .app-modal .last-updated-at {
+  font-size: 16px !important;
+  line-height: 25px;
+}
+
+.accessibility--larger-text ~ .app-modal .performance .actions, 
+.accessibility--larger-text ~ .app-modal #venue-show .actions .fa {
+  padding-top: 8px;
+}
+
+.accessibility--larger-text ~ .app-modal .back {
+  font-size: 20px;
+  height: 40px;
+}
+
+.accessibility--larger-text .productions .list .production-details h3 {
+  font-size: 20px;
+  line-height: 20px;
+}
+
+.accessibility--larger-text #search-filter input[type="search"] {
+  font-size: 18px;
+}
+
+.accessibility--larger-text .right-sidebar-content .btn {
+  font-size: 20px;
+}
+
+.accessibility--larger-text .settings p,
+.accessibility--larger-text .settings strong,
+.accessibility--larger-text .settings .setting div,
+.accessibility--larger-text .settings .setting h4,
+.accessibility--larger-text .settings .setting a,
+.accessibility--larger-text .feedback-wrap .form-pane p,
+.accessibility--larger-text .feedback-wrap .form-group label,
+.accessibility--larger-text .feedback-wrap .form-group input,
+.accessibility--larger-text .feedback-wrap .form-group textarea {
+  font-size: 20px;
+  line-height: 30px;
+}
+
+.accessibility--larger-text .settings .setting a {
+  padding-top: 2px;
+}

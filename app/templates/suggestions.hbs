@@ -1,0 +1,22 @@
+<div id="main" class="feedback-wrap">
+	<AppHeader>
+		<div class="header-top">
+			<div class="left">
+				<a id="toggle-left-sidebar">
+					<div id="menu-toggle" class="con close">
+						<span class="bar top"></span>
+						<span class="bar middle"></span>
+						<span class="bar bottom"></span>
+					</div>
+				</a>
+				<div class="header-title">
+					<a>Feedback</a>
+				</div>
+			</div>		
+			<div class="right">
+				<RetryingWithBackoff @retryingNow={{this.retryingNow}} @loadingSucceeded={{this.loadingSucceeded}} @loadingFailed={{this.loadingFailed}} @showRefreshButton={{this.showRefreshButton}} @secondsUntilNextAttempt={{this.secondsUntilNextAttempt}} @retryNow={{action "retryNow"}} />
+			</div>
+		</div>
+	</AppHeader>
+	<SuggestionBox @wallet={{this.model.wallet}} @goToRoute={{action "goToRoute"}} @festivalhomeRouteName={{this.festivalhomeRouteName}} @festivalhomeParams={{this.festivalhomeParams}} @festival={{this.model.festival}} />
+</div>

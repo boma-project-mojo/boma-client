@@ -1,0 +1,89 @@
+.survey {
+  margin-bottom: 20px;
+}
+
+.survey__question {
+  font-size: 15px;
+}
+
+.survey__question input[type="radio"],
+.survey__question input[type="checkbox"] {
+  display: none;
+}
+
+.survey__question input[type="radio"] + label {
+  border: 1px solid #000;
+  border-radius: 14px;
+  display: block;
+  padding: 3px 12px;
+}
+
+.survey__question input[type="radio"]:checked + label {
+  background: #000000;
+  color: #fff;
+}
+
+.survey__questions + .btn {
+  border-radius: 100px;
+  margin-top: 10px;
+}
+
+.survey__questions + .btn:after {
+  content: "";
+  clear: both;
+  display: block;
+}
+
+.survey__question .errors {
+  margin-bottom: 10px;
+  border-radius: 5px;
+}
+
+.survey_question {
+  margin-block: 10px;
+}
+
+.survey__loading .right {
+  float: none;
+}
+
+.survey__loading #secondsTillBackoffRetry {
+  position: absolute;
+}
+
+.survey__loading #secondsTillBackoffRetry br {
+  display: none;
+}
+
+.survey__loading .loading-messages .fa {
+  padding: 0 !important;
+  top: 0 !important;
+}
+
+.survey__loading,
+.survey__closed,
+.survey__waiting,
+.survey__success {
+  border: 1px solid #000;
+  border-radius: 14px;
+  padding: 5px 15px;
+  display: flex;
+  align-items: center;
+}
+
+.survey__loading .fa,
+.survey__closed .fa,
+.survey__waiting .fa,
+.survey__success .fa {
+  font-size: 50px !important;
+}
+
+.survey__loading span,
+.survey__closed span,
+.survey__waiting span,
+.survey__success span {
+  text-align: center;
+  width: 100%;
+  font-size: 15px;
+  font-weight: bold;
+}

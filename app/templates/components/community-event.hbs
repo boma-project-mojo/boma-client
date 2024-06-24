@@ -1,0 +1,17 @@
+<a role="button" {{action 'openModal' this.model.production_id this.model.id}}>
+  <div class="community-event">
+    {{#if this.model.image_name}}
+      <div id="community-event-image" style={{await this.model.image_thumb}} class="{{this.imageIsLoaded}} {{await this.showImage}} {{this.model.image_thumb_state}}"></div>
+    {{/if}}
+    <div class="community-event-details">
+      
+      <h1 class="community-event-name">{{this.model.name}}</h1>
+      <h3 class="community-event-datetime">
+        <FormattedDate @dateTime={{this.model.start_time}} @format='ddd Do MMM YYYY h:mma'/>
+      </h3>
+      <h3 class="community-event-venue">
+        {{this.model.venue_name}}
+      </h3>
+    </div>
+  </div>
+</a>

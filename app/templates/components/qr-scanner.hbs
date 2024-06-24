@@ -1,0 +1,33 @@
+<div id="QR-wrap" class={{unless this.QRScannerShown 'display-none' ''}}>
+  <p id="qr-scanner-status">{{this.QRScannerStatus}}</p>
+  
+  <div class="form-page-actions center-aligned"> 
+    <button class="form-btn subtle" type="button" {{action 'hide'}}>Cancel Scanning</button>
+  </div>
+
+  {{#if this.QRScannerShowPopover}}
+    <div class="scan-result">
+      {{#if this.QRScannerScannerStatusMessage}}
+        {{#if this.QRScannerScanSuccess}}
+          <i class="fa fa-light fa-check-circle"></i>
+          <h1>Success</h1>
+          <h2>{{this.QRScannerScannerStatusMessage}}</h2>
+        {{else}}
+          <i class="fa fa-exclamation-circle"></i>
+          <h1>Error</h1>
+          <h2>{{this.QRScannerScannerStatusMessage}}•</h2>
+        {{/if}}
+      {{else}}
+        {{#if this.QRScannerScanSuccess}}
+          <i class="fa fa-light fa-check-circle"></i>
+          <h1>Token Valid</h1>
+          <h2>This is a valid {{this.QRScannerScanBomaName}} token.</h2>
+        {{else}}
+          <i class="fa fa-exclamation-circle"></i>
+          <h1>Token Invalid</h1>
+          <h2>This is not a valid {{this.QRScannerScanBomaName}} token.</h2>
+        {{/if}}
+      {{/if}}
+    </div>
+  {{/if}}
+</div>

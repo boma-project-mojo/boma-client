@@ -1,0 +1,37 @@
+<div id="main" class="news">
+
+	<AppHeader>
+		<div class="header-top">
+			<div class="left">
+				<a id="toggle-left-sidebar">
+					<div id="menu-toggle" class="con close">
+						<span class="bar top"></span>
+						<span class="bar middle"></span>
+						<span class="bar bottom"></span>
+					</div>
+				</a>
+				<div class="header-title">
+					<a>Notifications</a>
+				</div>
+			</div>
+			<div class="right">
+				<RetryingWithBackoff @retryingNow={{this.isLoadingModel}} @loadingSucceeded={{this.successReloadingModel}} @loadingFailed={{this.failedReloadingModel}} @showRefreshButton={{true}} @secondsUntilNextAttempt={{this.secondsTillBackoffRetry}} @retryNow={{action "retryNow"}} />
+			</div>			
+		</div>
+	</AppHeader>
+
+	<div id="news" class="content-wrap">
+		<div class="clearboth"></div>
+
+		<div class="messages">
+			{{#each this.model as |message|}}
+				<NewsItem @notification_id={{message.notification_id}} @title={{message.subject}} @text-content={{message.body}} @sent_at={{message.sent_at}} @name={{message.notifiable_name}} @route={{message.notifiable_route}} @params={{message.notifiable_params}} @showcase_notification={{this.notification_id}} @message={{message}} />
+			{{else}}
+				<div class="no-preferences">
+					No notifications yet
+				</div>
+			{{/each}}
+		</div>
+	</div>
+
+</div>

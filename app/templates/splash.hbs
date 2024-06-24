@@ -1,0 +1,64 @@
+{{#if (eq this.type "welcome") }}
+	<a {{action this.welcomeTransitionAction this.welcomeTransitionParams}}>
+		<div id="welcome">
+			{{!-- <img id="logo" src="assets/images/logo.svg" alt="Festival Logo"> --}}
+
+			<div id="welcome-copy">
+
+				<p>Use it to catch up on all our Wild At Home content (before and over the festival weekend), keep up with the latest news from Greenbelt, and search and listen to our entire talks archive.</p>
+
+				<p><strong>We’re Greenbelt. We’re somewhere to believe in…</strong></p>
+
+				{{#unless this.waitingForInitialisationThenTransition}}
+					<button id="close-welcome-screen" class="btn" type="button">Enter</button>
+				{{else}}
+					<button id="close-welcome-screen" class="btn" disabled="disabled" type="button">Loading Data<i class="fa fa-circle-o-notch fa-spin fa-3x fa-fw loading"></i></button>
+				{{/unless}}
+
+			</div>
+		</div>
+	</a>
+{{/if}}
+
+{{#if (eq this.type "introducing-community-noticeboard") }}
+	<div id="main">
+		<div class="intro-page" id="community-noticeboard">
+		  <div class="intro-page-copy">
+		    <h3>Introducing: PEOPLE'S GALLERY</h3>
+
+		    <p>A crowd sourced, community art gallery where you can share your creations with the Shambala community – whether it’s a painting, a photo, a poem, an amazing homemade costume or just some thoughtful musings. Upload your artwork and select the tag that best describes what you’ve made, so your fellow Shambalans can find it.</p>
+
+				<p>Just browsing? Check out all the artwork, use the tags to filter by category and don’t forget to hit the ‘heart’ on your favourite pieces, so the artists responsible feel the love!</p>
+
+				<p>We’ll be running themed art competitions throughout the year, so keep an eye on our NEWS section for updates!</p>
+
+		    <div class="btn-wrapper right">
+		      <a role="button" {{action 'transitionToArticles' (hash articleType='community_article' pageName="People's Gallery" tagType="community_article") }} class="btn">
+		      	Go to the People's Gallery
+		      </a>
+		    </div>
+		  </div>
+		</div>
+	</div>
+{{/if}}
+
+{{#if (eq this.type "introducing-community-events")}}
+	<div id="main">
+		<div class="intro-page" id="community-events">
+		  <div class="intro-page-copy">
+		    <h3>Introducing: COMMUNITY EVENTS LISTINGS</h3>
+
+		    <p>We know that you lot are a talented, creative bunch, involved in all manner of awesome projects and happenings. Whether it’s a cause that needs volunteer support, a call out for activists or an upcoming gig that your band are playing, this is your chance to get the Shambala audience along! </p>
+		    
+		    <p>Add your upcoming events (whether they’re virtual or ‘real world’) to or community calendar, where others can find them and get involved. </p>
+
+		    <div class="btn-wrapper right">
+		      <a role="button" {{action "goToRoute" "community-events" (hash showSubscribePanel=true)}} class="btn">Go to Community Events</a>
+		    </div>
+        <LinkTo @route="pages" @query={{hash pageModal=true pageModalModelID=17 }} class="more-info">
+          More info
+        </LinkTo>
+		  </div>
+		</div>
+	</div>
+{{/if}}

@@ -1,0 +1,10 @@
+<a role="button" {{action (action this.openPageModal) this.model.id}}>
+	<div class="ls-page">
+	  <AppListImage @model={{this.model}} @className="ls-thumbnail-image" />
+	  <div class="ls-details">
+	  	<h2 class="ls-title">
+				{{this.model.name}} 
+			</h2>
+	  </div>
+	</div>
+</a>

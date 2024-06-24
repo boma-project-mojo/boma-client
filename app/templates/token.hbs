@@ -1,0 +1,33 @@
+<div id="main" class="token"> 
+  <AppHeader>
+    <div class="header-top">
+      <div class="left">
+        <a id="toggle-left-sidebar">
+          <div id="menu-toggle" class="con close">
+            <span class="bar top"></span>
+            <span class="bar middle"></span>
+            <span class="bar bottom"></span>
+          </div>
+        </a>
+        <div class="header-title">
+          <a>Token</a>
+        </div>
+      </div>
+      <div class="right">
+        <LinkTo @route="wallet">
+          <i class="fa fa-qrcode" aria-hidden="true"></i>
+        </LinkTo>
+      </div>
+    </div>
+  </AppHeader>
+
+  <TokenDetail @token={{this.model.token}} @wallet={{this.model.wallet}} @tokenNetworkError={{this.tokenNetworkError}} @loading={{this.loading}} @is_validator={{this.is_validator}} @retryingNow={{this.retryingNow}} @loadingSucceeded={{this.loadingSucceeded}} @loadingFailed={{this.loadingFailed}} @secondsUntilNextAttempt={{this.secondsUntilNextAttempt}} @validateLocationForToken={{action "validateLocationForToken"}} @retryRegisterTokenNow={{action "retryRegisterTokenNow"}} @reloadWallet={{action "reloadWallet"}} @scan={{action "scan"}} @scanToValidate={{action "scanToValidate"}} />
+
+  <audio id="success">
+    <source src="assets/audio/success.mp3">
+  </audio> 
+
+  <audio id="fail">
+    <source src="assets/audio/fail.mp3">
+  </audio> 
+</div>

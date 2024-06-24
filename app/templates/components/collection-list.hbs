@@ -1,0 +1,13 @@
+<div class="list {{if this.listShorterThan100vh "short-list"}}">
+	{{#if this.hasRecords}}
+		<EmberCollection @items={{this.model}} @buffer={{this.buffer}} @estimated-width={{this.clientWidth}} @estimated-height={{this.clientHeight}} @scroll-change={{action "scrollChange"}} @scroll-top={{this.scrollTop}} @cell-layout={{fixed-grid-layout this.itemWidth this.itemHeight}} as |model|>
+		  {{component this.listItemComponent model=model}}
+		</EmberCollection>
+	{{else}}
+		{{#if this.clearSearch}}
+			<NoResults @isLoadingModel={{this.isLoadingModel}} @preferences={{this.preferences}} @searchKeyword={{this.searchKeyword}} @hasRecords={{this.hasRecords}} @noRecordsFoundMessage={{this.noRecordsFoundMessage}} />
+		{{else}}
+			<NoResults @isLoadingModel={{this.isLoadingModel}} @preferences={{this.preferences}} @searchKeyword={{this.searchKeyword}} @hasRecords={{this.hasRecords}} @noRecordsFoundMessage={{this.noRecordsFoundMessage}} />
+		{{/if}}
+	{{/if}}
+</div>

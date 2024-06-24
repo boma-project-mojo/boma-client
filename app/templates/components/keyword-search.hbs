@@ -1,0 +1,16 @@
+{{!-- template-lint-disable require-input-label --}}
+<div class="header-bottom {{this.headerBottomShownClass}}">
+  <div class="filter" id="search-filter">
+
+    <Input @type="search" name="searchKeyword" @value={{this.searchTerm}} {{on "keyup" (action "updateSearchFilter")}} placeholder={{this.searchInputPlaceholder}}/>
+    {{#if this.isSearching}}
+      <div id="searching" class="true"><i class="fa-solid fa-circle-notch fa-spin fa-3x fa-fw loading"></i></div>
+    {{else}}
+      {{#if this.hasSearchTerm}}
+        <button id="clear-search" type="button" {{action (action "clearSearch")}}>
+          <i class="fa fa-times"></i>
+        </button>
+      {{/if}}
+    {{/if}}
+  </div>
+</div>

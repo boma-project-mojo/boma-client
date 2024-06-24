@@ -1,0 +1,98 @@
+{{#if this.linkOnly}}
+  <div class="ls-event {{this.model.venue_name_for_css}} {{if (eq this.model.aasm_state "cancelled") "event-cancelled" }}">
+    {{#unless this.hideImage}}
+      <AppListImage @model={{this.model}} />
+    {{/unless}}
+    {{#if this.venueNameAsThumbnail}}
+      <div class="ls-venue-name-thumbnail">
+        {{this.model.venue_name}}
+        <span class="ls-venue-subtitle">{{this.model.venue_subtitle}}</span>
+      </div>
+    {{/if}}
+    <div class="ls-event-details">
+      {{#if this.model.external_link}}
+        <InAppBrowserLink @url={{this.model.external_link}}>
+          <h3 class="ls-event-name {{this.longTitle}}">
+            {{this.model.name}}
+            <i class="fa fa-external-link"></i>
+          </h3>
+        </InAppBrowserLink>
+      {{else}}
+        <h3 class="ls-event-name {{this.longTitle}}">{{this.model.name}}</h3>
+      {{/if}}
+      <PreferenceToggle @modelName="event" @modelId={{this.model.id}} @model={{this.model}} />
+      <h3 class="ls-venue-name">{{this.model.venue_name}}</h3>
+      <h3 class="ls-event-starttime">{{this.model.date_string_start}}</h3>
+    </div>
+  </div>
+{{else}}
+  {{#if this.productionModalType}}
+    <a {{action (action this.openProductionModal) this.model.production_id}}>
+      <div class="ls-event {{this.model.venue_name_for_css}} {{if (eq this.model.aasm_state "cancelled") "event-cancelled" }}" {{did-pan onPanEnd=(action this.favouriteEvent this.model.id) threshold=100}}>
+        {{#unless this.hideImage}}
+          <AppListImage @model={{this.model}} @className="ls-thumbnail-image" />
+        {{/unless}}
+        {{#if this.venueNameAsThumbnail}}
+          <div class="ls-venue-name-thumbnail va-outer">
+            <span class="va-inner">
+              {{this.model.venue_name}}
+              <span class="ls-venue-subtitle">{{this.model.venue_subtitle}}</span>
+            </span>
+          </div>
+        {{/if}}
+        <div class="ls-event-details">
+          <h3 class="ls-event-name {{this.longTitle}}">{{this.model.name}}</h3>
+          <PreferenceDisplay @model={{this.model}} @wallet={{this.wallet}} />
+          <h3 class="ls-venue-name">
+            {{this.model.venue_name}}
+          </h3>
+          <h3 class="ls-event-starttime">{{this.model.date_string_start}}</h3>
+        </div>
+      </div>
+    </a>
+  {{else}}
+    {{#if (eq this.model.event_type 'community_event')}}
+      <a {{action (action this.openEventModal) this.model.id on="click"}}>
+        <div class="ls-event {{this.model.venue_name_for_css}}" {{did-pan onPanEnd=(action this.favouriteEvent this.model.id) threshold=100}}>
+          {{#if this.model.showImage}}
+            <div class="ls-thumbnail-image-wrap"> 
+              <AppListImage @model={{this.model}} @className="ls-thumbnail-image" />
+            </div>
+          {{/if}}
+          {{#if this.venueNameAsThumbnail}}
+            <div class="ls-venue-name-thumbnail">{{this.model.venue_name}}</div>
+          {{/if}}
+          <div class="ls-event-details">
+            <h3 class="ls-event-name {{this.longTitle}}">{{this.model.name}}</h3>
+            <PreferenceDisplay @model={{this.model}} @wallet={{this.wallet}} @tokens={{this.tokens}} @pseudonymousDataCollectionSetting={{this.pseudonymousDataCollectionSetting}} />
+            <h3 class="ls-venue-name">
+              {{#if this.model.virtual_event}}
+                Virtual Event
+              {{else}}
+                {{this.model.venue_name}}
+              {{/if}}
+            </h3>
+            <h3 class="ls-event-starttime"><FormattedDate @dateTime={{this.model.start_time}} @format='Do MMM `YY h:mma'/></h3>
+          </div>
+        </div>
+      </a>
+    {{else}}
+      <a {{action (action this.openEventModal) this.model.id}} >
+        <div class="ls-event {{this.model.venue_name_for_css}} {{if (eq this.model.aasm_state "cancelled") "event-cancelled" }}" {{did-pan onPanEnd=(action this.favouriteEvent this.model.id) threshold=100}}>
+          {{#unless this.hideImage}}
+            <AppListImage @model={{this.model}} @className="ls-thumbnail-image" />
+          {{/unless}}
+          {{#if this.venueNameAsThumbnail}}
+            <div class="ls-venue-name-thumbnail">{{this.model.venue_name}}</div>
+          {{/if}}
+          <div class="ls-event-details">
+            <h3 class="ls-event-name {{this.longTitle}}">{{this.model.name}}</h3>
+            <PreferenceDisplay @model={{this.model}} @wallet={{this.wallet}} />
+            <h3 class="ls-venue-name">{{this.model.venue_name}}</h3>
+            <h3 class="ls-event-starttime">{{this.model.date_string_start}}</h3>
+          </div>
+        </div>
+      </a>
+    {{/if}}
+  {{/if}}
+{{/if}}

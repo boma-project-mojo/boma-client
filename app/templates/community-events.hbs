@@ -1,0 +1,102 @@
+<AppRightSidebar
+  @context='community-events'
+  @toggleFilters={{action 'toggleFilters'}}
+  @filtersShown={{this.filtersShown}}
+  @applicationController={{this.applicationController}}
+  @setLocationFilter='setLocationFilter'
+  @filtersSetClass={{this.filtersSetClass}}
+  @clearFilters={{action 'clearFilters'}}
+  as |rightSidebar|
+>
+  {{#if this.filtersShown}}
+    <div class='filter' id='days'>
+      <h2>Time</h2>
+      <div class='filter-wrap' id='time-filter-wrap'>
+        <div class='filter-inner' id='time-filter'>
+          {{#each this.dateRanges as |dateRange|}}
+            <AppRadioButton @id={{dateRange.id}} @name={{dateRange.name}} @modelName="dateRange" @selected={{this.selectedDateRange}} @updateSelectedRadio={{action rightSidebar.updateSelectedRadio}} />
+          {{/each}}
+        </div>
+      </div>
+    </div>
+    <div class='filter' id='location'>
+      <h2>Location</h2>
+      <div id='location-status'>{{this.locationStatus}}</div>
+      <div class='filter-wrap' id='location-filter-wrap'>
+        <div class='filter-inner' id='location-filter'>
+          {{#each this.locationRanges as |locationRange|}}
+            <AppRadioButton @id={{locationRange.id}} @name={{locationRange.name}} @modelName="locationRange" @selected={{this.selectedLocationRange}} @updateSelectedRadio={{action "setLocationFilter"}} />
+          {{/each}}
+        </div>
+      </div>
+    </div>
+  {{else}}
+    <div class='filter' id='subscriptions'>
+      <h2>Event Subscriptions</h2>
+      <div class="filter-copy" id='subscriptions-filter-copy'><p>Find out about new events by selecting areas below. Change your selection at any time.</p></div>
+      <div class='filter-wrap' id='subscriptions-filter-wrap'>
+        <div class='filter-inner' id='time-filter'>
+          {{#each this.regions as |region|}}
+            <CommunityEvents::AppCheckbox @label={{region.name}} @checked={{region.selected}} @persist={{action "setSelectedRegions" region}} />
+          {{/each}}
+        </div>
+      </div>
+    </div>
+  {{/if}}
+
+</AppRightSidebar>
+
+<div id="main">  
+  <AppHeader as |appHeaderActions|>
+    <div class="header-top">
+      <div class="left">
+        <a id="toggle-left-sidebar">
+          <div id="menu-toggle" class="con close">
+            <span class="bar top"></span>
+            <span class="bar middle"></span>
+            <span class="bar bottom"></span>
+          </div>
+        </a>
+        <div class="header-title long">
+          <a>Community Events</a>
+        </div>
+      </div>
+      <div class="right">
+        <a role="button" class="reload" {{action (action "reload") }}>
+          <i id="reload-model" class="fa fa-light fa-arrows-rotate {{this.isRetryingNowClass}} messages-loading {{if this.successReloadingModel 'pulse fa-check-circle'}} {{if this.failedReloadingModel 'shake fa-exclamation-circle'}}"></i>
+        </a>
+        <a role="button" id="add-event" {{action "goToRoute" 'create-event' }}>
+          <i class="fa-light fa-calendar-plus" aria-hidden="true"></i>
+        </a>
+        {{#if this.preferences}}
+          <LinkTo @route="community-events" @query={{hash preferences=""}} class={{if this.preferences 'active'}}>
+            <i class="fa-solid fa-heart" aria-hidden="true"></i>
+          </LinkTo>
+        {{else}}
+          <LinkTo @route="community-events" @query={{hash preferences="true"}} class={{if this.preferences 'active'}}>
+            <i class="fa-light fa-heart" aria-hidden="true"></i>
+          </LinkTo>
+        {{/if}}
+        <a role="button" id="toggle-header-bottom" {{action appHeaderActions.toggleHeaderBottom}}>
+          <i class="fa-light fa-magnifying-glass" aria-hidden="true"></i>
+        </a>
+        <a id="toggle-right-sidebar" class={{this.filtersSetClass}}>
+          <i class="fa-light fa-sliders" aria-hidden="true"></i>
+        </a>
+      </div>
+    </div>
+    <KeywordSearch />
+  </AppHeader>
+
+  <CollectionList @model={{this.model.events}} @displayFormat="list" @scrollChange="scrollChange" @buffer={{1}} @isRefreshing={{this.isRefreshing}} @preferences={{this.preferences}} @searchKeyword={{this.searchKeyword}} @listItemComponent={{component "app-event-list-style" 
+    modalType="eventModal" 
+    openEventModal=(action "openEventModal") 
+    favouriteEvent=(action "favouriteEvent") 
+    tokens=this.tokens 
+    pseudonymousDataCollectionSetting=this.pseudonymousDataCollectionSetting
+  }} />
+</div>
+
+{{#if this.eventModalModelID}}
+  <ToElsewhere @named="appModal" @send={{component "event-detail" eventId=this.eventModalModelID closeModal=(action "closeEventModal")}} />
+{{/if}}

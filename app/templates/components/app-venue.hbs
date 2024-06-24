@@ -1,0 +1,8 @@
+<a {{action (action this.openVenueModal) this.model}}>
+	<div class="venue list-item" {{did-pan onPanEnd=(action this.favouriteVenue this.model.id) threshold=100}}>
+		<AppListImage @model={{this.model}} @htmlElement={{this.element}}>
+			<h1>{{this.model.name}}</h1>
+			<PreferenceDisplay @model={{this.model}} />
+		</AppListImage>
+  </div>
+</a>

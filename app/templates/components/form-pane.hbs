@@ -1,0 +1,39 @@
+{{#unless this.hideBreadcrumb}}
+  <FormBreadcrumb @formPanes={{this.formPanes}} @currentPaneIndex={{this.currentPaneIndex}} />
+{{/unless}}
+
+<div class="form-page-actions">
+  {{#if this.prev}}
+    <a role="button" class="form-btn subtle left" {{action (action this.prev)}}>
+      {{#if this.prevButtonText}}
+        <i class="fa fa-chevron-left"></i> {{this.prevButtonText}} 
+      {{else}}
+        <i class="fa fa-chevron-left"></i>
+        Back
+      {{/if}}
+    </a>
+  {{/if}}
+  {{#if this.next}}
+    {{#if this.loading}}
+      <button class="form-btn primary disabled right" disabled="disabled" type="button">
+        <i class="fa-solid fa-circle-notch fa-2x fa-spin loading"></i>
+      </button>
+    {{else}}
+      <a role="button" class="form-btn primary right" {{action (action this.next)}}>
+        {{#if this.nextButtonText}}
+          {{#if (eq this.nextButtonText 'Submit')}}
+            {{this.nextButtonText}} <i class="fa-light fa-check-circle"></i>
+          {{else}}
+            {{this.nextButtonText}} <i class="fa fa-chevron-right"></i>
+          {{/if}}
+        {{else}}
+          Next <i class="fa fa-chevron-right"></i>
+        {{/if}}
+      </a>
+    {{/if}}
+  {{/if}}
+</div>
+
+<div class="content-wrap">
+  {{yield}}
+</div>

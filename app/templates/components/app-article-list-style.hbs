@@ -1,0 +1,12 @@
+<a role="button" {{action (action this.openArticleModal) this.model.id}}>
+	<div class="ls-article" {{did-pan onPanEnd=(action this.favouriteArticle this.model.id) threshold=100}}>
+	  <AppListImage @model={{this.model}} @className="ls-thumbnail-image" />
+	  <div class="ls-details">
+	  	<h2 class="ls-title">
+				{{this.model.title}} 
+			</h2>
+      <h3 class="ls-created-at"><FormattedDate @dateTime={{this.model.last_updated_at}} @format='ddd, MMM Do YYYY'/></h3>
+			<PreferenceDisplay @model={{this.model}} @wallet={{this.wallet}} />
+	  </div>
+	</div>
+</a>

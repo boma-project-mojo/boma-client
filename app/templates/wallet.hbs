@@ -1,0 +1,48 @@
+<div id="main" class="wallet">  
+  <AppHeader>
+    <div class="header-top">
+      <div class="left">
+        <a id="toggle-left-sidebar">
+          <div id="menu-toggle" class="con close">
+            <span class="bar top"></span>
+            <span class="bar middle"></span>
+            <span class="bar bottom"></span>
+          </div>
+        </a>
+      </div>
+      <div class="left">
+        <div class="header-title">
+          <a>Wallet</a>
+        </div>
+      </div>
+      <div class="right">
+        <a role="button" {{action (action "goToRoute" "settings")}}>
+          <i class="fa fa-cog" aria-hidden="true"></i>
+        </a>
+      </div>
+    </div>
+  </AppHeader>
+  
+  <div class="content-wrap" id="wallet-show">
+    <h2 id="wallet-contents">{{this.tokenCountString}}</h2>
+    <h3 id="wallet-contents-detail">{{this.tokenStatusCounts.mined}} Mined, {{this.tokenStatusCounts.mining}} Mining & {{this.tokenStatusCounts.ready}} Pending Validation</h3>
+
+    <div class="token-qr-wrap">
+      <img src={{this.model.wallet.QRb64}} alt="Wallet QR code">
+    </div>
+
+    <div id="all-tokens">
+      {{#each this.model.tokens as |token|}}
+        <AppToken @token={{token}} />
+      {{/each}}
+    </div>
+
+    <div id="redeem-token-link">
+      <LinkTo @route="redeem-token">
+        Redeem Token
+      </LinkTo>
+    </div>
+
+    <WalletAddress @model={{this.model}} @copyWalletAddressToClipboard={{action "copyWalletAddressToClipboard"}} />
+  </div>
+</div>

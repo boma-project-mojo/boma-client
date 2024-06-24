@@ -1,0 +1,33 @@
+<div class="right-sidebar-content {{this.filtersSetClass}}" {{did-pan onPanEnd=(action "close") threshold=50}}>
+  <div id="right-sidebar-header">
+    <div class="left">
+      <a role="button" id="toggle-right-sidebar">
+        <div class="close-x">
+          <span class="bar top"></span>
+          <span class="bar bottom"></span>
+        </div>
+      </a>
+    </div>
+    {{#if this.clearFilters}}
+      <a role="button" {{action (action this.clearFilters)}} class="{{this.filtersSetClass}} right btn btn-secondary show-all">RESET FILTERS</a>
+    {{/if}}
+    {{#if this.enableScrollToNow}}
+      <a role="button" {{action (action this.scrollToNowButton)}} class="right btn btn-secondary">Go to Now</a>
+    {{/if}}
+    {{#if this.isCommunityEvents}}
+      {{#if this.filtersShown}}
+        <a role="button" {{action (action this.toggleFilters)}} class="right btn btn-secondary">Subscribe</a>
+      {{else}}
+        <a role="button" {{action (action this.toggleFilters)}} class="right btn btn-secondary">Filters</a>
+      {{/if}}
+    {{/if}}
+  </div>
+
+  {{yield 
+    (hash 
+      updateSelected=(action 'updateSelected')
+      updateSelectedRadio=(action 'updateSelectedRadio')
+      updateSelectedBoolean=(action 'updateSelectedBoolean')
+    )
+  }}
+</div>

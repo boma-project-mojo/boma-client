@@ -1,0 +1,7 @@
+<div class="header-title {{if this.long "long"}}">
+	{{#if this.scrollToNowButton}}
+    <a role="button" {{action (action this.scrollToNowButton)}}><HtmlSafeString @string={{this.title}}/></a>
+  {{else}}
+    <a><HtmlSafeString @string={{this.title}}/></a>
+  {{/if}}
+</div>

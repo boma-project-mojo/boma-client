@@ -1,0 +1,53 @@
+<div id="productions-show">
+
+	<a role="button" {{action (action "doCloseModal")}}>
+		{{#if this.production.showImage}}
+      <AppModalImage @model={{this.production}} @closeModal={{action "doCloseModal"}} />
+    {{/if}}
+	</a>
+
+	<div class="content-wrap" {{did-pan onPanEnd=(action "doCloseModal") threshold=100}}>
+    {{#unless this.production.showImage}}
+      <button class="block-btn back" type="button" {{action (action "doCloseModal")}}>Back</button>
+    {{/unless}}
+
+		<h2 id="production-name"><HtmlSafeString @string={{this.production.name}}/></h2>
+    <div class="production-events">
+      {{#each this.production.events as |event|}}
+        <EventTime @event={{event}} @venue_id={{event.venue_id}} @venue_name={{event.venue_name_and_subtitle}} @start_time={{event.start_time}} @end_time={{event.end_time}} @eventId={{event.id}} @productionID={{this.production.id}} @includeEventName={{false}} @buttonStyleActions={{false}} />
+      {{/each}}
+    </div>
+
+		<div id="production-description">
+			{{#if (eq this.lessWordyCopy true)}}
+        {{#if (eq this.production.short_description undefined)}}
+          <HtmlSafeString @string={{this.production.description}}/>
+        {{else}}
+          <p>{{this.production.short_description}}</p>
+        {{/if}}
+			{{else}}
+        <HtmlSafeString @string={{this.production.description}}/>
+			{{/if}}
+		
+			{{#if this.production.external_link}}
+        <p>
+          <InAppBrowserLink @url={{this.production.external_link}} @button={{true}}>More Information</InAppBrowserLink>
+        </p>
+      {{/if}}
+
+			{{!-- <button class="block-btn back" type="button" {{action (action this.closeModal)}}>Back</button> --}}
+		</div>
+
+    {{#if (eq this.eventFilterTagType "production")}}
+      {{#if this.production.tags}}
+        <p>
+          {{#each this.production.tags as |tag_id|}}
+            <AppTag @tag_id={{tag_id}} />
+          {{/each}}
+        </p>
+      {{/if}}
+    {{/if}}
+
+	</div>
+
+</div>

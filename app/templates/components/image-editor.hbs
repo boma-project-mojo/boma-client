@@ -1,0 +1,20 @@
+<div id="image-editor-canvas"> 
+	<canvas id="c"></canvas>
+</div>
+
+<div id="background-picker">
+	{{#each this.backgroundImages.images as |image|}}
+		<a role="button" {{action "setImage" image.base64}}>
+			<img alt="background style button" class="background-image-type" id={{image.name}} height="50px" src={{image.base64}}>
+		</a>
+	{{/each}}
+</div>
+
+<div id="text-color-picker">
+	<a role="button" {{action "setTextColor" "#fff"}}>
+		<span class="text-color-type" id="text-color-white">A</span>
+	</a>
+	<a role="button" {{action "setTextColor" "#000"}}>
+		<span class="text-color-type" id="text-color-black">A</span>
+	</a>
+</div>

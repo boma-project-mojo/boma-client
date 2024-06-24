@@ -1,0 +1,84 @@
+<div id="main" class="wallet">  
+  <AppHeader>
+    <div class="header-top">
+      <div class="left">
+        <a id="toggle-left-sidebar">
+          <div id="menu-toggle" class="con close">
+            <span class="bar top"></span>
+            <span class="bar middle"></span>
+            <span class="bar bottom"></span>
+          </div>
+        </a>
+      </div>
+      <div class="left">
+          <div class="header-title">
+            <a>Redeem Token</a>
+          </div>
+      </div>
+      <div class="right">
+        <a role="button" {{action (action "goToRoute" "settings")}}>
+          <i class="fa fa-cog" aria-hidden="true"></i>
+        </a>
+      </div>
+    </div>
+  </AppHeader>
+  
+  <div class="form-wrap">
+    <div class="breadcrumb">
+      <span class="breadcrumb-form-pane-item"></span>
+      <span class="breadcrumb-form-pane-item"></span>
+    </div>
+
+    <div class="form-page-actions">
+      {{#if this.successfullyRedeemed}}
+        <LinkTo @route="wallet">
+          <span class="form-btn subtle left"><i class="fa fa-chevron-left"></i> Go to Wallet</span>
+        </LinkTo>
+      {{else}}
+        <LinkTo @route="wallet">
+          <span class="form-btn subtle left"><i class="fa fa-chevron-left"></i> Back</span>
+        </LinkTo>
+
+        {{#if this.redeemingToken}}
+          <a class="form-btn primary right"><i class="fa fa-cog fa-spin fa-2x fa-fw loading" disabled="disabled"></i></a>
+        {{else}}
+          <a role="button" class="form-btn primary right" {{action "redeemToken"}}>Redeem</a>
+        {{/if}}
+      {{/if}}
+    </div>
+    
+    <div class="content-wrap" id="wallet-redeem-token">
+      {{#if this.successfullyRedeemed}}
+        <div class="full-page-success">
+          <div class="full-page-success-inner">
+            <i class="fa fa-light fa-check-circle"></i>
+            <h1>Token Redeemed Successfully!</h1>
+            <h2>We're just syncing your tokens and will redirect you to your wallet as soon as we're done.</h2>
+          </div>
+        </div>       
+      {{else}}
+        <h1>Redeem Token</h1>
+        <p>Paste your unique token code below and click 'Redeem Token' to claim your token.</p>
+        
+        {{#if this.errors}}
+          <div class="errors-wrap">
+            <ul class="errors"> 
+              <li>{{this.errors}}</li>
+            </ul>
+          </div>
+        {{/if}}
+
+        <br>
+
+        <div class="form-group" id="redeem-token-form-group">
+          <label for="startDate">Unique Token Code</label>
+          <Input @value={{this.claimTokenNonce}} id="redeem-token-nonce" />
+          <a role="button" {{action (action "pasteTokenNonceFromClipboard")}} id="paste-redeem-token-none">
+            <i class="fa fa-paste" aria-hidden="true"></i>
+          </a>
+        </div>
+      {{/if}}
+
+    </div>
+  </div>
+</div>

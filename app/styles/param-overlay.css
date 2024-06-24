@@ -1,0 +1,723 @@
+:root {
+  /* core */
+  --main-font-family: "Helvetica"; /* Font used for * */
+  --p-font-size: 13px; /* p font size */
+  --p-line-height: 18px; /* p line height */
+  --p-text-color: #000; /* p color */
+  /* forms */
+  /* main form button styling */
+  --form-button-background-color: #000;
+  --form-button-text-color: #ffffff;
+  --form-button-active-background-color: #222;
+  --form-button-active-text-color: #ffffff;
+  /* subtle form button styling (i.e the button you want users to press less) */
+  --form-button-subtle-background-color: #eaeaea;
+  --form-button-subtle-text-color: #000;
+  --form-button-subtle-active-background-color: #ccc;
+  --form-button-subtle-active-text-color: #000;
+  /* Welcome Splash */
+  --welcome-background-image: url("images/splash.jpg");
+  --welcome-copy-background-color: transparent;
+  --welcome-copy-text-align: center;
+  --welcome-header-font-size: 22px;
+  --welcome-header-font-family: "Helvetica";
+  --welcome-header-font-weight: bold;
+  --welcome-header-text-transform: none;
+  --welcome-header-text-color: #ffffff;
+  --welcome-header-line-height: 30px;
+  --welcome-body-font-size: 15px;
+  --welcome-body-font-family: "Helvetica";
+  --welcome-body-text-color: #ffffff;
+  --welcome-button-background-color: #000;
+  --welcome-button-text-color: #ffffff;
+  --welcome-button-padding: 10px 30px 9px 30px;
+  --welcome-button-font-family: "Helvetica";
+  --welcome-button-font-size: 14px;
+  --welcome-copy-padding: 50px;
+  --welcome-button-border-color: tranparent;
+  --welcome-button-border-radius: 0;
+  /* Header */
+  --header-title-font-family: "Helvetica"; /* Font used for header titles */
+  --header-title-font-size: 20px; /* Font size for header title */
+  --header-background-color: #000;
+  --header-background-image-url: unset; /* The background image for the header */
+  --header-text-color: #fff; /* Color of titles and button glyphs in header */
+  --header-button-focus-color: #333; /* focus colour for header buttons */
+  --header-button-active-color: #333; /* active colour for header buttons */
+  --header-data-reload-success-color: green; /* color for loading spinner in header when successful */
+  --header-data-reload-fail-color: red; /* color for loading spinner in header when fail */
+  --header-bottom-search-background-color: #ccc; /* color of search bar border / background */
+  --header-bottom-search-text-color: #000; /* text colour for search bar in header */
+  /* Left Sidebar */
+  --left-sidebar-background-color: #000; /* background colour */
+  --left-sidebar-background-image: unset; /* background image inside url() */
+  --left-sidebar-anchor-color: #fff; /* menu item anchor colour */
+  --left-sidebar-active-anchor-color: #ccc; /* active/hover/focus menu item anchor colour */
+  --left-sidebar-active-anchor-background-color: transparent; /* active/hover/focus menu item anchor background colour */
+  --left-sidebar-anchor-font-family: "Helvetica"; /* menu item font family */
+  --left-sidebar-anchor-font-size: 12px; /* menu item font size */
+  --left-sidebar-bottom-menu-font-family: "Helvetica"; /* menu item font size */
+  --left-sidebar-bottom-menu-anchor-color: #fff; /* bottom menu anchor colour */
+  --left-sidebar-bottom-menu-active-anchor-color: #ccc; /* active/hover/focus bottom menu item anchor colour */
+  --left-sidebar-festival-toggle-background-color: #fff; /* left sidebar festival toggle background color */
+  /* Right Sidebar / Filters */
+  --right-sidebar-backgound-color: #000; /* background colour */
+  --right-sidebar-filter-title-color: #fff; /* filter title colour */
+  --right-sidebar-filter-title-font-family: "Helvetica"; /* filter title colour */
+  --right-sidebar-filter-title-font-size: 16px; /* filter title colour */
+  --right-sidebar-filter-border-color: #fff; /* filter wrap border colour */
+  --right-sidebar-filter-title-font-weight: bold; /* filter title font weight */
+  --right-sidebar-filter-item-label-color: #fff; /* filter item label colour */
+  --right-sidebar-filter-item-label-font-weight: "Helvetica"; /* filter item label colour */
+  --right-sidebar-filter-item-checkbox-color: #fff; /* filter item checkbox border colour */
+  --right-sidebar-filter-item-active-color: rgba(
+    255,
+    255,
+    255,
+    0.9
+  ); /* Active state when toggling filter */
+  --right-sidebar-button-background-color: tranparent; /* button border colour */
+  --right-sidebar-button-border-color: #fff; /* button border colour */
+  --right-sidebar-button-text-color: #fff; /* button text colour */
+  --right-sidebar-button-font-family: "Helvetica"; /* button font-family */
+  --right-sidebar-button-active-color: #ccc; /* active/hover/focus menu item anchor colour */
+  --right-sidebar-button-active-border-color: #ccc; /* active/hover/focus menu item anchor colour */
+  --right-sidebar-button-active-background-color: #ccc; /* active/hover/focus menu item anchor background colour */
+  /* lists */
+  --list-border-colour: #fff; /* The colour of borders and background on lists */
+  --list-border-width: 2px; /* The width of the borders on list items */
+  --list-style-item-height: 88px; /* The height of a list item */
+  --list-style-item-background-color: #000; /* The colour of background of a list item (i.e behind where text is displayed) */
+  --list-style-item-title-color: #ffffff; /* The colour of the title on a list item (i.e Event name, or Article name or Venue name */
+  --list-style-item-title-font-weight: normal; /* The font weight of the title on a list item (i.e Event name, or Article name or Venue name */
+  --list-style-item-title-font-family: "Helvetica"; /* The font family of the titel on a list item */
+  --list-style-item-title-font-size: 12px; /* The font size of the title on a list item (i.e Event name, or Article name or Venue name */
+  --list-style-item-other-color: #fff; /* The font colour for other text on a list item (e.g venue name or created at date) */
+  --list-style-item-other-font-family: "Helvetica";
+  --list-style-item-other-font-weight: bold; /* The font weight for other text on a list item (e.g venue name or created at date) */
+  --list-style-item-other-font-size: 12px; /* The font size for other text on a list item (e.g venue name or created at date) */
+  --list-style-item-heart-color: #fff; /* The colour of the heart for preferred list items */
+  --list-style-item-active-heart-color: #fff; /* The colour of the heart for preferred list items when selected */
+  --grid-style-item-title-color: #ffffff; /* The colour of the title on a list item (i.e Event name, or Article name or Venue name */
+  --grid-style-item-title-font-weight: normal; /* The font weight of the title on a list item (i.e Event name, or Article name or Venue name */
+  --grid-style-item-title-font-family: "Helvetica"; /* The font family of the titel on a list item */
+  --grid-style-item-title-font-size: 12px; /* The font size of the title on a list item (i.e Event name, or Article name or Venue name */
+  --grid-style-item-other-color: #fff; /* The font colour for other text on a list item (e.g venue name or created at date) */
+  --grid-style-item-other-font-family: "Helvetica";
+  --grid-style-item-other-font-weight: bold; /* The font weight for other text on a list item (e.g venue name or created at date) */
+  --grid-style-item-other-font-size: 12px; /* The font size for other text on a list item (e.g venue name or created at date) */
+  --list-no-results-text-color: #000; /* */
+  --list-no-results-active-button-border-color: #fff;
+  /* modals */
+  --modal-background-color: #fff;
+  --modal-title-font-family: "Helvetica"; /* main header font-family */
+  --modal-title-text-colour: #000; /* main header text colour */
+  --modal-title-font-size: 20px; /* main header font size */
+  /* modals -> actions */
+  --modal-actions-glyph-color: #000; /* colour of heart on modal pages */
+  --modal-actions-glyph-focus-text-color: #111;
+  --modal-actions-glyph-active-text-color: yellow;
+  /* modals -> buttons */
+  --modal-button-text-color: #000; /* button text colour */
+  --modal-button-background-color: #ffffff; /* button background colour */
+  --modal-button-border-color: #000; /* button border colour */
+  --modal-button-active-text-color: #ffffff; /* the hover/active/focus button text colour */
+  --modal-button-active-background-color: #222; /* the hover/active/focus button background colour */
+  --modal-button-active-border-color: #222; /* the hover/active/focus button border colour */
+  /* modals -> tags */
+  --modal-tag-text-color: #222; /* tag text colour */
+  --modal-tag-background-color: #ffffff; /* tag background colour */
+  --modal-tag-border-color: #ffffff; /* tag border colour */
+  --modal-tag-active-text-color: #fff; /* tag text colour */
+  --modal-tag-active-background-color: #222; /* tag background colour */
+  --modal-tag-active-border-color: #ffffff; /* tag border colour */
+  /* article detail */
+  --modal-created-at-font-size: 11px; /* font-size for created-at date on articles */
+  --modal-created-at-font-weight: normal; /* font-weight for created-at date on articles */
+  --modal-created-at-text-color: #000; /* font-color for created-at date on articles */
+  /* event/production detail */
+  --modal-production-and-event-titles-color: #000; /* event name, start/end date, venue colour */
+  --modal-production-and-event-titles-font-family: "Helvetica"; /* event name, start/end date, font family */
+  --modal-production-and-event-titles-font-weight: bold; /* event name, start/end date, venue font weight */
+  --modal-production-and-event-titles-font-size: 12px; /* event name, start/end date, venue font size */
+  /* notifications */
+  --notifications-retry-message-text-color: #fff; /* header 'retry in' message text colour */
+  --notifications-background-color: #fff; /* the background colour of the wrap */
+  --notifications-item-background-color: #000; /* the background colour of each notification */
+  --notifications-sent-at-font-size: 13px; /* size of sent at text */
+  --notifications-sent-at-font-color: #fff; /* colour of sent at text  */
+  --notifications-subject-font-size: 20px; /* subject text size */
+  --notifications-subject-font-color: #ffffff; /* subject text colour */
+  --notifications-subject-font-family: "Helvetica"; /* subject font family */
+  --notifications-body-font-size: 13px; /* body text size */
+  --notifications-body-font-color: #ffffff; /* body text colour */
+  --notifications-button-background-color: #ffffff;
+  --notifications-button-text-color: #000;
+  --notifications-button-active-background-color: #000;
+  --notifications-button-active-text-color: #fff;
+  --notifications-showcase-background-color: #444;
+  /* feedback */
+  --feedback-background-color: #fff; /* feedback wrap colour */
+  /* clashfinder */
+  /* variables for CSS */
+  --clashfinder-background-colour: #1977ff; /* clashfinder wrap background colour */
+  --clashfinder-nav-button-background-color: #082a3e; /* day nav background colour */
+  --clashfinder-nav-button-text-color: #f5f0d4; /* day nav text colour */
+  --clashfinder-nav-button-active-background-color: #18b07e; /* active day nav background colour */
+  --clashfinder-nav-button-active-text-color: #ffffff; /* active day nav text colour */
+  --clashfinder-nav-button-hover-background-color: #18b07e; /* hover day nav background colour */
+  --clashfinder-nav-button-hover-text-color: #ffffff; /* hover day nav text colour */
+  --clashfinder-nav-button-font-family: "Helvetica"; /* day nav font family */
+  --clashfinder-time-canvas-background-colour: #1977ff; /* time canvas background colour */
+  /* variables used by js in app-clashfinder.js */
+  --clashfinder-venue-name-color: #fff; /* The colour of the venue name */
+  --clashfinder-event-box-background-color: #082a3e; /* The background color of the event box */
+  --clashfinder-event-box-border-color: unset; /* The border color of the event box */
+  --clashfinder-event-name-text-color: #ffffff; /* The colour of the event name text */
+  --clashfinder-event-time-text-color: #ea7344; /* The colour of the event time text */
+  --clashfinder-font-name: "Helvetica"; /* The font */
+  --clashfinder-time-text-color: #fff; /* The colour of the timeline text */
+  /* survey */
+  --survey-button-border-color: #000;
+  --survey-button-background-color: #fff;
+  --survey-button-text-color: #000;
+  --survey-button-active-border-color: #fff;
+  --survey-button-active-background-color: #333;
+  --survey-button-active-text-color: #fff;
+  --survey-button-selected-border-color: #fff;
+  --survey-button-selected-background-color: #000;
+  --survey-button-selected-text-color: #fff;
+  /* map */
+  --map-background-color: #fff;
+}
+
+@font-face {
+  font-family: Raleway;
+  font-weight: 800;
+  src: url("fonts/raleway/Raleway-ExtraBold.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: Raleway;
+  font-weight: 400;
+  src: url("fonts/raleway/Raleway-Regular.ttf") format("truetype");
+}
+
+/* Core type styles */
+
+* {
+  font-family: var(--main-font-family);
+}
+
+p, strong, span, h1, h2, h3, h4, h5, h6, .form-pane p {
+  color: var(--p-text-color);
+}
+
+p, .suggestion-box-wrap label {
+  font-size: var(--p-font-size);
+  line-height: var(--p-line-height);
+}
+
+/* Form styles */
+/* buttons */
+.form-page-actions .form-btn.primary,
+.form-group .form-btn.primary,
+.form-btn.primary {
+  background-color: var(--form-button-background-color);
+  color: var(--form-button-text-color);
+}
+/* buttons active states */
+a.form-btn.primary:active {
+  background-color: var(--form-button-active-background-color);
+  color: var(--form-button-active-text-color);
+}
+/* buttons subtle */
+.form-page-actions .form-btn.subtle {
+  background-color: var(--form-button-subtle-background-color);
+  color: var(--form-button-subtle-text-color);
+}
+/* buttons subtle active */
+.form-page-actions .form-btn.subtle:active {
+  background-color: var(--form-button-subtle-active-background-color);
+  color: var(--form-button-subtle-active-text-color);
+}
+
+/* Welcome Splash */
+/* background image */
+#welcome {
+  background-image: var(--welcome-background-image);
+}
+/* copy background color */
+#welcome #welcome-copy {
+  background-color: var(--welcome-copy-background-color);
+  text-align: var(--welcome-copy-text-align);
+  padding: var(--welcome-copy-padding);
+}
+/* header style */
+#welcome #welcome-copy h1,
+#welcome #welcome-copy h3 {
+  font-size: var(--welcome-header-font-size);
+  font-family: var(--welcome-header-font-family);
+  text-transform: var(--welcome-header-text-transform);
+  color: var(--welcome-header-text-color);
+  line-height: var(--welcome-header-line-height);
+  font-weight: var(--welcome-header-font-weight);
+}
+/* body style */
+#welcome #welcome-copy p {
+  font-size: var(--welcome-body-font-size);
+  font-family: var(--welcome-body-font-family);
+  color: var(--welcome-body-text-color);
+}
+/* button styles */
+#welcome #close-welcome-screen {
+  background-color: var(--welcome-button-background-color);
+  color: var(--welcome-button-text-color);
+  padding: var(--welcome-button-padding);
+  font-family: var(--welcome-button-font-family);
+  font-size: var(--welcome-button-font-size);
+  border-color: var(--welcome-button-border-color);
+  border-radius: var(--welcome-button-border-radius);
+}
+
+/* Header */
+
+#header {
+  background-color: var(--header-background-color) !important;
+  background-image: var(--header-background-image-url);
+  border-bottom: none;
+  background-color: transparent;
+  background-position: center calc(53px + env(safe-area-inset-top));
+}
+/* Header buttons */
+#header .fa,
+#header .fa-light,
+#header .header-title a {
+  color: var(--header-text-color);
+}
+#header .con .bar {
+  background: var(--header-text-color);
+}
+/* Header buttons focus */
+#header .fa:focus {
+  color: var(--header-button-focus-color);
+}
+/* Header buttons active states */
+.header-bottom-shown #header #toggle-header-bottom i,
+#header .active .fa-heart,
+#header .filters-set .fa-sliders {
+  color: var(--header-button-active-color);
+}
+/* Header reload succdss state */
+#header .pulse {
+  color: var(--header-data-reload-success-color) !important;
+}
+/* Header reload fail state */
+#header .shake {
+  color: var(--header-data-reload-fail-color) !important;
+}
+/* Header title */
+#header .header-title a {
+  font-family: var(--header-title-font-family);
+  font-size: var(--header-title-font-size);
+}
+
+/* Search */
+
+/* Header search input styling */
+#search-filter input[type="search"] {
+  font-family: var(--main-font-family), "FontAwesome";
+  color: var(--header-bottom-search-text-color);
+}
+/* Header search surround styling */
+#search-filter,
+.header-bottom {
+  background-color: var(--header-bottom-search-background-color);
+}
+
+/* Left Sidebar */
+
+/* background */
+.left-sidebar {
+  background-color: var(--left-sidebar-background-color);
+  background-image: var(--left-sidebar-background-image);
+}
+/* anchors */
+.left-sidebar-content li a {
+  color: var(--left-sidebar-anchor-color);
+  font-family: var(--left-sidebar-anchor-font-family);
+  font-size: var(--left-sidebar-anchor-font-size);
+}
+/* left sidebar menu hover/active/focus states */
+.left-sidebar-content li a:focus,
+.left-sidebar-content li a:hover,
+.left-sidebar-content li a:active {
+  color: var(--left-sidebar-active-anchor-color);
+  background-color: var(--left-sidebar-active-anchor-background-color);
+}
+/* left sidebar bottom menu */
+.left-sidebar .sidebar-bottom {
+  color: var(--left-sidebar-bottom-menu-anchor-color);
+  font-weight: bold;
+  font-size: 12px;
+}
+.left-sidebar .sidebar-bottom a {
+  font-family: var(--left-sidebar-bottom-menu-font-family);
+}
+/* left sidebar bottom hover/active/focus states */
+.sidebar-bottom a:active {
+  color: var(--left-sidebar-active-anchor-color);
+}
+/* left sidebar festival toggle */
+.left-sidebar #festival-toggle {
+  background-color: var(--left-sidebar-festival-toggle-background-color);
+}
+
+/* Right Sidebar / Filters */
+
+/* background */
+.right-sidebar {
+  background-color: var(--right-sidebar-backgound-color);
+}
+/* right sidebar buttons */
+.right-sidebar-content .btn:focus,
+.right-sidebar-content .btn:hover,
+.right-sidebar-content .btn:active { 
+  background-color: var(--right-sidebar-button-active-background-color);
+  color: var(--right-sidebar-button-active-color);
+  border-color: var(--right-sidebar-button-active-border-color);
+}
+
+/* filter title */
+.right-sidebar-content h2 {
+  color: var(--right-sidebar-filter-title-color);
+  font-family: var(--right-sidebar-filter-title-font-family);
+  font-size: var(--right-sidebar-filter-title-font-size);
+  font-weight: var(--right-sidebar-filter-title-font-weight);
+}
+/* filter border */
+.filter-wrap {
+  border-color: var(--right-sidebar-filter-border-color) !important;
+}
+/* filter label */
+.filter label,
+.filter label span {
+  font-family: var(--right-sidebar-filter-item-label-font-weight);
+  color: var(--right-sidebar-filter-item-label-color);
+}
+/* filter checkbox colour */
+.filter-inner div:after {
+  border-color: var(--right-sidebar-filter-item-checkbox-color) !important;
+}
+/* filter option active state */
+.filter input[type="checkbox"]:active + label,
+.filter label:active {
+  background-color: var(--right-sidebar-filter-item-active-color);
+}
+/* buttons */
+.right-sidebar-content .btn {
+  border-color: var(--right-sidebar-button-border-color);
+  background-color: var(--right-sidebar-button-background-color);
+  color: var(--right-sidebar-button-text-color);
+  font-family: var(--right-sidebar-button-font-family);
+}
+
+/* Lists */
+
+/* list border colours */
+.list,
+.event-wrap,
+.venue-wrap,
+.page-wrap,
+.production-wrap,
+.gs-wrap,
+.article-wrap {
+  border-left-color: var(--list-border-colour) !important;
+  border-right-color: var(--list-border-colour) !important;
+  border-top-color: var(--list-border-colour) !important;
+  background-color: var(--list-border-colour);
+}
+/* list style list item height and background colour */
+.ls-event-details,
+.ls-details {
+  height: var(--list-style-item-height);
+  background-color: var(--list-style-item-background-color);
+}
+/* list style list item image height (keep them sqaure even if height is increased */
+.ls-thumbnail-image, .ls-venue-name-thumbnail {
+  height: var(--list-style-item-height);
+  width: var(--list-style-item-height);
+}
+/* Border betweeen image and details on list style image.   */
+.ls-thumbnail-image + .ls-event-details, .ls-thumbnail-image-wrap + .ls-event-details, .ls-thumbnail-image + .ls-details, .ls-thumbnail-image-wrap + .ls-details {
+  margin-left: calc(var(--list-style-item-height) + var(--list-border-width) * 2);
+}
+
+/* list style list item title text styles */
+.ls-event-name,
+.ls-title,
+.ls-page .ls-title {
+  color: var(--list-style-item-title-color);
+  font-weight: var(--list-style-item-title-font-weight);
+  font-size: var(--list-style-item-title-font-size);
+  font-family: var(--list-style-item-title-font-family);
+}
+/* list style list item venue or created at style */
+.ls-venue-name,
+.ls-created-at,
+.ls-event-starttime {
+  color: var(--list-style-item-other-color);
+  font-weight: var(--list-style-item-other-font-weight);
+  font-size: var(--list-style-item-other-font-size);
+  font-family: var(--list-style-item-other-font-family);
+}
+/* list style list item heart colour */
+.preference-display .fa-heart-o {
+  color: var(--list-style-item-heart-color);
+}
+/* list style list item active heart colour */
+.preference-display .fa-heart.active {
+  color: var(--list-style-item-active-heart-color);
+}
+/* no results */
+.no-preferences {
+  color: var(--list-no-results-text-color);
+}
+/* no results button */
+.no-preferences .btn:active {
+  border-color: var(--list-no-results-active-button-border-color);
+}
+/* Grids */
+.event-wrap,
+.venue-wrap,
+.production-wrap,
+.gs-wrap,
+.article-wrap,
+.page-wrap {
+  border-left: var(--list-border-width) solid;
+  border-right: var(--list-border-width) solid;
+  border-top: calc(var(--list-border-width) * 2) solid;
+}
+.list {
+  border-left: var(--list-border-width) solid;
+  border-right: var(--list-border-width) solid;
+}
+/* Styles of main headers on grid items */
+.event h1,
+.venue-wrap h1,
+.gs .model-name,
+.appArticleImageTitles h2,
+.appArticleImageTitles h2 mark {
+  color: var(--grid-style-item-title-color); /* The colour of the title on a list item (i.e Event name, or Article name or Venue name */
+  font-weight: var(--grid-style-item-title-font-weight); /* The font weight of the title on a list item (i.e Event name, or Article name or Venue name */
+  font-family: var(--grid-style-item-title-font-family); /* The font family of the titel on a list item */
+  font-size: var(--grid-style-item-title-font-size); /* The font size of the title on a list item (i.e Event name, or Article name or Venue name */
+}
+/* Styles of other titles on grid items */
+h3.event-venue,
+h3.event-datetime {
+  color: var(--grid-style-item-other-color); /* The font colour for other text on a list item (e.g venue name or created at date) */
+  font-family: var(--grid-style-item-other-font-family);
+  font-weight: var(--grid-style-item-other-font-weight); /* The font weight for other text on a list item (e.g venue name or created at date) */
+  font-size: var(--grid-style-item-other-font-size); /* The font size for other text on a list item (e.g venue name or created at date) */
+}
+/* Modals */
+/* main header */
+#productions-show h2#production-name,
+#event-show h2#production-name,
+#full-page-modal h2#venue-name,
+#full-page-modal h2#info-page-name,
+#event-show #event-name,
+#article-show h2#info-article-name {
+  font-family: var(--modal-title-font-family);
+  color: var(--modal-title-text-colour);
+  font-size: var(--modal-title-font-size);
+  letter-spacing: unset;
+}
+/* main background color */
+#full-page-modal {
+  background-color: var(--modal-background-color);
+}
+/* Hearts / Map Pin / Ticket Link */
+#full-page-modal .actions .fa,
+#full-page-modal .actions .fa-light {
+  color: var(--modal-actions-glyph-color);
+}
+/* Hearts / Map Pin / Ticket Link hover/focus/active  */
+#article-show .actions a:focus .fa,
+#productions-show .actions a:focus .fa,
+#event-show .actions a:focus .fa,
+#venue-show .actions a:focus .fa {
+  color: var(--modal-actions-glyph-focus-text-color);
+}
+
+#article-show .actions a .fa.active,
+#productions-show .actions a .fa.active,
+#event-show .actions a .fa.active,
+#venue-show .actions a .fa.active {
+  color: var(--modal-actions-glyph-active-text-color);
+}
+/* buttons */
+.btn {
+  color: var(--modal-button-text-color);
+  background-color: var(--modal-button-background-color);
+  border-color: var(--modal-button-border-color);
+}
+.btn:active {
+  color: var(--modal-button-active-text-color);
+  background-color: var(--modal-button-active-background-color);
+  border-color: var(--modal-button-active-border-color);
+}
+/* tag */
+.tag {
+  color: var(--modal-tag-text-color);
+  background-color: var(--modal-tag-background-color);
+  border-color: var(--modal-tag-border-color);
+}
+
+a:active .tag {
+  color: var(--modal-tag-active-text-color);
+  background-color: var(--modal-tag-active-background-color);
+  border-color: var(--modal-tag-active-border-color);
+}
+
+/* event */
+/* event/production titles styles */
+#event-show h2#start-end-time,
+#event-show h3#venue-name,
+#event-show h3#venue-name a,
+#productions-show h2#start-end-time,
+#productions-show h3#venue-name,
+#productions-show h1#event-name,
+#event-show h2#start-end-time span,
+#event-show h3#venue-name span,
+#productions-show h2#start-end-time span,
+#productions-show h3#venue-name span,
+#productions-show h1#event-name span {
+  color: var(--modal-production-and-event-titles-color);
+  font-family: var(--modal-production-and-event-titles-font-family);
+  font-weight: var(--modal-production-and-event-titles-font-weight);
+  font-size: var(--modal-production-and-event-titles-font-size);
+}
+/* article */
+/* article created-at */
+#info-article-created-at,
+#article-show h3 {
+  font-size: var(--modal-created-at-font-size);
+  font-weight: var(--modal-created-at-font-weight);
+  color: var(--modal-created-at-text-color);
+}
+
+/* notifications */
+
+/* seconds until retry */
+#main.news #secondsTillBackoffRetry,
+#main.feedback-wrap #secondsTillBackoffRetry,
+#main.token #secondsTillBackoffRetry {
+  color: var(--notifications-retry-message-text-color);
+}
+/* background */
+#main.news {
+  background-color: var(--notifications-background-color);
+}
+/* item background color */
+#news .news-item {
+  background-color: var(--notifications-item-background-color);
+}
+/* sent at text styles */
+#news .news-item h4 {
+  font-size: var(--notifications-sent-at-font-size);
+  color: var(--notifications-sent-at-font-color);
+}
+/* subject text styles */
+#news .news-item h3 {
+  font-size: var(--notifications-subject-font-size);
+  color: var(--notifications-subject-font-color);
+  font-family: var(--notifications-subject-font-family);
+}
+/* body text styles */
+#news .news-item p {
+  font-size: var(--notifications-body-font-size);
+  color: var(--notifications-body-font-color);
+}
+/* linked article/event button */
+#news .news-item .boma-btn {
+  background-color: var(--notifications-button-background-color);
+  color: var(--notifications-button-text-color);
+}
+/* linked article/event button active/hover states */
+#news .news-item .boma-btn:hover,
+#news .news-item .boma-btn:focus {
+  background-color: var(--notifications-button-active-background-color);
+  color: var(--notifications-button-active-text-color);
+}
+#news .news-item.showcase-notification {
+  background-color: var(--notifications-showcase-background-color);
+}
+
+/* feedback */
+
+#main.feedback-wrap,
+#main.feedback-wrap .form-pane {
+  background-color: var(--feedback-background-color);
+}
+
+/* clashfinder */
+
+/* wrap background colour */
+#cf-wrap {
+  background-color: var(--clashfinder-background-colour);
+}
+/* day select background colour */
+.cf-buttons a {
+  background-color: var(--clashfinder-nav-button-background-color);
+  color: var(--clashfinder-nav-button-text-color);
+  font-family: var(--clashfinder-nav-button-font-family);
+}
+.cf-buttons a span {
+  font-family: var(--clashfinder-nav-button-font-family);
+  color: var(--clashfinder-nav-button-text-color);
+}
+/* day select active state */
+.cf-buttons a.active,
+.cf-buttons a.active span {
+  background-color: var(--clashfinder-nav-button-active-background-color);
+  color: var(--clashfinder-nav-button-active-text-color) !important;
+}
+/* day select focus state */
+.cf-buttons a:active,
+.cf-buttons a:active span {
+  background-color: var(--clashfinder-nav-button-hover-background-color);
+  color: var(--clashfinder-nav-button-hover-text-color);
+}
+
+/* time canvas background-colour */
+#canvas-time {
+  background-color: var(--clashfinder-time-canvas-background-colour);
+}
+
+/* Survey */
+
+.survey__question input[type="radio"] + label {
+  border-color: var(--survey-button-border-color);
+  background-color: var(--survey-button-background-color);
+  color: var(--survey-button-text-color);
+}
+
+.survey__question input[type="radio"] + label:hover {
+  border-color: var(--survey-button-active-border-color);
+  background-color: var(--survey-button-active-background-color);
+  color: var(--survey-button-active-text-color);
+}
+
+.survey__question input[type="radio"]:checked + label {
+  border-color: var(--survey-button-selected-border-color);
+  background-color: var(--survey-button-selected-background-color);
+  color: var(--survey-button-selected-text-color);
+}
+
+/* map */
+
+.map#main {
+  background-color: var(--map-background-color);
+}

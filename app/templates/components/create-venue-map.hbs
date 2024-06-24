@@ -1,0 +1,15 @@
+<div id="community-events-map">
+  <div id="map-centre">
+    {{#if this.mapLoaded}}
+      <i class="fa fa-light fa-location-dot"></i>
+    {{else}}
+      <i class="fa fa-solid fa-circle-notch fa-spin"></i>
+    {{/if}}
+  </div>
+
+  {{#if this.searchError}}
+    <ul class="errors" id="create-venue-map-error"> 
+      <li>{{this.searchError}}</li>
+    </ul>
+  {{/if}}
+</div>

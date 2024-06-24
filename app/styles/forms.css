@@ -1,0 +1,267 @@
+.form-pane {
+  width: 100%;
+  background-color: #fff;
+  height: calc(100vh - 51px);
+  height: calc(100vh - env(safe-area-inset-top) - 51px);
+  overflow: scroll;
+}
+/*
+.form-pane:first-child {
+  display: block;
+}*/
+
+.flickity-button {
+  display: none;
+}
+
+.flickity-page-dots {
+  display: none;
+}
+
+.form-pane p {
+  line-height: 18px;
+}
+
+.form-pane h1 {
+  padding-bottom: 8px;
+}
+
+.form-pane ol {
+  margin-top: 0;
+}
+
+.form-pane li {
+  color: #7f7f7f;
+}
+
+.form-pane p {
+  color: #aaaaaa;
+}
+
+.form-wrap .content-wrap {
+  margin: 16px;
+  margin-top: 12px;
+  min-height: calc(100vh - 51px - 28px - 55px - 50px);
+  min-height: calc(
+    100vh - 51px - env(safe-area-inset-top) - 28px - 55px - 52px
+  );
+  padding: 0;
+}
+
+.form-wrap .content-wrap .scrolling-content {
+  height: calc(100vh - 240px);
+  overflow: scroll;
+}
+
+.form-btn.danger {
+  background-color: red;
+  color: #fff;
+}
+
+.center-aligned {
+  margin: auto;
+  text-align: center;
+}
+
+/* Toggle Switch */
+
+.toggle-setting p {
+  float: left;
+  width: 80%;
+}
+
+.form-switch {
+  float: right;
+}
+
+.form-switch {
+  display: inline-block;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+  top: -3px;
+  position: relative;
+}
+
+.form-switch i {
+  position: relative;
+  display: inline-block;
+  margin-right: 0.5rem;
+  width: 46px;
+  height: 26px;
+  background-color: #e6e6e6;
+  border-radius: 23px;
+  vertical-align: text-bottom;
+  transition: all 0.3s linear;
+}
+
+.form-switch i::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  width: 42px;
+  height: 22px;
+  background-color: #fff;
+  border-radius: 11px;
+  transform: translate3d(2px, 2px, 0) scale3d(1, 1, 1);
+  transition: all 0.25s linear;
+}
+
+.form-switch i::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  width: 22px;
+  height: 22px;
+  background-color: #fff;
+  border-radius: 11px;
+  box-shadow: 0 1px 0px rgba(0, 0, 0, 0.24);
+  transform: translate3d(2px, 2px, 0);
+  transition: all 0.2s ease-in-out;
+}
+
+.form-switch:active i::after {
+  width: 28px;
+  transform: translate3d(2px, 2px, 0);
+}
+
+.form-switch:active input:checked + i::after {
+  transform: translate3d(16px, 2px, 0);
+}
+
+.form-switch input {
+  display: none;
+}
+
+.form-switch input:checked + i {
+  background-color: #4bd763;
+}
+
+.form-switch input:checked + i::before {
+  transform: translate3d(18px, 2px, 0) scale3d(0, 0, 0);
+}
+
+.form-switch input:checked + i::after {
+  transform: translate3d(22px, 2px, 0);
+}
+
+.form-switch input:disabled + i {
+  opacity: 0.5;
+}
+
+.va-outer .form-page-actions {
+  position: absolute;
+  bottom: 0px;
+  /*bottom: env(safe-area-inset-bottom); */
+  left: 0px;
+  width: calc(100vw - 34px);
+  overflow: auto;
+  /*margin: 16px;*/
+}
+
+#QR-wrap .form-page-actions {
+  position: absolute;
+  bottom: 0;
+  bottom: env(safe-area-inset-bottom);
+  left: 0px;
+  width: calc(100vw - 34px);
+  overflow: auto;
+  /*margin: 16px;*/
+  margin: 16px;
+}
+
+.form-pane .error {
+  display: block;
+  height: 23px;
+}
+
+/* Radio buttons */
+
+.form-pane .form-group-radio-buttons {
+  display: flex;
+  flex: 1;
+  width: 100%;
+  margin-bottom: 20px;
+  /*margin-top: 5px;*/
+  padding-top: 10px;
+}
+
+.form-pane .form-pane-radio-button {
+  align-items: stretch;
+  flex-grow: 1;
+  position: relative;
+}
+
+.form-pane .form-pane-radio-button label {
+  position: absolute;
+  top: 0;
+  left: 0;
+  padding-top: 9px;
+  text-align: center;
+  z-index: 100;
+  font-size: 18px;
+  font-weight: bold;
+  color: #fff;
+}
+
+.form-pane-radio-button input[type="radio"] {
+  margin-top: 0;
+}
+
+.form-pane input[type="radio"] {
+  background-color: #bbdfe4;
+}
+
+.form-pane .form-pane-radio-button:first-of-type input[type="radio"] {
+  border-top-left-radius: 4px;
+  border-bottom-left-radius: 4px;
+}
+
+.form-pane .form-pane-radio-button:last-of-type input[type="radio"] {
+  border-top-right-radius: 4px;
+  border-bottom-right-radius: 4px;
+}
+
+.form-pane .form-pane-radio-button input[type="radio"]:checked {
+  background-color: #2299a9;
+}
+
+.tag-select-button.active {
+  color: red;
+}
+
+.form-pane input[type="radio"] + label {
+  line-height: 20px;
+}
+
+.form-pane input[type="radio"] + label i {
+  font-size: 20px;
+  display: inline;
+  vertical-align: middle;
+  margin-right: 10px;
+}
+
+.form-pane .form-group-container.compact .form-group {
+  margin-bottom: 10px !important;
+}
+
+.form-pane .form-group-container.compact .form-group input {
+  height: 20px !important;
+  line-height: 20px !important;
+}
+
+.form-group-half-width {
+  width: 49%;
+  float: left;
+}
+
+.form-group-half-width:nth-child(odd) {
+  margin-right: 2%;
+}
+
+.form-group-half-width input {
+  width: 100%;
+}
+
+textarea {
+  background: transparent;
+}

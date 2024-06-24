@@ -1,0 +1,119 @@
+{{#if this.renderRightSidebar}}
+	<AppRightSidebar @applicationController={{this.applicationController}} @filtersSetClass={{this.filtersSetClass}} @clearFilters={{action "clearFilters"}} as |rightSidebar|>
+		{{#if this.tagType}}
+			<div class="filter" id="cnb-tags-filter">
+				<h2>Tags</h2>
+				<div class="filter-wrap" id="tags-filter-wrap">
+					<div class="filter-inner"  id="tag-filter">
+						{{#each this.model.tags as |tag|}}
+							{{#if (eq tag.tag_type this.tagType)}}
+								<AppCheckbox @model={{tag}} @modelName="tag" @selected={{this.selectedTags}} @updateSelected={{action rightSidebar.updateSelected}} />
+							{{/if}}
+						{{/each}}
+					</div>
+				</div>
+			</div>
+		{{/if}}
+		
+		{{#if this.isCommunityNoticeboard}}
+			<div class="filter" id="cnb-tags-filter">
+				<h2>Created by</h2>
+				<div class="filter-wrap" id="tags-filter-wrap">
+					<div class="filter-inner"  id="tag-filter">
+						{{#each this.creators as |creator|}}
+							<AppRadioButton @id={{creator.id}} @name={{creator.name}} @modelName="creator" @selected={{this.selectedCreator}} @updateSelectedRadio={{action rightSidebar.updateSelectedRadio}} />
+						{{/each}}
+					</div>
+				</div>
+			</div>
+		{{/if}}
+	</AppRightSidebar>
+{{/if}}
+
+<div id="main" class="{{this.pageName}}">	
+	<AppHeader as |appHeaderActions|>
+		<div class="header-top">
+			<div class="left">
+				<a id="toggle-left-sidebar">
+					<div id="menu-toggle" class="con close">
+						<span class="bar top"></span>
+						<span class="bar middle"></span>
+						<span class="bar bottom"></span>
+					</div>
+				</a>
+				<PageTitle @title={{this.pageName}} />
+			</div>
+			<div class="right">
+        
+				{{#unless this.isCommunityNoticeboard}}
+	        {{#if this.currentMediaIsPlaying}}
+		        {{#if (eq this.currentMediaModelName "article")}}
+							<LinkTo @route='articles' @query={{hash articleType='boma_article' selectedTags=this.audio_id_as_array selectedExcludedTags='' pageName='Sounds of Shambala' articleModal=true articleModalModelID=this.currentMediaModelID}} id="back-to-audio-article">
+								<i class="fa fa-light fa-waveform"></i>
+                {{!-- <i class="fa-light fa-volume-high" aria-hidden="true"></i> --}}
+							</LinkTo>
+						{{/if}}
+						{{#if (eq this.currentMediaModelName "event")}}
+							<LinkTo @route='community-events' @query={{hash eventModal=true eventModalModelID=this.currentMediaModelID}}>
+                <i class="fa fa-light fa-waveform"></i>
+								{{!-- <i class="fa-light fa-volume-high" aria-hidden="true"></i> --}}
+							</LinkTo>
+						{{/if}}
+					{{/if}}
+				{{/unless}}
+
+        <a role="button" id="reload-model-anchor" {{action "reloadModel" true}}>
+        	<i id="reload-model" class="fa fa-light fa-arrows-rotate {{this.isRetryingNowClass}} fa-3x messages-loading {{if this.successReloadingModel 'pulse fa-check-circle'}} {{if this.failedReloadingModel 'shake fa-exclamation-circle'}}"></i>
+        </a>
+
+        {{#unless this.isCommunityNoticeboard}}
+					<a role="button" id="toggle-header-bottom" {{action appHeaderActions.toggleHeaderBottom}}>
+	          <i class="fa-light fa-magnifying-glass" aria-hidden="true"></i>
+	        </a>
+				{{/unless}}
+
+        {{#if this.preferences}}
+          <LinkTo @route="articles" @query={{hash preferences=""}} class={{if this.preferences 'active'}}>
+            <i class="fas fa-solid fa-heart beat" aria-hidden="true"></i>
+          </LinkTo>
+        {{else}}
+          <LinkTo @route="articles" @query={{hash  preferences="true"}} class={{if this.preferences 'active'}}>
+            <i class="fa-light fa-heart" aria-hidden="true"></i>
+          </LinkTo>
+        {{/if}}
+
+        {{#if this.isCommunityNoticeboard}}
+					<a role="button" id="add-article" {{action "goToRoute" 'create-article' }}>
+	          <i class="fa-light fa-plus" aria-hidden="true"></i>
+	        </a>
+				{{/if}}
+
+				{{#if this.renderRightSidebar}}
+					<a id="toggle-right-sidebar" class={{this.filtersSetClass}}>
+						<i class="fa-light fa-sliders" aria-hidden="true"></i>
+					</a>
+				{{/if}}
+      </div>
+		</div>
+		<KeywordSearch/>
+	</AppHeader>
+
+	<CollectionList @model={{this.model.articles}} @scrollChange="scrollChange" @scrollTop={{this.scrollTop}} @displayFormat={{this.displayFormat}} @isLoadingModel={{this.isLoadingModel}} @preferences={{this.preferences}} @searchKeyword={{this.searchKeyword}} @buffer={{20}} @listItemComponent={{component this.articleListComponent
+			openArticleModal=(action "openArticleModal")
+			favouriteArticle=(action "favouriteArticle")
+			linkOnly=this.isLinkGallery
+		}} />
+
+</div>
+
+{{#if this.articleModal}}
+	<ToElsewhere @named="appModal" @send={{component 
+				this.articleModalComponent 
+				articleID=this.articleModalModelID 
+				closeModal=(action "closeArticleModal") 
+				wallet=this.model.wallet
+				pageName=this.pageName
+        goBack=this.goBack
+        isZoomingImage=this.isZoomingImage
+			}} />
+{{/if}}

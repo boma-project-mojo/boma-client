@@ -1,0 +1,7 @@
+<input type="radio" 
+  checked={{this.isChecked}} 
+  id={{this.name}} 
+  name={{this.name}} 
+  onclick={{action (action this.updateSelectedRadio this.value)}}  
+  >
+  <label for={{this.name}}><span><HtmlSafeString @string={{this.label}}/></span></label>

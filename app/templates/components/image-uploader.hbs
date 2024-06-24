@@ -1,0 +1,28 @@
+{{#if this.uncroppedImage}}
+  <ImageCropper @img={{this.uncroppedImage}} @cropper={{this.cropper}} />
+  <a role="button" id="change-image" {{action "resetImageUploader"}}>
+    Use a different image
+  </a>
+{{else}}
+  {{#if this.isCordova}}
+    <div class="form-group" id="event-form-image-wrap">
+      <a role="button" class="form-btn primary" {{action "openCamera" "camera"}}>
+        <i class="fa fa-camera"></i> Camera
+      </a> 
+      <a role="button" class="form-btn primary" {{action "openCamera" "album"}}>
+        <i class="fa fa-image"></i> Gallery
+      </a>          
+    </div>  
+  {{else}}
+    <div class="form-group" id="event-form-image-wrap">
+      {{#let (file-queue name="photos" onFileAdded=(action "uploadImage")) as |queue|}}
+        {{#if this.image_base64}}
+          <img id="croppedImagePreview" src={{this.image_base64}} alt="Cropper">
+        {{else}}
+          <input id="fileUpload" type="file" {{queue.selectFile}}>
+          <label for="fileUpload" class="form-btn primary">Add Image</label>
+        {{/if}}  
+      {{/let}}
+    </div>
+  {{/if}}
+{{/if}}

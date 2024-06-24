@@ -1,0 +1,8 @@
+<a role="button" {{action (action this.openModal) this.model.id}}>
+	<div class="production">
+    <AppListImage @model={{this.model}} @className="thumbnail-image" />
+		<div class="production-details">
+      <h3>{{this.model.name}}</h3>
+    </div>
+	</div>
+</a>

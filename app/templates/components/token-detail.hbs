@@ -1,0 +1,185 @@
+<div class="va-outer">
+  <div class="va-inner">
+    <div class="content-wrap" id="token-show">
+      {{#if this.tokenNetworkError}}
+        <div class="errors-wrap">
+          <ul class="errors"> 
+            <li>{{this.tokenNetworkError}}</li>
+          </ul>
+        </div>
+      {{/if}}
+
+      <h1 id="token-event-name">{{this.token.event_name}}</h1>
+      {{#if this.token.event_start_date}}
+        <h3 id="token-event-time">
+          From <FormattedDate @dateTime={{this.token.event_start_date}} @format='ddd Do MMM, h:mma'/><br>
+          to <FormattedDate @dateTime={{this.token.event_end_date}} @format='ddd Do MMM, h:mma'/>
+        </h3>
+      {{/if}}
+
+      <div class="token-image">
+        {{#if this.is_validator}}
+          <a role="button" {{action (action this.scanToValidate) this.token}}>
+            <img src={{this.token.event_image_base64}} alt="Token">
+          </a>
+        {{else}}
+          <img src={{this.token.event_image_base64}} alt="Token">
+        {{/if}}
+      </div>
+      
+      <div id="token-state-wrap">
+        {{#if (eq this.token.token_state 'waiting')}}
+          <i class="fa fa-clock-o"></i>
+        {{/if}}
+        {{#if (eq this.token.token_state 'ready')}}
+          <i class="fa fa-crosshairs"></i>
+        {{/if}}
+        {{#if (eq this.token.token_state 'validating')}}
+          <i class="fa fa-refresh fa-spin"></i>
+        {{/if}}
+        {{#if (eq this.token.token_state 'queued')}}
+          <i class="fa fa-spinner spin"></i>
+        {{/if}}
+        {{#if (eq this.token.token_state 'mined')}}
+          <i class="fa fa-check"></i>
+        {{/if}}
+        {{#if (eq this.token.token_state 'mining')}}
+          <i class="fa fa-link"></i>
+        {{/if}}
+        {{#if (eq this.token.token_state 'out-of-bounds')}}
+          <i class="fa fa-exclamation-circle"></i>
+        {{/if}}
+        {{#if (eq this.token.token_state 'location-inaccurate')}}
+          <i class="fa fa-exclamation-circle"></i>
+        {{/if}}
+        {{#if (eq this.token.token_state 'registering')}}
+          <i class="fa fa-database"></i>
+        {{/if}}
+
+        <h1 id="token-state"><TokenState @tokenState={{this.token.token_state}} /></h1>
+      
+        {{#if (eq this.token.token_state 'waiting')}}
+          <h2 class="token-state-explanation">
+            Validation will open when you are in the time, space
+            &amp; place of {{this.token.event_name}}.
+          </h2>
+        {{/if}}
+
+        {{#if (eq this.token.token_state 'ready')}}
+          <h2 class="token-state-explanation">
+            You’ll need to be in the time, space
+            &amp; place of {{this.token.event_name}} to validate this token.
+            <br><br>
+            Click validate to get started.  
+          </h2>
+        {{/if}}
+
+        {{#if (eq this.token.token_state 'validating')}}
+          <h2 class="token-state-explanation">
+            Checking that your are in the time, space
+            &amp; place of {{this.token.event_name}} to validate this token.
+          </h2>
+        {{/if}}
+
+        {{#if (eq this.token.token_state 'out-of-bounds')}}
+          <h2 class="token-state-explanation">
+            You need to be in the time, space
+            &amp; place of {{this.token.event_name}} to validate this token.
+
+            If you’re on site then click retry.
+          </h2>
+        {{/if}}
+
+        {{#if (eq this.token.token_state 'location-inaccurate')}}
+          <h2 class="token-state-explanation">
+            We can't get an accurate location for you.  
+            You need to be in the time, space
+            &amp; place of {{this.token.event_name}} to validate this token.
+
+            If you’re on site then click retry.
+          </h2>
+        {{/if}}
+
+        {{#if (eq this.token.token_state 'mined')}}
+          <h2 class="token-state-explanation">
+            Your eligibility for the 
+            {{this.token.event_name}} token has been 
+            stored anonymously 
+            on the blockchain
+          </h2>
+        {{/if}}
+
+        {{#if (eq this.token.token_state 'mining')}}
+          <h2 class="token-state-explanation">
+            Your eligibility for the 
+            {{this.token.event_name}} token is being 
+            stored anonymously 
+            on the blockchain
+          </h2>
+        {{/if}}
+
+        {{#if (eq this.token.token_state 'queued')}}
+          <h2 class="token-state-explanation">
+            Your eligibility for the 
+            {{this.token.event_name}} token is being 
+            stored anonymously 
+            on the blockchain
+          </h2>
+        {{/if}}
+
+        {{#if (eq this.token.token_state 'registering')}}
+          <h2 class="token-state-explanation">
+            Your token has been confirmed and
+            is now being registered anonymously 
+            by Boma
+          </h2>
+        {{/if}}  
+
+        {{#if (eq this.tokenState.message "Illegal Access")}}
+          <h2 class="token-state-explanation">
+            We need access to your phone's location services
+            to be able to validate your token.
+          </h2>
+        {{/if}}  
+
+        <p id="token-last-upated-at">Last updated at: <FormattedDate @dateTime={{this.token.last_updated_at}} @format='ddd Do MMM YYYY h:mma'/></p>
+      </div>    
+    
+      <div class="form-page-actions">
+        <LinkTo @route="wallet">
+          <span class="form-btn subtle left"><i class="fa fa-chevron-left"></i> Back</span>
+        </LinkTo>
+
+        {{#if this.loading}}
+          <a class="form-btn primary disabled right" disabled="disabled">
+            <i class="fa fa-solid fa-circle-notch fa-2x fa-spin fa-fw loading"></i>
+          </a>
+        {{else}}
+          {{#if (eq this.token.token_state 'ready')}}
+            <a role="button" class="form-btn primary right" {{action (action this.validateLocationForToken this.wallet this.token)}}>Validate Location</a>
+          {{/if}}
+
+          {{#if (eq this.token.token_state 'out-of-bounds')}}
+            <a role="button" class="form-btn primary right" {{action (action this.validateLocationForToken this.wallet this.token)}}>Retry</a>
+          {{/if}}
+
+          {{#if (eq this.token.token_state 'location-inaccurate')}}
+            <a role="button" class="form-btn primary right" {{action (action this.validateLocationForToken this.wallet this.token)}}>Retry</a>
+          {{/if}}
+
+          {{#if (eq this.token.token_state 'registering')}}
+            <RetryingWithBackoff @buttonStyle={{true}} @retryingNow={{this.retryingNow}} @loadingSucceeded={{this.loadingSucceeded}} @loadingFailed={{this.loadingFailed}} @secondsUntilNextAttempt={{this.secondsUntilNextAttempt}} @showRefreshButton={{true}} @retryNow={{action this.retryRegisterTokenNow}} />
+          {{/if}}
+
+          {{#if (eq this.token.token_state 'mining')}}
+            <a role="button" class="form-btn primary right" {{action (action this.reloadWallet this.wallet)}}>Reload</a>
+          {{/if}}
+
+          {{#if (eq this.token.token_state 'mined')}}
+            <a role="button" class="form-btn primary right" {{action (action this.scan this.token)}}><i class="fa fa-camera" aria-hidden="true"></i> Scan</a>
+          {{/if}}
+        {{/if}}
+      </div>
+    </div>
+  </div>
+</div>

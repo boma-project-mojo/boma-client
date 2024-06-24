@@ -1,0 +1,15 @@
+{{#if this.showUpdateNag}}
+	{{#if this.appStoreLink}}
+		<div id="update-nag">
+			<h2>Update available</h2>
+			<p><a target="_blank" href={{this.appStoreLink}} rel="noopener noreferrer">Click here to update now</a></p>
+			<a role="button" id="dismiss-update" {{action "hideUpdateNag"}}><i class="fa fa-times"></i></a>
+		</div>
+	{{else}}
+		<div id="update-nag">
+			<h2>Update available</h2>
+			<p>Please update now via the app store</p>
+			<a role="button" id="dismiss-update" {{action "hideUpdateNag"}}><i class="fa fa-times"></i></a>
+		</div>
+	{{/if}}
+{{/if}}

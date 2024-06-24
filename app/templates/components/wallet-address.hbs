@@ -1,0 +1,8 @@
+<div class="form-page-actions fixed">
+  <div id="wallet-address">
+    <h2>Wallet Address</h2>
+    <p>{{this.model.wallet.truncatedWalletAddress}}</p>
+  </div>
+
+  <a role="button" class="form-btn primary right" {{action (action this.copyWalletAddressToClipboard)}}><i class="fa fa-copy" aria-hidden="true"></i> Copy</a>
+</div>

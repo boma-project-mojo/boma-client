@@ -1,0 +1,55 @@
+<div id="audio-player" class={{if (eq this.scrubbingDisabled true) "scrubbingDisabled"}}>
+	<div class="audio-player-controls">
+		{{!-- Disabled when this player is used for live streaming audio --}}
+		{{#unless this.scrubbingDisabled}}
+			<a role="button" {{action (action "seekBack15s")}} class="audio-control">
+				<img alt="skip back 15 seconds" src="assets/images/skip-15-back.svg">
+			</a>
+		{{/unless}}
+
+		{{#if this.isPlaying}}
+			<a role="button" {{action (action "pause")}} class="audio-control audio-control-fa" id="loading-retry-btn">
+				<div class="spinning-loader {{this.loadingClass}} {{unless this.loading "hidden"}}"></div>
+				<i class="fa fa-pause" aria-hidden="true"></i>
+			</a>
+		{{else}}
+			<a role="button" {{action (action "play")}} class="audio-control audio-control-fa" id="loading-retry-btn">
+				<div class="spinning-loader {{this.loadingClass}}"></div>
+				<i class="fa fa-play" aria-hidden="true"></i>
+			</a>	
+		{{/if}}
+
+		{{!-- Disabled when this player is used for live streaming audio --}}
+		{{#unless this.scrubbingDisabled}}
+			<a role="button" {{action (action "seekForward15s")}} class="audio-control">
+				<img alt="skip forward 15 seconds" src="assets/images/skip-15-forward.svg">
+			</a>
+		{{/unless}}
+	</div>
+
+	<div class="clearboth"></div>
+
+	{{#unless this.scrubbingDisabled}}
+		<div id="scrub-bar">
+			<RangeSlider @currentPosition={{if this.currentPositionIsSet this.currentPosition 0}} @duration={{this.duration}} @isPlaying={{this.isPlaying}} @isPlayingOrPaused={{this.isPlayingOrPaused}} @seekTo={{action "seekTo"}} />
+
+			{{#if this.currentPositionIsSet}}
+				<p id="audio-player-current-time">{{this.currentPositionInTime}}</p>
+				<p id="audio-player-duration">{{this.durationInTime}}</p>
+			{{else}}
+				<p id="audio-player-current-time">&nbsp;</p>
+				<p id="audio-player-duration">&nbsp;</p>
+			{{/if}}
+		</div>
+	{{/unless}}
+
+	{{#if this.isCurrentModel}}
+		<div class="error">
+			{{this.error}}
+		</div>
+
+		<div class="message {{this.loadingClass}}">
+			{{this.message}}
+		</div>
+	{{/if}}
+</div>

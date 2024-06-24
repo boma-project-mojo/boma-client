@@ -1,0 +1,7 @@
+{{#each this.formPanes as |fp index|}}
+  {{#if (eq this.currentPaneIndex index)}}
+    <span class="breadcrumb-form-pane-item active"></span>
+  {{else}}
+    <span class="breadcrumb-form-pane-item"></span>
+  {{/if}}
+{{/each}}

@@ -1,0 +1,13 @@
+<div {{did-pan onPanEnd=(action this.closeModal) threshold=100}}>
+  <i class="fa-solid fa-circle-notch fa-2x fa-spin loading {{this.placeholderHidden}}"></i>
+  {{#if this.model.image_loader}}
+    {{#if this.image.isPending}}
+      <div class="appModalImage embedded-image {{this.imageIsLoaded}}" style={{this.image_loader}}></div>
+    {{else}}
+      <div class="appModalImage embedded-image {{this.imageIsLoaded}}" style={{await this.image}}></div>
+    {{/if}}
+  {{else}}
+    <div class="appModalImage embedded-image {{this.imageIsLoaded}}" style={{await this.image}}></div>
+  {{/if}}
+  <button class="close-modal" type="button"></button>
+</div>

@@ -1,0 +1,346 @@
+<div id="main" class="create-event">
+  <AppHeader>
+    <div class="header-top">
+      <div class="left">
+        <a id="toggle-left-sidebar">
+          <div id="menu-toggle" class="con close">
+            <span class="bar top"></span>
+            <span class="bar middle"></span>
+            <span class="bar bottom"></span>
+          </div>
+        </a>
+        <div class="header-title">
+          <a>Create Event</a>
+        </div>
+      </div>    
+    </div>
+  </AppHeader>
+
+  {{#unless this.requiresToken}}
+    {{#unless this.formSubmitted}}
+      <div id="create-event-form" class="form-wrap">  
+        {{#if this.serverErrors}}
+          <ul class="errors"> 
+            {{#if this.serverErrors.base}}
+              {{#each this.serverErrors.base as |error|}}
+                <li>{{error}}</li>
+              {{/each}}
+            {{/if}}
+            {{#if this.serverErrors.event_errors}}
+              {{#each this.serverErrors.event_errors as |error|}}
+                <li>Event {{error.detail}}</li>
+              {{/each}}
+            {{/if}}
+            {{#if this.serverErrors.venue_errors}}
+              {{#each this.serverErrors.venue_errors as |error|}}
+                <li>Venue {{error.detail}}</li>
+              {{/each}}
+            {{/if}}
+          </ul>
+        {{/if}}
+        <FormWrap>
+          <FormPane @id="venue" @registerFormElement={{action "registerFormElement"}} @next={{action this.venueNextAction this.venueValidateThenNextAttrs}} @prev={{action this.prevFromVenueAction}} @formPanes={{this.formPanes}} @currentPaneIndex={{this.currentPaneIndex}}>
+            {{#unless this.mapOpen}}
+              <h1>Add your event location</h1>
+              <h2>If it's a virtual event give us a link to it otherwise let us the location of your event so people know where to go. </h2>
+              <label>Is your event Physical or Virtual</label>
+              <div class="form-group-radio-buttons">
+                <FormRadioButton @name="physical" @value="physical" @label="<i class='fa fa-solid fa-location-dot' aria-hidden='true'></i> Physical" @selected={{this.event.event_format}} @updateSelectedRadio={{action "updateEventFormat"}} />
+                <FormRadioButton @name="virtual" @value="virtual" @label="<i class='fa-solid fa-earth-europe'></i> Virtual" @selected={{this.event.event_format}} @updateSelectedRadio={{action "updateEventFormat"}} />
+              </div>
+              {{#if (eq this.event.event_format 'physical')}}
+                <label for="">You can search for a location by name or postcode.</label>
+                {{#if this.errors}}
+                  {{#if (v-get this 'selectedVenue' 'isInvalid')}}
+                    <div class="error">
+                      {{v-get this 'selectedVenue' 'message'}}
+                    </div>
+                  {{/if}}
+                {{/if}}
+
+                <div class="form-group" id="venue-search-form-group">
+                  <SearchSelect
+                    @onSearch={{action (action "searchVenues")}}
+                    @onSelect={{action (action "setSelectedVenue")}}
+                    @networkError={{this.serverErrors.base}}
+                    @selected={{this.venue.name}} as |sb|>
+                    <div class="search-options">
+                      {{#each this.searchVenueResults as |venueResult|}}
+                        <sb.Option @value={{venueResult}}>
+                          <strong>{{venueResult.name}}</strong><br>
+                          {{#if venueResult.address_line_1}}
+                            {{venueResult.address_line_1}}, 
+                          {{/if}}
+                          {{#if venueResult.address_line_2}}
+                            {{venueResult.address_line_2}}, 
+                          {{/if}}
+                          {{#if venueResult.city}}
+                            {{venueResult.city}}, 
+                          {{/if}}
+                          {{#if venueResult.postcode}}
+                            {{venueResult.postcode}}
+                          {{/if}}
+                        </sb.Option>
+                      {{else}}
+                        <sb.Option>
+                          No results, search for somewhere nearby.
+                        </sb.Option>
+                      {{/each}}
+                    </div>
+                  </SearchSelect>
+                  {{#if this.venue.name}}
+                    <button type="button" id="clear-search" {{action (action 'resetVenueSearch')}}>
+                      <i class="fa fa-times"></i>
+                    </button>
+                  {{/if}}
+                </div>
+              {{else}}
+                <div class="form-group">
+                  <label for="external_link">Virtual Event Link</label>
+                  <Input @type="url" id="virtual_event_link" @value={{this.event.external_link}} />
+                  <div class="error">
+                    {{#if this.errors}}
+                      {{#if (v-get this 'event.external_link' 'isInvalid')}}
+                          {{v-get this 'event.external_link' 'message'}}
+                      {{/if}}
+                    {{/if}}
+                  </div>
+                </div>
+              {{/if}}
+            {{else}}
+              {{#if this.editingAddress}}
+                <h1>Is this the correct address?</h1>
+                <div class="form-group-container compact">
+                  <div class="form-group">
+                    <label for="venueName">Name</label>
+                    <Input id="venueName" @type="text" @value={{this.venue.name}} />
+                  </div>
+                  <div class="form-group">
+                    <label for="venueAddressLine1">Address Line 1</label>
+                    <Input id="venueAddressLine1" @type="text" @value={{this.venue.address_line_1}} />
+                  </div>
+                  <div class="form-group">
+                    <label for="venueAddressLine2">Address Line 2</label>
+                    <Input id="venueAddressLine2" @type="text" @value={{this.venue.address_line_2}} />
+                  </div>
+                  <div class="form-group">
+                    <label for="venueCity">City</label>
+                    <Input id="venueCity" @type="text" @value={{this.venue.city}} />
+                  </div>
+                  <div class="form-group">
+                    <label for="venuePostcode">Postcode</label>
+                    <Input id="venuePostcode" @type="text" @value={{this.venue.postcode}} />
+                  </div>
+                </div>
+              {{else}}
+                <h1>Is the pin in the right place?</h1>
+                <h2>You can edit the location of the venue by moving the map pin or by editing the address.</h2>
+                {{#if this.venue.lat}}
+                  <p id="venue-name">
+                    {{#unless this.venueLoading}}
+                      <strong>{{this.venue.name}}</strong> {{this.venue.address}}
+                    {{else}}
+                      <i class="fa-solid fa-circle-notch fa-2x fa-spin venue-loading"></i> Loading
+                    {{/unless}}
+                  </p>
+                {{/if}}
+                <CreateVenueMap @selectedVenue={{this.venue}} @setVenueLatLon={{action "setVenueLatLon"}} @closeMap="closeMap" @cancelMap="cancelMap" />
+                <a role="button" id="change-location" {{action (action "resetVenueSearch")}}>
+                  Search for a different location
+                </a>
+              {{/if}}
+            {{/unless}}
+          </FormPane>
+
+          <FormPane @id="start-date-and-time" @registerFormElement={{action "registerFormElement"}} @next={{action "validateThenNext" "event.start_time,event.end_time"}} @prev={{action "prev"}} @formPanes={{this.formPanes}} @currentPaneIndex={{this.currentPaneIndex}}>
+            <h1>When does the event start and end?</h1>
+            <h2>If you're not sure when it ends then just leave it blank</h2>
+            <div class="form-group" id="eventStartDateTimeWrap">
+              <label for="startDateTime">Start Date &amp; Time</label>
+              <EmberFlatpickr @date={{this.event.start_time}} @onChange={{action (mut this.event.start_time) value="firstObject"}} @enableTime={{true}} />
+              <div class="error">
+                {{#if this.errors}}
+                  {{#if (v-get this 'event.start_time' 'isInvalid')}}
+                    {{v-get this 'event.start_time' 'message'}}
+                  {{/if}}
+                {{/if}}
+              </div>
+            </div>
+            <div class="form-group" id="eventEndDateTimeeWrap">
+              <label for="endDateTime">End Date &amp; Time</label>
+              <EmberFlatpickr @date={{this.event.end_time}} @onChange={{action (mut this.event.end_time) value="firstObject"  }} @enableTime={{true}} />
+              <div class="error">
+                {{#if this.errors}}
+                  {{#if (v-get this 'event.end_time' 'isInvalid')}}
+                    {{v-get this 'event.end_time' 'message'}}
+                  {{/if}}
+                {{/if}}
+              </div>
+            </div>
+          </FormPane>
+
+          <FormPane @id="name-and-external-link" @registerFormElement={{action "registerFormElement"}} @next={{action "validateThenNext" "event.name,event.external_link"}} @prev={{action "prev"}} @formPanes={{this.formPanes}} @currentPaneIndex={{this.currentPaneIndex}}>
+            <div class="scrolling-content">
+              <h1>Describe your event</h1>
+              <h2>Give you event a name and describe it.</h2>
+              {{#if this.physicalEvent}}
+                <h2>You can also add an optional link</h2>
+              {{/if}}
+              <div class="form-group" id="eventNameWrap">
+                <label for="eventName">Event name</label>
+                <Input @type="text" id="eventName" @value={{this.event.name}} />
+                <div class="error">
+                  {{#if this.errors}}
+                    {{#if (v-get this 'event.name' 'isInvalid')}}
+                      {{v-get this 'event.name' 'message'}}
+                    {{/if}}
+                  {{/if}}
+                </div>
+              </div>
+              {{#if (eq this.event.event_format 'physical')}}
+                <div class="form-group" id="eventStartDateWrap">
+                  <label for="external_link">External Link (optional)</label>
+                  <Input @type="url" id="external_link" @value={{this.event.external_link}} />
+                  <div class="error">
+                    {{#if this.errors}}
+                      {{#if (v-get this 'event.external_link' 'isInvalid')}}
+                          {{v-get this 'event.external_link' 'message'}}
+                      {{/if}}
+                    {{/if}}
+                  </div>
+                </div>
+              {{/if}}
+            </div>
+          </FormPane>
+ 
+          <FormPane @id="description" @registerFormElement={{action "registerFormElement"}} @next={{action "validateThenNext" "event.description"}} @prev={{action "prev"}} @formPanes={{this.formPanes}} @currentPaneIndex={{this.currentPaneIndex}}>
+            <div class="scrolling-content">
+              <h1>Describe your event</h1>
+              <h2>Describe your event so your fellow Shambalans know what it’s all about!</h2>
+              <div class="form-group clearboth">
+                <label for="description-form-element">Info</label>
+                <Textarea id="description-form-element" @value={{this.event.description}} />
+                {{#if this.errors}}
+                  {{#if (v-get this 'event.description' 'isInvalid')}}
+                    <div class="error">
+                      {{v-get this 'event.description' 'message'}}
+                    </div>
+                  {{/if}}
+                {{/if}}
+              </div>
+            </div>
+          </FormPane>
+
+          <FormPane @id="image" @registerFormElement={{action "registerFormElement"}} @next={{action this.imageNextAction}} @nextButtonText={{this.imageNextButtonText}} @prev={{action "prev"}} @formPanes={{this.formPanes}} @currentPaneIndex={{this.currentPaneIndex}}>
+            <h1>Choose an image</h1>
+            <h2>Add an optional image to your event</h2>
+            <p>Choose an image from your phone and then we’ll allow you to crop it.  </p>
+
+            <ImageUploader @model={{this.event}} @cropper={{this.cropper}} @uncroppedImage={{this.uncroppedImage}} />
+          </FormPane>
+          
+          <FormPane @id="confirm-and-submit" @registerFormElement={{action "registerFormElement"}} @prev={{action "prev"}} @next={{action this.submitAction}} @nextButtonText="Submit" @loading={{this.loading}} @formPanes={{this.formPanes}} @currentPaneIndex={{this.currentPaneIndex}}>
+            <h1>Confirm details and submit your event</h1>
+            <h2>You won't be able to edit the event details once they are submitted.</h2>
+
+            {{#if this.is_publisher}}
+              <div class="alert message validateOtherError">
+                You have a publisher token, this event will be published immediately to all app users!
+              </div>
+            {{/if}}
+
+            <h2>Event Name</h2>
+            <p><strong>{{this.event.name}}</strong></p>
+
+            <h2>Event Start Time</h2>
+            <p><FormattedDate @dateTime={{this.event.start_time}} @format='ddd Do MMM YYYY h:mma'/></p>
+
+            {{#if this.event.end_time}}
+              <h2>Event End Time</h2>
+              <p><FormattedDate @dateTime={{this.event.end_time}} @format='ddd Do MMM YYYY h:mma'/></p>
+            {{/if}}
+
+            {{#unless this.event.virtualEvent}}
+              <h2>Venue Detail</h2>
+              <p>
+                {{#if this.venue.name}}
+                  <strong>{{this.venue.name}}</strong> <br>
+                {{/if}}
+                {{#if this.venue.address_line_1}}
+                  {{this.venue.address_line_1}}<br>
+                {{/if}}
+                {{#if this.venue.address_line_2}}
+                  {{this.venue.address_line_2}} <br>
+                {{/if}}
+                {{#if this.venue.city}}
+                  {{this.venue.city}} <br>
+                {{/if}}
+                {{#if this.venue.postcode}}
+                  {{this.venue.postcode}} <br>
+                {{/if}}
+              </p>
+            {{/unless}}
+
+            <h2>Event Info</h2>
+            <p id="ce-description-preview">{{this.event.description}}</p>
+            
+            {{#if this.event.external_link}}
+              {{#if this.event.virtualEvent}}
+                <h2>Live Streaming Link</h2>
+              {{else}}
+                <h2>External Link</h2>
+              {{/if}}
+              <p id="ce-external-link">{{this.event.external_link}}</p>
+            {{/if}}
+   
+            {{#if this.event.image_base64}}
+              <h2>Image</h2>
+              <img id="ce-image-preview" src={{this.event.image_base64}} alt="Event preview">
+            {{/if}}
+          </FormPane>
+        </FormWrap>
+      </div>
+    {{else}}
+      <div id="create-event-form" class="form-wrap">
+        <div class="full-page-success">
+          <div class="full-page-success-inner">
+            <i class="fa fa-light fa-check-circle fa-check-circle-o"></i>
+
+            <h1>Event submitted.</h1>
+            {{#if this.is_publisher}}
+              You have a publisher token, this event will be published immediately to all app users!
+            {{else}}
+              <h2>Our team will check it and publish it - you’ll see it appear on the Community Events Noticeboard shortly after.</h2>
+            {{/if}}
+          </div>
+        </div>       
+      </div>
+      <div class="form-page-actions">
+        <a role="button" class="form-btn subtle left" {{action (action "resetForm")}}>Submit Another</a>        
+        <LinkTo @route="community-events" class="form-btn primary right">
+          All Events
+        </LinkTo>
+      </div>
+    {{/unless}}
+  {{else}}
+    <div id="create-event-form" class="form-wrap">
+      <div class="full-page-success">
+        <div class="full-page-success-inner">
+          <i class="fa fa-exclamation-circle"></i>
+
+          <h1>Community Token Required</h1>
+          <h2>Sorry, you must have a community token to add community events. You can validate your token on site at Shambala 2020.</h2>
+        </div>
+      </div>       
+    </div>
+    <div class="form-page-actions"> 
+      <LinkTo @route="pages" @query={{hash pageModal=true pageModalModelID=8}} class="form-btn subtle left">
+        Find out more
+      </LinkTo>
+
+      <a role="button" {{action "goToRoute" 'community-events'}} class="form-btn primary right">
+        All Events
+      </a>
+    </div>
+  {{/unless}}
+</div>

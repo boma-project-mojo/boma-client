@@ -1,0 +1,40 @@
+<div id="festivals">
+	<div class="va-outer">
+		<div class="va-inner">
+			<img id="logo" src="assets/images/icon.svg" alt="Festival Logo">
+
+      <h1>Choose a festival</h1>
+
+      <div class="festivals-list">
+        {{#if this.loadingErrors}}
+          <div class="errors">
+            <li>There was an error getting the data, please check your network connection.  </li>
+          </div>
+        {{/if}}
+        
+        {{#each this.model as |festival|}}
+          {{#if (eq festival.aasm_state "published")}}
+            <a class="{{if (eq this.currentFestival festival.couchdb_design_doc_name) 'active'}} festival" {{action "chooseFestival" festival}} style={{festival.image_thumb_base64}}>
+              <span class="festival-name">{{festival.shortname}}</span>
+              <span class="festival-start-and-end"><FormattedDate @dateTime={{festival.start_date}} @format='D MMM'/> - <FormattedDate @dateTime={{festival.end_date}} @format='D MMM'/> <FormattedDate @dateTime={{festival.start_date}} @format='YYYY'/></span>
+            </a>
+          {{/if}}
+
+          {{#if this.previewModeEnabled}}
+            {{#if (eq festival.aasm_state "preview")}}
+              <a class="preview {{if (eq this.currentFestival festival.couchdb_design_doc_name) 'active'}} festival" {{action "chooseFestival" festival}} style={{festival.image_thumb_base64}}>
+                <span class="festival-name">{{festival.shortname}}</span>
+                <span class="festival-start-and-end"><FormattedDate @dateTime={{festival.start_date}} @format='D MMM'/> - <FormattedDate @dateTime={{festival.end_date}} @format='D MMM'/> <FormattedDate @dateTime={{festival.start_date}} @format='YYYY'/></span>
+              </a>
+            {{/if}}
+          {{/if}}
+
+        {{else}}
+          <button class="btn" {{action "reload"}}>Reload</button>
+        {{/each}}
+
+      </div>
+		</div>
+	</div>
+  <i id="festival-loading" class="fa-solid fa-circle-notch fa-2x fa-spin loading {{if this.isLoading "shown"}}"></i>
+</div>

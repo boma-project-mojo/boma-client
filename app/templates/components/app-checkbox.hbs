@@ -1,0 +1,25 @@
+{{#if (eq this.modelName "venue")}}
+  {{!-- Venue checkboxes should use the name and subtitle attribute for the label --}}
+  <input type="checkbox" 
+		checked={{this.isChecked}} 
+    disabled={{this.isDisabled}}
+		id="{{this.modelName}}-{{this.model.id}}" 
+		onclick={{action (action this.updateSelected this.modelName this.model.id)}} 	
+		>
+	<label for="{{this.modelName}}-{{this.model.id}}"><span>{{this.model.name_and_subtitle}}</span></label>
+{{else if this.model.name}}
+	<input type="checkbox" 
+		checked={{this.isChecked}} 
+    disabled={{this.isDisabled}}
+		id="{{this.modelName}}-{{this.model.id}}" 
+		onclick={{action (action this.updateSelected this.modelName this.model.id)}} 	
+		>
+	<label for="{{this.modelName}}-{{this.model.id}}"><span><HtmlSafeString @string={{this.model.name}}/></span></label>
+{{else}}
+	<input type="checkbox" 
+	checked={{this.isChecked}} 
+	id="{{this.label}}" 
+	onclick={{action (action this.updateSelected this.label this.value)}} 	
+	>
+	<label for="{{this.label}}"><span>{{this.label}}</span></label>
+{{/if}}
